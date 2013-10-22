@@ -3,7 +3,6 @@ package com.innutrac.poly.innutrac;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
     private DrawerLayout mDrawerLayout;
@@ -33,10 +31,10 @@ public class MainActivity extends Activity {
 		//
 		mTempTitles = new String[5];
 		mTempTitles[0] = "Innutrac";
-		mTempTitles[1] = "Past Data";
+		mTempTitles[1] = "History";
 		mTempTitles[2] = "Temp 3";
 		mTempTitles[3] = "Temp 4";
-		mTempTitles[4] = "Temp 5";
+		mTempTitles[4] = "Settings";
 		//
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);

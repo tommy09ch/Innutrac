@@ -7,4 +7,5 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_new">Add new item</string>
+    <string name="action_void">Action cannot be done</string>
 </resources>

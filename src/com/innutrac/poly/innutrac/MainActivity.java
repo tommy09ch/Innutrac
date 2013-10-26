@@ -3,16 +3,18 @@ package com.innutrac.poly.innutrac;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.view.MenuInflater;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
     private DrawerLayout mDrawerLayout;
@@ -21,7 +23,7 @@ public class MainActivity extends Activity {
 
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
-    private String[] mTempTitles;
+    private String[] mNavTitles;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +31,12 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		//
-		mTempTitles = new String[5];
-		mTempTitles[0] = "Innutrac";
-		mTempTitles[1] = "History";
-		mTempTitles[2] = "Temp 3";
-		mTempTitles[3] = "Temp 4";
-		mTempTitles[4] = "Settings";
+		mNavTitles = new String[5];
+		mNavTitles[0] = getResources().getString(R.string.app_name);
+		mNavTitles[1] = "History";
+		mNavTitles[2] = "Temp 3";
+		mNavTitles[3] = "Temp 4";
+		mNavTitles[4] = "Settings";
 		//
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -43,7 +45,7 @@ public class MainActivity extends Activity {
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mTempTitles));
+                R.layout.drawer_list_item, mNavTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         
         // enable ActionBar app icon to behave as action to toggle nav drawer
@@ -76,12 +78,34 @@ public class MainActivity extends Activity {
         }
 	}
 	
+    /* The click listener for ListView in the navigation drawer */
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+        }
+    }
+    
+    //make menu button open the navigation drawer
+    @Override
+    public boolean onKeyDown(int keycode, KeyEvent e) {
+        switch(keycode) {
+            case KeyEvent.KEYCODE_MENU:
+            	boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+            	if(drawerOpen)
+                	mDrawerLayout.closeDrawer(mDrawerList);
+                else
+                	mDrawerLayout.openDrawer(mDrawerList);
+                return true;
+        }
+
+        return super.onKeyDown(keycode, e);
+    }
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-    	/* Inflate the menu; this adds items to the action bar if it is present.*/
-    	//getMenuInflater().inflate(R.menu.main, menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+    	// Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -101,38 +125,30 @@ public class MainActivity extends Activity {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+        
         // Handle action buttons
-        /*
         switch(item.getItemId()) {
-        case R.id.action_websearch:
+        case R.id.action_new:
             // create intent to perform web search for this planet
-            Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-            intent.putExtra(SearchManager.QUERY, getActionBar().getTitle());
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            //start new activity for adding item here
+            
             // catch event that there's no activity to handle intent
             if (intent.resolveActivity(getPackageManager()) != null) {
                 startActivity(intent);
             } else {
-                Toast.makeText(this, R.string.app_not_available, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.action_void, Toast.LENGTH_LONG).show();
             }
             return true;
         default:
             return super.onOptionsItemSelected(item);
         }
-        */
-        else 
-        	return false;
-    }
-    
-    /* The click listener for ListView in the navigation drawer */
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
-        }
     }
 
     private void selectItem(int position) {
-        /*
+        
+    	//add code for starting new activity on select here
+    	/*
     	// update the main content by replacing fragments
         Fragment fragment = new PlanetFragment();
         Bundle args = new Bundle();
@@ -142,9 +158,10 @@ public class MainActivity extends Activity {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 		*/
+    	
         // update selected item and title, then close the drawer
         mDrawerList.setItemChecked(position, true);
-        setTitle(mTempTitles[position]);
+        setTitle(mNavTitles[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
     

@@ -54,20 +54,17 @@ public class SplashScreen extends Activity {
 	 */
 	private Intent checkOnFirstLoad() {
 		String sdPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-
-		System.out.println(sdPath);
-		File cache = new File(sdPath + "/innutrac/vals/cache");
+		
+		
+		File cache = new File(sdPath + "/Innutrac/vals/cache");
 		if (cache.exists()) {
-			System.out.println("Found cache");
 			return new Intent(this, MainActivity.class);
 		} else {
-			System.out.println("No cache found");
-			File dir = new File(sdPath + "/innutrac/vals");
+			File dir = new File(sdPath + "/Innutrac/vals");
 			dir.mkdirs();
 			cache = new File(dir, "cache");
 			try {
-				// We're using this blank file to determine if this is the first
-				// load
+				// We're using this blank file to determine if this is the first load
 				FileOutputStream f = new FileOutputStream(cache);
 				f.close();
 			} catch (FileNotFoundException e) {

@@ -14,7 +14,8 @@ public class DailyPlan {
 	ArrayList<Food> foodList = new ArrayList<Food>();
 
 	/**
-	 * Constructor to initialize all the "total___" for each of the food groups.
+	 * Constructor to initialize all the "total___" for each of the food groups
+	 * when the object is created for each new day.
 	 * 
 	 * @param carb
 	 * @param pro
@@ -27,7 +28,7 @@ public class DailyPlan {
 	 */
 	public DailyPlan(int carb, int pro, int sod, int chol, int fat, int sug,
 			int fib, int cal) {
-		
+
 		totalCarbs = carb;
 		totalProtein = pro;
 		totalSodium = sod;
@@ -50,5 +51,37 @@ public class DailyPlan {
 
 		// add the eaten food to the arrayList for saving.
 		foodList.add(food);
+	}
+
+	public int getTotalCarb() {
+		return totalCarbs;
+	}
+
+	public int getTotalProtein() {
+		return totalProtein;
+	}
+
+	public int getTotalSodium() {
+		return totalSodium;
+	}
+
+	public int getTotalCholesterol() {
+		return totalCholesterol;
+	}
+
+	public int getTotalFats() {
+		return totalFats;
+	}
+
+	public int getTotalSugar() {
+		return totalSugar;
+	}
+
+	public int getTotalFiber() {
+		return totalFiber;
+	}
+
+	public int getTotalCalories() {
+		return totalCalories;
 	}
 }

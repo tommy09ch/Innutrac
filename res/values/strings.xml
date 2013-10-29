@@ -3,9 +3,19 @@
 
     <string name="app_name">Innutrac</string>
     <string name="action_settings">Settings</string>
-	
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_new">Add new item</string>
     <string name="action_void">Action cannot be done</string>
+    <string name="welcome_message">Thank you for downloading InNuTrac. Let begin setting up your personal intake nutrition tracker.</string>
+
+    <color name="AliceBlue">#f0f8ff</color>
+    <color name="Azure">#e0eeee</color>
+    <color name="Wheat">#ffe7ba</color>
+    <color name="WhiteSmoke">#f5f5f5</color>
+    <color name="Snow2">#eee9e9</color>
+    <color name="LightSkyBlue4">#607b8b</color>
+    <color name="LightSkyBlue3">#8db6cd</color>
+    <color name="LightSkyBlue2">#a4d3ee</color>
+
 </resources>

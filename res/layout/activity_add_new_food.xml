@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:ems="10"
+        android:hint="Enter a Food Item"
+        android:lines="1"
+        android:overScrollMode="never"
+        android:scrollbarAlwaysDrawVerticalTrack="false" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sizeBar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/sizeBar"
+        android:layout_marginBottom="26dp"
+        android:text="Submit" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/autoCompleteTextView1"
+        android:layout_below="@+id/autoCompleteTextView1"
+        android:layout_marginTop="31dp"
+        android:text="Serving Size (g):"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <SeekBar
+        android:id="@+id/sizeBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/serving_sizeET"
+        android:layout_below="@+id/serving_sizeET"
+        android:layout_marginTop="26dp"
+        android:max="90" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sizeBar"
+        android:layout_below="@+id/sizeBar"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/holo_blue_dark"
+        android:text="Carbs:"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/TextView03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/TextView02"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_blue_light"
+        android:text="Chols:"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_below="@+id/TextView03"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_green_dark"
+        android:text="Fat:"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView01"
+        android:layout_below="@+id/TextView01"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_green_light"
+        android:text="Sugar:"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toLeftOf="@+id/serving_sizeET"
+        android:layout_toRightOf="@+id/TextView03"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/EditText01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextView03"
+        android:layout_alignBottom="@+id/TextView03"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_toLeftOf="@+id/serving_sizeET"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/EditText02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextView01"
+        android:layout_alignBottom="@+id/TextView01"
+        android:layout_toLeftOf="@+id/serving_sizeET"
+        android:layout_toRightOf="@+id/TextView01"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/EditText03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextView02"
+        android:layout_alignBottom="@+id/TextView02"
+        android:layout_toLeftOf="@+id/serving_sizeET"
+        android:layout_toRightOf="@+id/TextView01"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/serving_sizeET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignRight="@+id/autoCompleteTextView1"
+        android:layout_toRightOf="@+id/textView1"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:maxHeight="1dp" />
+
+</RelativeLayout>

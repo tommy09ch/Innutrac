@@ -18,12 +18,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-public class GetUserInfo extends Activity {
-	boolean flag = false;
+public class Activity_GetUserInfo extends Activity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.get_user_info);
+		setContentView(R.layout.activity_get_user_info);
 		final RadioButton maleRB = (RadioButton) findViewById(R.id.profMaleRButton);
 		final RadioButton femaleRB = (RadioButton) findViewById(R.id.profFemaleRButton);
 
@@ -63,12 +62,12 @@ public class GetUserInfo extends Activity {
 				}
 
 				if (name.isEmpty() || gender.isEmpty() || age.isEmpty()) {
-					Toast.makeText(GetUserInfo.this, "Please complete all fields", Toast.LENGTH_LONG).show();
+					Toast.makeText(Activity_GetUserInfo.this, "Please complete all fields", Toast.LENGTH_LONG).show();
 				} else {
 					saveToFile(name, age, gender);
 					
-					Toast.makeText(GetUserInfo.this, "Profile Created", Toast.LENGTH_LONG).show();
-					Intent i = new Intent(GetUserInfo.this, MainActivity.class);
+					Toast.makeText(Activity_GetUserInfo.this, "Profile Created", Toast.LENGTH_LONG).show();
+					Intent i = new Intent(Activity_GetUserInfo.this, MainActivity.class);
 					startActivity(i);
 				}
 			}
@@ -79,7 +78,7 @@ public class GetUserInfo extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(GetUserInfo.this, MainActivity.class);
+				Intent i = new Intent(Activity_GetUserInfo.this, MainActivity.class);
 				startActivity(i);
 			}
 		});

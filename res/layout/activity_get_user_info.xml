@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightSkyBlue3" >
+    android:background="@android:color/background_light" >
 
     <EditText
         android:id="@+id/profileNameField"
@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/text_border"
         android:ems="10"
         android:inputType="textPersonName" >
 
@@ -34,7 +33,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/TextView01"
         android:layout_below="@+id/TextView01"
-        android:background="@drawable/text_border"
         android:ems="10"
         android:inputType="number" />
 

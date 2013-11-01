@@ -13,7 +13,7 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.Window;
 
-public class SplashScreen extends Activity {
+public class Activity_SplashScreen extends Activity {
 	private static final int TIMER_SPEED = 2000; // 2 seconds
 
 	@Override
@@ -22,7 +22,7 @@ public class SplashScreen extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.splash_screen);
+		setContentView(R.layout.activity_splash_screen);
 
 		new Handler().postDelayed(new Runnable() {
 
@@ -72,7 +72,7 @@ public class SplashScreen extends Activity {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			return new Intent(this, FirstTimeMessage.class);
+			return new Intent(this, Activity_FirstTimeMessage.class);
 		}
 	}
 }

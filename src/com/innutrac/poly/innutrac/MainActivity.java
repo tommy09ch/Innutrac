@@ -160,12 +160,14 @@ public class MainActivity extends Activity {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
+		
+		
 
 		// Handle action buttons
 		switch (item.getItemId()) {
 		case R.id.action_new:
 			// create intent to perform web search for this planet
-			Intent intent = new Intent(Intent.ACTION_MAIN);
+			Intent intent = new Intent(MainActivity.this, Activity_AddNewFood.class);
 			// start new activity for adding item here
 
 			// catch event that there's no activity to handle intent

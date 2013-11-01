@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light" >
         <activity
-            android:name="com.innutrac.poly.innutrac.SplashScreen"
+            android:name="com.innutrac.poly.innutrac.Activity_SplashScreen"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,11 +28,15 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.innutrac.poly.innutrac.GetUserInfo"
+            android:name="com.innutrac.poly.innutrac.Activity_GetUserInfo"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.innutrac.poly.innutrac.FirstTimeMessage"
+            android:name="com.innutrac.poly.innutrac.Activity_FirstTimeMessage"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.innutrac.poly.innutrac.Activity_AddNewFood"
             android:label="@string/app_name" >
         </activity>
     </application>

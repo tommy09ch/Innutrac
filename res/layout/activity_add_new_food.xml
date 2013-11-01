@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
         android:ems="10"
-        android:hint="Enter a Food Item"
+        android:hint="Enter a food item"
         android:lines="1"
         android:maxLines="1"
         android:overScrollMode="never"
@@ -36,7 +36,7 @@
         android:layout_alignLeft="@+id/autoCompleteTextView1"
         android:layout_below="@+id/autoCompleteTextView1"
         android:layout_marginTop="31dp"
-        android:text="Serving Size (g):"
+        android:text="Serving Portion (g):"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <SeekBar
@@ -81,18 +81,20 @@
             android:paddingBottom="20dp" >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/carb_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_dark"
-                android:text="Carb:"
-                android:textAlignment="viewEnd"
+                android:background="@drawable/blue_dark_rect"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textColor="#ffffff"
+                android:text="Carb"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/carb_edit"
                 android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal" >
@@ -108,16 +110,19 @@
             android:paddingBottom="20dp" >
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/protein_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_light"
-                android:text="Protein:"
+                android:background="@drawable/blue_light_rect"
+                android:padding="4dp"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:text="Protein"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/protein_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal" />
@@ -130,16 +135,19 @@
             android:paddingBottom="20dp" >
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/sodium_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_green_dark"
-                android:text="Sodium:"
+                android:background="@drawable/green_dark_rect"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textColor="#ffffff"
+                android:text="Sodium"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/sodium_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberSigned" />
@@ -151,16 +159,18 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/cholest_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_green_light"
-                android:text="Cholest:"
+                android:background="@drawable/green_light_rect"
+                android:textColor="#ffffff"
+                android:text="Cholest"
+                android:padding="4dp"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/cholest_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberSigned" />
@@ -185,40 +195,45 @@
             android:paddingBottom="20dp" >
 
             <TextView
-                android:id="@+id/TextView01"
+                android:id="@+id/fats_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_orange_dark"
-                android:text="Fats:"
-                android:textAlignment="viewEnd"
+                android:background="@drawable/orange_dark_rect"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textColor="#ffffff"
+                android:text="Fats"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
 
             <EditText
-                android:id="@+id/EditText04"
+                android:id="@+id/fats_edit"
                 android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal" />
         </TableRow>
 
         <TableRow
-            android:id="@+id/TableRow01"
+            android:id="@+id/tableRow5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="20dp" >
 
             <TextView
-                android:id="@+id/TextView03"
+                android:id="@+id/sugar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_orange_light"
-                android:text="Sugar:"
+                android:background="@drawable/orange_light_rect"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textColor="#ffffff"
+                android:text="Sugar"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/EditText02"
+                android:id="@+id/sugar_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal" />
@@ -231,16 +246,19 @@
             android:paddingBottom="20dp" >
 
             <TextView
-                android:id="@+id/TextView02"
+                android:id="@+id/fiber_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_red_dark"
-                android:text="Fiber:"
+                android:background="@drawable/red_light_rect"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textColor="#ffffff"
+                android:text="Fiber"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/EditText03"
+                android:id="@+id/fiber_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberSigned" />
@@ -252,16 +270,19 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/TextView04"
+                android:id="@+id/calories_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_red_light"
-                android:text="Calories:"
+                android:background="@drawable/red_light_rect"
+                android:padding="4dp"
+                android:radius="8dp"
+                android:textColor="#ffffff"
+                android:text="Calories"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/EditText01"
+                android:id="@+id/calories_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberSigned" />

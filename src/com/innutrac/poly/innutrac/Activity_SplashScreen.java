@@ -7,23 +7,28 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.Window;
+import android.widget.TextView;
 
 public class Activity_SplashScreen extends Activity {
-	private static final int TIMER_SPEED = 2000; // 2 seconds
+	private static final int TIMER_SPEED = 1000; // 1 seconds
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
+		
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
-
+		
+		Typeface tf = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Bold.ttf");
+        TextView tv = (TextView) findViewById(R.id.splash_title);
+        tv.setTypeface(tf);
+        
 		new Handler().postDelayed(new Runnable() {
 
 			@Override

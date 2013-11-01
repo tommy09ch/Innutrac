@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.view.Menu;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -30,10 +32,9 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
 		//
 		mNavTitles = new String[5];
 		mNavTitles[0] = getResources().getString(R.string.app_name);
@@ -136,8 +137,6 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		
-		
-
 		// Handle action buttons
 		switch (item.getItemId()) {
 		case R.id.action_new:

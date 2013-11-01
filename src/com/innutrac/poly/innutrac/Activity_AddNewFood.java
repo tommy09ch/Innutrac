@@ -10,6 +10,7 @@ public class Activity_AddNewFood extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_new_food);
+		
 		SeekBar bar = (SeekBar) findViewById(R.id.sizeBar);
 		final EditText sizeET = (EditText) findViewById(R.id.serving_sizeET);
 		

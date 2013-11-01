@@ -31,13 +31,13 @@
         android:id="@+id/profAgeField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TextView01"
-        android:layout_below="@+id/TextView01"
+        android:layout_alignLeft="@+id/fats_title"
+        android:layout_below="@+id/fats_title"
         android:ems="10"
         android:inputType="number" />
 
     <TextView
-        android:id="@+id/TextView01"
+        android:id="@+id/fats_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/profileNameField"
@@ -48,7 +48,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/TextView02"
+        android:id="@+id/fiber_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/profAgeField"
@@ -62,8 +62,8 @@
         android:id="@+id/profMaleRButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TextView02"
-        android:layout_below="@+id/TextView02"
+        android:layout_alignLeft="@+id/fiber_title"
+        android:layout_below="@+id/fiber_title"
         android:text="Male" />
 
     <RadioButton

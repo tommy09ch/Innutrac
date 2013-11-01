@@ -10,11 +10,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,6 +28,11 @@ public class MainActivity extends Activity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] mNavTitles;
+	
+	// pie chart variables:
+	LinearLayout pieContainer;
+	int factor = 1;
+	private PieView pie;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,24 @@ public class MainActivity extends Activity {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		// pie chart stuff begins here:
+		pieContainer = (LinearLayout)findViewById(R.id.pie_container_id);
+        pie = new PieView(this);
+        pie.setMode(factor);
+        pieContainer =  (LinearLayout) findViewById(R.id.pie_container_id);
+        pieContainer.addView(pie);
+        pieContainer.setOnTouchListener(new View.OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				float x = event.getX();
+				float y = event.getY();
+				pie.wedgeDetect(x, y); // will send touch location
+				// to PieView and appropriately change to detail view
+				return false;
+			}
+		});
 
 		//
 		mNavTitles = new String[5];

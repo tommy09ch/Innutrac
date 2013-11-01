@@ -1,7 +1,9 @@
 package com.innutrac.poly.innutrac;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.*;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
@@ -11,13 +13,20 @@ public class Activity_AddNewFood extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_new_food);
 		
+        Typeface tf = Typeface.createFromAsset(getAssets(),"Roboto-Medium.ttf");
+        TextView tv = (TextView) findViewById(R.id.portion_size);
+        tv.setTypeface(tf);
+        
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setTitle("Add Food");
+		
 		SeekBar bar = (SeekBar) findViewById(R.id.sizeBar);
 		final EditText sizeET = (EditText) findViewById(R.id.serving_sizeET);
 		
 		sizeET.setText("1.0");
 		
 		bar.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
-
+			
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
@@ -38,8 +47,20 @@ public class Activity_AddNewFood extends Activity{
 			}
 			
 		});
-		
-		
-		
 	}
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) 
+    {
+        switch (item.getItemId()) 
+        {
+        case android.R.id.home: 
+            onBackPressed();
+            break;
+
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
 }

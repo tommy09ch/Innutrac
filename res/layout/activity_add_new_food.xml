@@ -30,20 +30,22 @@
         android:text="Submit" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/portion_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/autoCompleteTextView1"
         android:layout_below="@+id/autoCompleteTextView1"
         android:layout_marginTop="31dp"
-        android:text="Serving Portion (g):"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="Portion Size (g)"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <SeekBar
         android:id="@+id/sizeBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/portion_size"
         android:layout_alignRight="@+id/serving_sizeET"
         android:layout_below="@+id/serving_sizeET"
         android:layout_marginTop="26dp"
@@ -53,10 +55,10 @@
         android:id="@+id/serving_sizeET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBaseline="@+id/portion_size"
+        android:layout_alignBottom="@+id/portion_size"
         android:layout_alignRight="@+id/autoCompleteTextView1"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/portion_size"
         android:ems="10"
         android:inputType="numberDecimal"
         android:maxLines="1"

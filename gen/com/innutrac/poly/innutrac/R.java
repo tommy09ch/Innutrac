@@ -52,7 +52,7 @@ public final class R {
         public static final int TableRow02=0x7f090013;
         public static final int TableRow03=0x7f09001c;
         public static final int TableRow04=0x7f090019;
-        public static final int action_new=0x7f09002a;
+        public static final int action_new=0x7f09002b;
         public static final int autoCompleteTextView1=0x7f090000;
         public static final int button1=0x7f090001;
         public static final int calories_edit=0x7f09001e;
@@ -61,27 +61,28 @@ public final class R {
         public static final int carb_title=0x7f090007;
         public static final int cholest_edit=0x7f090011;
         public static final int cholest_title=0x7f090010;
-        public static final int content_frame=0x7f090026;
-        public static final int drawer_layout=0x7f090025;
+        public static final int content_frame=0x7f090027;
+        public static final int drawer_layout=0x7f090026;
         public static final int fats_edit=0x7f090015;
         public static final int fats_title=0x7f090014;
         public static final int fiber_edit=0x7f09001b;
         public static final int fiber_title=0x7f09001a;
-        public static final int left_drawer=0x7f090027;
-        public static final int profAgeField=0x7f090021;
-        public static final int profFemaleRButton=0x7f090023;
-        public static final int profMaleRButton=0x7f090022;
-        public static final int profileNameField=0x7f090020;
+        public static final int left_drawer=0x7f090028;
+        public static final int portion_size=0x7f090003;
+        public static final int profAgeField=0x7f090022;
+        public static final int profFemaleRButton=0x7f090024;
+        public static final int profMaleRButton=0x7f090023;
+        public static final int profileNameField=0x7f090021;
         public static final int protein_edit=0x7f09000b;
         public static final int protein_title=0x7f09000a;
-        public static final int save_user_button=0x7f09001f;
+        public static final int save_user_button=0x7f090020;
         public static final int serving_sizeET=0x7f090004;
         public static final int sizeBar=0x7f090002;
-        public static final int skip_user_button=0x7f090024;
+        public static final int skip_user_button=0x7f090025;
         public static final int sodium_edit=0x7f09000e;
         public static final int sodium_title=0x7f09000d;
-        public static final int splash_logo=0x7f090029;
-        public static final int splash_title=0x7f090028;
+        public static final int splash_logo=0x7f09002a;
+        public static final int splash_title=0x7f090029;
         public static final int sugar_edit=0x7f090018;
         public static final int sugar_title=0x7f090017;
         public static final int tableLayout1=0x7f090005;
@@ -90,7 +91,7 @@ public final class R {
         public static final int tableRow3=0x7f09000c;
         public static final int tableRow4=0x7f09000f;
         public static final int tableRow5=0x7f090016;
-        public static final int textView1=0x7f090003;
+        public static final int textView1=0x7f09001f;
     }
     public static final class layout {
         public static final int activity_add_new_food=0x7f030000;

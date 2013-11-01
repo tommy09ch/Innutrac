@@ -24,10 +24,6 @@ public class Activity_SplashScreen extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
-		
-		Typeface tf = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Bold.ttf");
-        TextView tv = (TextView) findViewById(R.id.splash_title);
-        tv.setTypeface(tf);
         
 		new Handler().postDelayed(new Runnable() {
 

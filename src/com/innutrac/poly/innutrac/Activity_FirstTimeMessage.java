@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class FirstTimeMessage extends Activity {
+public class Activity_FirstTimeMessage extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_first_time_message);
@@ -18,7 +18,7 @@ public class FirstTimeMessage extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				Intent i = new Intent(FirstTimeMessage.this, GetUserInfo.class);
+				Intent i = new Intent(Activity_FirstTimeMessage.this, Activity_GetUserInfo.class);
 				startActivity(i);
 			}
 		});

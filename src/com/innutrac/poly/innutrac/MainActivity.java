@@ -8,17 +8,8 @@ import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.view.KeyEvent;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.view.*;
+import android.widget.*;
 
 public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
@@ -28,7 +19,7 @@ public class MainActivity extends Activity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] mNavTitles;
-	
+
 	// pie chart variables:
 	LinearLayout pieContainer;
 	int factor = 1;
@@ -36,28 +27,27 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
-		
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		 //pie chart stuff begins here:
+		 pieContainer = (LinearLayout) findViewById(R.id.pieView1);
+		 pie = new PieView(this);
+		 pie.setMode(factor);
+		 pieContainer = (LinearLayout) findViewById(R.id.pieView1);
+		 pieContainer.addView(pie);
+		 pieContainer.setOnTouchListener(new View.OnTouchListener() {
 		
-		// pie chart stuff begins here:
-		pieContainer = (LinearLayout)findViewById(R.id.pie_container_id);
-        pie = new PieView(this);
-        pie.setMode(factor);
-        pieContainer =  (LinearLayout) findViewById(R.id.pie_container_id);
-        pieContainer.addView(pie);
-        pieContainer.setOnTouchListener(new View.OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				float x = event.getX();
-				float y = event.getY();
-				pie.wedgeDetect(x, y); // will send touch location
-				// to PieView and appropriately change to detail view
-				return false;
-			}
-		});
+		 @Override
+		 public boolean onTouch(View v, MotionEvent event) {
+		 float x = event.getX();
+		 float y = event.getY();
+		 pie.wedgeDetect(x, y); // will send touch location
+		 // to PieView and appropriately change to detail view
+		 return false;
+		 }
+		 });
 
 		//
 		mNavTitles = new String[5];
@@ -65,7 +55,7 @@ public class MainActivity extends Activity {
 		mNavTitles[1] = "History";
 		mNavTitles[2] = "Temp 3";
 		mNavTitles[3] = "Temp 4";
-		mNavTitles[4] = "Settings";
+		mNavTitles[4] = "Edit Profile";
 		//
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -98,6 +88,8 @@ public class MainActivity extends Activity {
 			}
 
 			public void onDrawerOpened(View drawerView) {
+				drawerView.setEnabled(true);
+				drawerView.setSelected(true);
 				getActionBar().setTitle(mDrawerTitle);
 				invalidateOptionsMenu(); // creates call to
 											// onPrepareOptionsMenu()
@@ -155,22 +147,14 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// The action bar home/up action should open or close the drawer.
-		// ActionBarDrawerToggle will take care of this.
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
-		
-		
 
-		// Handle action buttons
 		switch (item.getItemId()) {
 		case R.id.action_new:
-			// create intent to perform web search for this planet
-			Intent intent = new Intent(MainActivity.this, Activity_AddNewFood.class);
-			// start new activity for adding item here
+			Intent intent = new Intent(MainActivity.this, AddFoodActivity.class);
 
-			// catch event that there's no activity to handle intent
 			if (intent.resolveActivity(getPackageManager()) != null) {
 				startActivity(intent);
 			} else {
@@ -184,22 +168,15 @@ public class MainActivity extends Activity {
 	}
 
 	private void selectItem(int position) {
+		if (position == 4) {
+			startActivity(new Intent(MainActivity.this, UserInfoActivity.class)
+					.putExtra("title", "Main"));
+		} else {
+			// update selected item and title, then close the drawer
+			mDrawerList.setItemChecked(position, true);
+			setTitle(mNavTitles[position]);
+		}
 
-		// add code for starting new activity on select here
-		/*
-		 * // update the main content by replacing fragments Fragment fragment =
-		 * new PlanetFragment(); Bundle args = new Bundle();
-		 * args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-		 * fragment.setArguments(args);
-		 * 
-		 * FragmentManager fragmentManager = getFragmentManager();
-		 * fragmentManager.beginTransaction().replace(R.id.content_frame,
-		 * fragment).commit();
-		 */
-
-		// update selected item and title, then close the drawer
-		mDrawerList.setItemChecked(position, true);
-		setTitle(mNavTitles[position]);
 		mDrawerLayout.closeDrawer(mDrawerList);
 	}
 

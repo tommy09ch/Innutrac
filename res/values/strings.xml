@@ -18,4 +18,13 @@
     <color name="LightSkyBlue3">#8db6cd</color>
     <color name="LightSkyBlue2">#a4d3ee</color>
 
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="appTitle">InNuTrac</string>
+    <string name="title_activity_welcome_message">WelcomeMessageActivity</string>
+    <string name="start_button">Start</string>
+    <string name="title_activity_user_info">UserInfoActivity</string>
+    <string name="title_activity_add_food">AddFoodActivity</string>
+    <string name="title_activity_edit_user_info">EditUserInfoActivity</string>
+
 </resources>

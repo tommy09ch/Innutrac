@@ -7,37 +7,43 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
-    
-        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/colororange1"
+        android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light" >
-        <activity
-            android:name="com.innutrac.poly.innutrac.Activity_SplashScreen"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name="com.innutrac.poly.innutrac.MainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.innutrac.poly.innutrac.Activity_GetUserInfo"
-            android:label="@string/app_name" >
+            android:name="com.innutrac.poly.innutrac.SplashScreenActivity"
+            android:label="@string/title_activity_splash_screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
-            android:name="com.innutrac.poly.innutrac.Activity_FirstTimeMessage"
-            android:label="@string/app_name" >
+            android:name="com.innutrac.poly.innutrac.WelcomeMessageActivity"
+            android:label="@string/title_activity_welcome_message" >
         </activity>
         <activity
-            android:name="com.innutrac.poly.innutrac.Activity_AddNewFood"
-            android:label="@string/app_name" >
+            android:name="com.innutrac.poly.innutrac.UserInfoActivity"
+            android:label="@string/title_activity_user_info" >
+        </activity>
+        <activity
+            android:name="com.innutrac.poly.innutrac.AddFoodActivity"
+            android:label="@string/title_activity_add_food" >
+        </activity>
+        <activity
+            android:name="com.innutrac.poly.innutrac.EditUserInfoActivity"
+            android:label="@string/title_activity_edit_user_info" >
         </activity>
     </application>
+
 </manifest>

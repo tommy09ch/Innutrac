@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class ProfileDatabase extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME_PROFILE = "profile"; 
+    private static final String DATABASE_NAME_PROFILE = "profile.db"; 
     
     private static final String TABLE_PROFILE = "profile_info"; 
     private static final String KEY_PROFILE_ID = "id";

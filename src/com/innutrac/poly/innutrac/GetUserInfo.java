@@ -65,7 +65,7 @@ public class GetUserInfo extends Activity {
 				if (name.isEmpty() || gender.isEmpty() || age.isEmpty()) {
 					Toast.makeText(GetUserInfo.this, "Please complete all fields", Toast.LENGTH_LONG).show();
 				} else {
-					saveToFile(name, age, gender);
+					saveToDB(name, age, gender);
 					
 					Toast.makeText(GetUserInfo.this, "Profile Created", Toast.LENGTH_LONG).show();
 					Intent i = new Intent(GetUserInfo.this, MainActivity.class);
@@ -86,6 +86,14 @@ public class GetUserInfo extends Activity {
 
 	}
 
+	private void saveToDB( String name, String age, String sex )
+	{
+		ProfileDatabase pdb = new ProfileDatabase(this);
+		boolean s = sex.compareToIgnoreCase("M") == 1 ? true : false;
+		pdb.addProfile(name, Integer.valueOf(age), s);
+	}
+	
+	/*
 	public void saveToFile(String n, String a, String g) {
 
 		String sdPath = Environment.getExternalStorageDirectory()
@@ -112,5 +120,6 @@ public class GetUserInfo extends Activity {
 			e.printStackTrace();
 		}
 	}
+	*/
 
 }

@@ -59,7 +59,7 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_PROFILE_NAME, name);
         values.put(KEY_PROFILE_AGE, age); 
-        values.put(KEY_PROFILE_SEX, sex);
+        values.put(KEY_PROFILE_SEX, ( sex ? 1 : 0));
         values.put(KEY_PROFILE_CREATE_TIME, time); 
         
         db.insert( TABLE_PROFILE, null,values );
@@ -73,7 +73,7 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_PROFILE_NAME, name);
         values.put(KEY_PROFILE_AGE, age); 
-        values.put(KEY_PROFILE_SEX, sex);
+        values.put(KEY_PROFILE_SEX, ( sex ? 1 : 0));
 
         int i = db.update(TABLE_FOODREC, //table
                 values, // column/value

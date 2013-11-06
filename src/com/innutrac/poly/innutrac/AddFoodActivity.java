@@ -17,7 +17,7 @@ public class AddFoodActivity extends Activity {
 		setContentView(R.layout.activity_add_food);
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setTitle("Add Food");
+		getActionBar().setTitle(R.string.action_new);
 
 		SeekBar bar = (SeekBar) findViewById(R.id.af_size_seekBar);
 		final EditText sizeET = (EditText) findViewById(R.id.af_serving_edit);

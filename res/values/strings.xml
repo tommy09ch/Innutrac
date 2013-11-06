@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="action_new">Add new item</string>
+    <string name="action_new">Add food</string>
     <string name="action_void">Action cannot be done</string>
     <string name="welcome_message">Thank you for downloading InNuTrac. Let begin setting up your personal intake nutrition tracker.</string>
 

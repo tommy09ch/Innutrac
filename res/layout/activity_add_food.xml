@@ -74,11 +74,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bluedark_rec"
-                android:text="Carbohydrates:"
+                android:text="Carbohydrates"
                 android:textAlignment="viewEnd"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:typeface="normal" />
+                android:typeface="normal"
+                android:textColor="#ffffff"
+                android:gravity="center_horizontal" />
 
             <EditText
                 android:id="@+id/editText2"
@@ -98,9 +100,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bluelight_rec"
-                android:text="Protein:"
+                android:text="Protein"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold" 
+                android:textColor="#ffffff"
+                android:gravity="center_horizontal" />
 
             <EditText
                 android:id="@+id/editText2"
@@ -120,9 +124,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/greendark_rec"
-                android:text="Sodium:"
+                android:text="Sodium"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold" 
+                android:textColor="#ffffff"
+                android:gravity="center_horizontal" />
 
             <EditText
                 android:id="@+id/editText2"
@@ -142,9 +148,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/greenlight_rec"
-                android:text="Cholesterol:"
+                android:text="Cholesterol"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:gravity="center_horizontal" />
 
             <EditText
                 android:id="@+id/editText2"
@@ -164,11 +172,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/orangedark_rec"
-                android:text="Fats:"
+                android:text="Fat"
                 android:textAlignment="viewEnd"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:typeface="normal" />
+                android:typeface="normal"
+                android:textColor="#ffffff"
+                android:gravity="center_horizontal" />                
 
             <EditText
                 android:id="@+id/editText2"
@@ -188,9 +198,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/orangelight_rec"
-                android:text="Sugar:"
+                android:text="Sugar"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:gravity="center_horizontal" />
 
             <EditText
                 android:id="@+id/editText2"
@@ -210,9 +222,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/reddark_rec"
-                android:text="Fiber:"
+                android:text="Fiber"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:gravity="center_horizontal" />               
 
             <EditText
                 android:id="@+id/editText2"
@@ -232,9 +246,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/redlight_rec"
-                android:text="Calories:"
+                android:text="Calories"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:gravity="center_horizontal" />                
 
             <EditText
                 android:id="@+id/editText2"

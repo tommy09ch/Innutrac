@@ -86,11 +86,11 @@ public class GetUserInfo extends Activity {
 
 	}
 
-	private void saveToDB( String name, String age, String sex )
+	private void saveToDB( String name, String age, String sex, int displayX, int displayY )
 	{
 		ProfileDatabase pdb = new ProfileDatabase(this);
 		boolean s = sex.compareToIgnoreCase("M") == 1 ? true : false;
-		pdb.addProfile(name, Integer.valueOf(age), s);
+		pdb.addProfile(name, Integer.valueOf(age), s, displayX, displayY);
 	}
 	
 	/*

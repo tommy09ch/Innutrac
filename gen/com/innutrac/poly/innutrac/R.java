@@ -32,48 +32,95 @@ public final class R {
     }
     public static final class drawable {
         public static final int action_search=0x7f020000;
-        public static final int colororange1=0x7f020001;
-        public static final int drawer_shadow=0x7f020002;
-        public static final int ic_action_new=0x7f020003;
-        public static final int ic_drawer=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int text_border=0x7f020006;
+        public static final int app_logo=0x7f020001;
+        public static final int bluedark_rec=0x7f020002;
+        public static final int bluelight_rec=0x7f020003;
+        public static final int drawer_shadow=0x7f020004;
+        public static final int greendark_rec=0x7f020005;
+        public static final int greenlight_rec=0x7f020006;
+        public static final int ic_action_new=0x7f020007;
+        public static final int ic_drawer=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int orangedark_rec=0x7f02000a;
+        public static final int orangelight_rec=0x7f02000b;
+        public static final int piechart_shade=0x7f02000c;
+        public static final int reddark_rec=0x7f02000d;
+        public static final int redlight_rec=0x7f02000e;
+        public static final int text_border=0x7f02000f;
     }
     public static final class id {
-        public static final int TextView01=0x7f090007;
-        public static final int TextView02=0x7f090008;
-        public static final int action_new=0x7f09000d;
-        public static final int content_frame=0x7f090003;
-        public static final int drawer_layout=0x7f090002;
-        public static final int imageView1=0x7f09000c;
-        public static final int left_drawer=0x7f090004;
-        public static final int profAgeField=0x7f090006;
-        public static final int profFemaleRButton=0x7f09000a;
-        public static final int profMaleRButton=0x7f090009;
-        public static final int profileNameField=0x7f090005;
-        public static final int save_user_button=0x7f090001;
-        public static final int skip_user_button=0x7f09000b;
-        public static final int textView1=0x7f090000;
+        public static final int TextView01=0x7f09000f;
+        public static final int TextView02=0x7f090013;
+        public static final int TextView03=0x7f090011;
+        public static final int TextView04=0x7f090015;
+        public static final int action_new=0x7f090028;
+        public static final int action_settings=0x7f090027;
+        public static final int af_serving_edit=0x7f090001;
+        public static final int af_size_seekBar=0x7f090003;
+        public static final int af_submit_but=0x7f090016;
+        public static final int content_frame=0x7f090018;
+        public static final int drawer_layout=0x7f090017;
+        public static final int editText1=0x7f090000;
+        public static final int editText2=0x7f090007;
+        public static final int imageView1=0x7f09001b;
+        public static final int left_drawer=0x7f09001a;
+        public static final int pieView1=0x7f090019;
+        public static final int tableLayout1=0x7f090004;
+        public static final int tableRow1=0x7f090005;
+        public static final int tableRow2=0x7f090008;
+        public static final int tableRow3=0x7f09000a;
+        public static final int tableRow4=0x7f09000c;
+        public static final int tableRow5=0x7f09000e;
+        public static final int tableRow6=0x7f090010;
+        public static final int tableRow7=0x7f090012;
+        public static final int tableRow8=0x7f090014;
+        public static final int textView1=0x7f090002;
+        public static final int textView2=0x7f090006;
+        public static final int textView3=0x7f090009;
+        public static final int textView4=0x7f09000b;
+        public static final int textView5=0x7f09000d;
+        public static final int textView6=0x7f090022;
+        public static final int ui_age_edit=0x7f09001d;
+        public static final int ui_feetHeight_edit=0x7f090020;
+        public static final int ui_female_radbut=0x7f09001f;
+        public static final int ui_inchHeight_edit=0x7f090021;
+        public static final int ui_male_radbut=0x7f09001e;
+        public static final int ui_name_edit=0x7f09001c;
+        public static final int ui_save_but=0x7f090024;
+        public static final int ui_skip_but=0x7f090025;
+        public static final int ui_weight_edit=0x7f090023;
+        public static final int wm_start_button=0x7f090026;
     }
     public static final class layout {
-        public static final int activity_first_time_message=0x7f030000;
+        public static final int activity_add_food=0x7f030000;
         public static final int activity_main=0x7f030001;
-        public static final int drawer_list_item=0x7f030002;
-        public static final int get_user_info=0x7f030003;
-        public static final int splash_screen=0x7f030004;
+        public static final int activity_splash_screen=0x7f030002;
+        public static final int activity_user_info=0x7f030003;
+        public static final int activity_welcome_message=0x7f030004;
+        public static final int drawer_list_item=0x7f030005;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
-        public static final int splash_screen=0x7f080001;
+        public static final int add_food=0x7f080000;
+        public static final int main=0x7f080001;
+        public static final int splash_screen=0x7f080002;
+        public static final int user_info=0x7f080003;
+        public static final int welcome_message=0x7f080004;
     }
     public static final class string {
         public static final int action_new=0x7f050004;
         public static final int action_settings=0x7f050001;
         public static final int action_void=0x7f050005;
+        public static final int appTitle=0x7f050009;
         public static final int app_name=0x7f050000;
         public static final int drawer_close=0x7f050003;
         public static final int drawer_open=0x7f050002;
-        public static final int icon=0x7f050007;
+        public static final int hello_world=0x7f050008;
+        public static final int start_button=0x7f05000b;
+        public static final int title_activity_add_food=0x7f05000d;
+        public static final int title_activity_edit_user_info=0x7f05000e;
+        public static final int title_activity_splash_screen=0x7f050007;
+        public static final int title_activity_user_info=0x7f05000c;
+        public static final int title_activity_welcome_message=0x7f05000a;
         public static final int welcome_message=0x7f050006;
     }
     public static final class style {

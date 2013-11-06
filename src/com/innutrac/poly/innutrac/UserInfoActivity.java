@@ -19,7 +19,14 @@ public class UserInfoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_info);
 		setTitle("User Profile");
-
+		
+		// THIS IS WHERE SCREEN DIENSIONS ARE AQUIRED
+		Display display = getWindowManager().getDefaultDisplay(); 
+		int width = display.getWidth();
+		int height = display.getHeight();
+		// Need to pass these values to PieView.java
+		// Perhaps need to save values to our data/ text file for access from PieView
+		
 		final RadioButton maleRB = (RadioButton) findViewById(R.id.ui_male_radbut);
 		final RadioButton femaleRB = (RadioButton) findViewById(R.id.ui_female_radbut);
 		Button saveBut = (Button) findViewById(R.id.ui_save_but);

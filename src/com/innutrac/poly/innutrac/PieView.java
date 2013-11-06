@@ -3,6 +3,7 @@ package com.innutrac.poly.innutrac;
 import com.innutrac.poly.innutrac.PieWedge;
 import com.innutrac.poly.innutrac.R;
 import com.innutrac.poly.innutrac.R.drawable;
+import com.innutrac.poly.innutrac.UserInfoActivity;
 
 import android.content.Context;
 import android.view.Display;
@@ -26,7 +27,10 @@ public class PieView extends View {
 		super(context);
 		overlayBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.piechart_shade, null);
 		// scale bitmap appropriately
-		overlayWidth  = overlayBitmap.getWidth();
+		int h = getHeight();
+//		int w = getWidth();
+//		System.out.println("Height: " + h + " width: " + w);
+		overlayWidth = overlayBitmap.getWidth();
 		setLayoutParams(new LayoutParams(overlayWidth, overlayWidth));
 	}
 

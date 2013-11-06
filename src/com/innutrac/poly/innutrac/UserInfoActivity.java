@@ -10,7 +10,7 @@ import android.view.View.*;
 import android.widget.*;
 
 public class UserInfoActivity extends Activity {
-	String name = "", age = "", gender = "", heightFt = "", heightIn = "",
+	String name = "", age = "", gender = "M", heightFt = "", heightIn = "",
 			weight = "";
 	boolean editProf = false;
 
@@ -19,8 +19,7 @@ public class UserInfoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_info);
 		setTitle("User Profile");
-	
-		
+
 		final RadioButton maleRB = (RadioButton) findViewById(R.id.ui_male_radbut);
 		final RadioButton femaleRB = (RadioButton) findViewById(R.id.ui_female_radbut);
 		Button saveBut = (Button) findViewById(R.id.ui_save_but);
@@ -31,7 +30,7 @@ public class UserInfoActivity extends Activity {
 		editProf = prev.compareTo("WelcomeMessage") != 0;
 
 		if (editProf) {
-			readFromFile();
+			//readFromFile();
 			((EditText) findViewById(R.id.ui_name_edit)).setText(name);
 			((EditText) findViewById(R.id.ui_age_edit)).setText(age);
 			((EditText) findViewById(R.id.ui_feetHeight_edit))
@@ -67,12 +66,8 @@ public class UserInfoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (editProf) {
-					saveToFile(name);
-					saveToFile(age);
-					saveToFile(gender);
-					saveToFile(heightFt);
-					saveToFile(heightIn);
-					saveToFile(weight);
+					// NEED to edit by overriding the current data in the db.
+					// 
 				}
 				startActivity(new Intent(UserInfoActivity.this,
 						MainActivity.class));
@@ -111,12 +106,13 @@ public class UserInfoActivity extends Activity {
 					"Please complete all require fields (mark with *)",
 					Toast.LENGTH_SHORT).show();
 		} else {
-			saveToFile(name);
-			saveToFile(age);
-			saveToFile(gender);
-			saveToFile(heightFt);
-			saveToFile(heightIn);
-			saveToFile(weight);
+
+			Display display = getWindowManager().getDefaultDisplay();
+			int width = display.getWidth();
+			int height = display.getHeight();
+
+			saveToDB(name, age, gender, width, height);
+			
 			if (editProf) {
 				Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT)
 						.show();
@@ -128,29 +124,36 @@ public class UserInfoActivity extends Activity {
 		}
 	}
 
-	public void saveToFile(String value) {
-
-		String sdPath = Environment.getExternalStorageDirectory()
-				.getAbsolutePath();
-		File file = new File(sdPath + "/Innutrac/User/user_info.dat");
-		if (file.exists()) {
-			// do nothing
-		} else {
-			File dir = new File(sdPath + "/Innutrac/User");
-			dir.mkdirs();
-			file = new File(dir, "user_info.dat");
-		}
-
-		try {
-			FileWriter fw = new FileWriter(file, true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(value);
-			bw.newLine();
-			bw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void saveToDB(String name, String age, String sex, int displayX,
+			int displayY) {
+		ProfileDatabase pdb = new ProfileDatabase(this);
+		boolean s = sex.compareToIgnoreCase("M") == 1 ? true : false;
+		pdb.addProfile(name, Integer.valueOf(age), s, displayX, displayY);
 	}
+
+	// public void saveToFile(String value) {
+	//
+	// String sdPath = Environment.getExternalStorageDirectory()
+	// .getAbsolutePath();
+	// File file = new File(sdPath + "/Innutrac/User/user_info.dat");
+	// if (file.exists()) {
+	// // do nothing
+	// } else {
+	// File dir = new File(sdPath + "/Innutrac/User");
+	// dir.mkdirs();
+	// file = new File(dir, "user_info.dat");
+	// }
+	//
+	// try {
+	// FileWriter fw = new FileWriter(file, true);
+	// BufferedWriter bw = new BufferedWriter(fw);
+	// bw.write(value);
+	// bw.newLine();
+	// bw.close();
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	// }
 
 	public void readFromFile() {
 		String sdPath = Environment.getExternalStorageDirectory()

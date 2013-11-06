@@ -44,7 +44,7 @@ public class SplashScreenActivity extends Activity {
 		String sdPath = Environment.getExternalStorageDirectory()
 				.getAbsolutePath();
 		File cache = new File(sdPath + "/Innutrac/vals/cache");
-		
+
 		if (cache.exists()) {
 			return new Intent(this, MainActivity.class);
 		} else {
@@ -59,14 +59,6 @@ public class SplashScreenActivity extends Activity {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-			// THIS IS WHERE SCREEN DIENSIONS ARE AQUIRED
-			Display display = getWindowManager().getDefaultDisplay(); 
-			int width = display.getWidth();
-			int height = display.getHeight();
-			// Need to pass these values to PieView.java
-			// Perhaps need to save values to our data/ text file for access from PieView
-			
 			return new Intent(this, WelcomeMessageActivity.class);
 		}
 	}

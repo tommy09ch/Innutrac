@@ -10,8 +10,30 @@ public class Food {
 	private int sugar;
 	private int fiber;
 	private int calories;
+	private int foodDBID;
+	private int entryID;
+	private int eatTime;
 
 	// Simple getter and setter methods
+	
+	public Food( String n, int car, int prot, int sodi, int chol, int fa, int sug, int fib, int cal, int fdb, int eid, int cTime)
+	{
+		name = n;
+		carb = car;
+		protein = prot;
+		sodium = sodi;
+		cholesterol = chol;
+		fats = fa;
+		sugar = sug;
+		fiber = fib;
+		calories = cal;
+		fiber = fib;
+		calories = cal;
+		foodDBID = fdb;
+		entryID = eid;
+		eatTime = cTime;
+		
+	}
 
 	public void setName(String n) {
 		name = n;
@@ -41,6 +63,19 @@ public class Food {
 		fiber = fib;
 	}
 
+	public void setfoodDbId(int dbid) {
+		foodDBID = dbid;
+	}
+
+	public void entryID(int eid) {
+		entryID = eid;
+	}
+
+	public void setEatTime(int time) {
+		eatTime = time;
+	}
+
+	
 	public String getName() {
 		return name;
 	}
@@ -75,5 +110,17 @@ public class Food {
 
 	public int getCalories() {
 		return calories;
+	}
+	
+	public int getfoodDbId() {
+		return foodDBID;
+	}
+	
+	public int getEntryId() {
+		return entryID;
+	}
+	
+	public int getEatTime() {
+		return eatTime;
 	}
 }

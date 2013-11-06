@@ -1,13 +1,28 @@
 package com.innutrac.poly.innutrac;
 
 public class Person {
+	private int profileID;
 	private String name;
-	private String age;
-	private String gender;
+	private int age;
+	private boolean gender;
+	private int displayX;
+	private int displayY;
+	private int profileCreateTime;
 	
 	// getters and setters
 	
-	public void setAge(String a) {
+	public Person(int pid, String n, int a, boolean g, int dX, int dY, int pct)
+	{
+		profileID = pid;
+		name = n;
+		age = a;
+		gender = g;
+		displayX = dX;
+		displayY = dY;
+		profileCreateTime = pct;
+	}
+	
+	public void setAge(int a) {
 		age = a;
 	}
 	
@@ -15,11 +30,21 @@ public class Person {
 		name = n;
 	}
 	
-	public void setGender(String g) {
+	public void setGender(boolean g) {
 		gender = g;
 	}
 	
-	public String getAge() {
+	public void setDisplayResolution(int x, int y)
+	{
+		displayX = x;
+		displayY = y;
+	}
+	
+	public int getProfileId() {
+		return profileID;
+	}
+	
+	public int getAge() {
 		return age;
 	}
 	
@@ -27,7 +52,22 @@ public class Person {
 		return name;
 	}
 	
-	public String getGender() {
+	public boolean getGender() {
 		return gender;
+	}
+	
+	public int getDisplayResolutionX()
+	{
+		return displayX;
+	}
+	
+	public int getDisplayResolutionY()
+	{
+		return displayY;
+	}
+	
+	public int getCreateTime()
+	{
+		return profileCreateTime;
 	}
 }

@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.app.Activity;
 import android.content.Intent;
+import android.view.Display;
 import android.view.Menu;
 import android.view.Window;
 
@@ -58,6 +59,14 @@ public class SplashScreenActivity extends Activity {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
+			// THIS IS WHERE SCREEN DIENSIONS ARE AQUIRED
+			Display display = getWindowManager().getDefaultDisplay(); 
+			int width = display.getWidth();
+			int height = display.getHeight();
+			// Need to pass these values to PieView.java
+			// Perhaps need to save values to our data/ text file for access from PieView
+			
 			return new Intent(this, WelcomeMessageActivity.class);
 		}
 	}

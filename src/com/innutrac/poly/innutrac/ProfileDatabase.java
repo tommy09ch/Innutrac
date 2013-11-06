@@ -2,13 +2,14 @@ package com.innutrac.poly.innutrac;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class ProfileDatabase extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME_PROFILE = "profile.db"; 
+    private static final String DATABASE_NAME_PROFILE = "profile.db";
     
     private static final String TABLE_PROFILE = "profile_info"; 
     private static final String KEY_PROFILE_ID = "id";
@@ -16,6 +17,8 @@ public class ProfileDatabase extends SQLiteOpenHelper {
     private static final String KEY_PROFILE_AGE = "age";
     private static final String KEY_PROFILE_SEX = "sex";
     private static final String KEY_PROFILE_CREATE_TIME = "create_time";
+    private static final String KEY_PROFILE_DISPLAY_X = "display_x";
+    private static final String KEY_PROFILE_DISPLAY_Y = "display_y";
     
     private static final String TABLE_FOODREC = "food_records"; 
     private static final String KEY_FOODREC_ID = "id";
@@ -35,7 +38,9 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         		KEY_PROFILE_NAME+" TEXT, "+
         		KEY_PROFILE_AGE+" INTEGER, "+
         		KEY_PROFILE_SEX+" INTEGER, "+
-        		KEY_PROFILE_CREATE_TIME+" NUMERIC )";
+        		KEY_PROFILE_DISPLAY_X+" INTEGER, "+
+        		KEY_PROFILE_DISPLAY_Y+" INTEGER, "+
+        		KEY_PROFILE_CREATE_TIME+" NUMERIC );";
         db.execSQL(queryStr);
         //Now create table for storing food entries
         queryStr = "CREATE TABLE "+TABLE_FOODREC+" ( " +
@@ -52,7 +57,7 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         //Do nothing. Don't delete existing data!
 	}
 	
-	public void addProfile(String name, int age, boolean sex)
+	public void addProfile(String name, int age, boolean sex, int displayX, int displayY)
 	{
 		long time = System.currentTimeMillis() / 1000L;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -60,13 +65,15 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         values.put(KEY_PROFILE_NAME, name);
         values.put(KEY_PROFILE_AGE, age); 
         values.put(KEY_PROFILE_SEX, ( sex ? 1 : 0));
+        values.put(KEY_PROFILE_DISPLAY_X, displayX); 
+        values.put(KEY_PROFILE_DISPLAY_Y, displayY); 
         values.put(KEY_PROFILE_CREATE_TIME, time); 
         
         db.insert( TABLE_PROFILE, null,values );
         db.close(); 
 	}
 	
-	public int updateProfile(int profile_id, String name, int age, boolean sex) 
+	public int updateProfile(int profile_id, String name, int age, boolean sex, int displayX, int displayY) 
 	{
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -74,6 +81,8 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         values.put(KEY_PROFILE_NAME, name);
         values.put(KEY_PROFILE_AGE, age); 
         values.put(KEY_PROFILE_SEX, ( sex ? 1 : 0));
+        values.put(KEY_PROFILE_DISPLAY_X, displayX); 
+        values.put(KEY_PROFILE_DISPLAY_Y, displayY); 
 
         int i = db.update(TABLE_FOODREC, //table
                 values, // column/value
@@ -84,6 +93,15 @@ public class ProfileDatabase extends SQLiteOpenHelper {
  
         return i;
     }
+	
+	public Person getProfile(int userID)
+	{
+		SQLiteDatabase db = this.getReadableDatabase(); 
+	    Cursor cursor = db.query(TABLE_PROFILE, new String[] { KEY_PROFILE_ID,KEY_PROFILE_NAME, KEY_PROFILE_AGE, KEY_PROFILE_SEX, KEY_PROFILE_DISPLAY_X, KEY_PROFILE_DISPLAY_Y, KEY_PROFILE_CREATE_TIME }, KEY_PROFILE_ID+" = ?", new String[] { String.valueOf(userID) }, null, null, null, null);
+	    if (cursor != null)
+	        cursor.moveToFirst();
+		return new Person(Integer.parseInt(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(3)), Boolean.parseBoolean(cursor.getString(2)), Integer.parseInt(cursor.getString(4)), Integer.parseInt(cursor.getString(5)), Integer.parseInt(cursor.getString(6)));
+	}
 	
 	public void addFood(int foodID, double amount)
 	{
@@ -129,5 +147,23 @@ public class ProfileDatabase extends SQLiteOpenHelper {
  
         return i;
     }
+	
+	public Food[] getFood()
+	{
+		//Return all food ever
+		return null;
+	}
+	
+	public Food[] getFood(int startTime, int endTime)
+	{
+		//Return food between date range
+		return null;
+	}
+	
+	public Food getFood(int id)
+	{
+		//Return specific entry
+		return null;
+	}
 
 }

@@ -27,10 +27,13 @@ public class PieView extends View {
 		super(context);
 		overlayBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.piechart_shade, null);
 		// scale bitmap appropriately
-		int h = getHeight();
-//		int w = getWidth();
-//		System.out.println("Height: " + h + " width: " + w);
-		overlayWidth = overlayBitmap.getWidth();
+	
+//		ProfileDatabase pdb = null;
+//		
+//		Person user = pdb.getProfile(0);
+//		int h = user.getDisplayResolutionY();
+//		System.out.println("Height: " + h);
+		
 		setLayoutParams(new LayoutParams(overlayWidth, overlayWidth));
 	}
 

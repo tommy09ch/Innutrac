@@ -22,4 +22,3 @@ Importing Libraries in Eclipse
 4. Check the box next to "Is Library" under the library frame and click Ok.
 5. Go back to Properties -> Android in the project folder and click "Add..."]
 6. Select library enabled previously, click Ok to add and then Ok again to save preferences.
->>>>>>> 46018c0ae3873254c79b15c458e11a5d42423969

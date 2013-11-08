@@ -14,7 +14,7 @@ public class UserInfoActivity extends Activity {
 			weight = "", dimX = "", dimY = "", time = "";
 	boolean editProf = false;
 
-	ProfileDatabaseSupport pdb;
+	ProfileDatabase pdb;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -32,7 +32,7 @@ public class UserInfoActivity extends Activity {
 		dimX = String.valueOf(display.getWidth());
 		dimY = String.valueOf(display.getHeight());
 
-		pdb = new ProfileDatabaseSupport(this);
+		pdb = new ProfileDatabase(this);
 		pdb.open("UserDatabase");
 
 		String prev = getIntent().getStringExtra("title");

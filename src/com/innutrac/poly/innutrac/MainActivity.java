@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 	int factor = 1;
 	private PieView pie;
 	
-	ProfileDatabaseSupport pdb;
+	ProfileDatabase pdb;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

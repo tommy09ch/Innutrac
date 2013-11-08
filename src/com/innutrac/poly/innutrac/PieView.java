@@ -10,10 +10,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 
 public class PieView extends View {
 	private int drawMode;
@@ -22,7 +25,7 @@ public class PieView extends View {
 	
 	int dimX, dimY;
 
-	ProfileDatabaseSupport pdb;
+	ProfileDatabase pdb;
 
 	public PieView(Context context) {
 		super(context);
@@ -38,12 +41,13 @@ public class PieView extends View {
 		setLayoutParams(new LayoutParams(overlayWidth, overlayWidth));
 
 		// Open the database and get the dimX and dimY
-		pdb = new ProfileDatabaseSupport(context);
-		pdb.open("UserDatabase");
-		User user = pdb.getProfile();
-		dimX = Integer.parseInt(user.getDisplayX());
-		dimY = Integer.parseInt(user.getDisplayY());
-		pdb.close();
+		
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		dimX = size.x;
+		dimY = size.y;
 	}
 
 	public PieView(Context context, AttributeSet attrs) {

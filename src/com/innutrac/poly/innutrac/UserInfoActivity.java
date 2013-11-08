@@ -1,8 +1,8 @@
 package com.innutrac.poly.innutrac;
 
-import java.io.*;
-import android.os.Bundle;
-import android.os.Environment;
+import com.innutrac.poly.innutrac.database.*;
+
+import android.os.*;
 import android.app.Activity;
 import android.content.*;
 import android.view.*;
@@ -10,11 +10,13 @@ import android.view.View.*;
 import android.widget.*;
 
 public class UserInfoActivity extends Activity {
-	String name = "", age = "", gender = "M", heightFt = "", heightIn = "",
-			weight = "";
+	String name = "", age = "", gender = "", heightFt = "", heightIn = "",
+			weight = "", dimX = "", dimY = "", time = "";
 	boolean editProf = false;
-	ProfileDatabase pdb;
 
+	ProfileDatabaseSupport pdb;
+
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,13 +27,21 @@ public class UserInfoActivity extends Activity {
 		final RadioButton femaleRB = (RadioButton) findViewById(R.id.ui_female_radbut);
 		Button saveBut = (Button) findViewById(R.id.ui_save_but);
 		Button skip_cancelBut = (Button) findViewById(R.id.ui_skip_but);
-		skip_cancelBut.setText("Cancel");
+
+		Display display = getWindowManager().getDefaultDisplay();
+		dimX = String.valueOf(display.getWidth());
+		dimY = String.valueOf(display.getHeight());
+
+		pdb = new ProfileDatabaseSupport(this);
+		pdb.open("UserDatabase");
 
 		String prev = getIntent().getStringExtra("title");
 		editProf = prev.compareTo("WelcomeMessage") != 0;
 
 		if (editProf) {
-			//readFromFile();
+			skip_cancelBut.setText("Cancel");
+			assembleCreatedProfile();
+
 			((EditText) findViewById(R.id.ui_name_edit)).setText(name);
 			((EditText) findViewById(R.id.ui_age_edit)).setText(age);
 			((EditText) findViewById(R.id.ui_feetHeight_edit))
@@ -39,13 +49,13 @@ public class UserInfoActivity extends Activity {
 			((EditText) findViewById(R.id.ui_inchHeight_edit))
 					.setText(heightIn);
 			((EditText) findViewById(R.id.ui_weight_edit)).setText(weight);
-			System.out.println("DEBUGGER!");
 			if (gender.compareToIgnoreCase("M") == 0) {
 				maleRB.setChecked(true);
 			} else if (gender.compareToIgnoreCase("F") == 0) {
 				femaleRB.setChecked(true);
 			}
 		}
+		
 		maleRB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -66,10 +76,6 @@ public class UserInfoActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				if (editProf) {
-					// NEED to edit by overriding the current data in the db.
-					// 
-				}
 				startActivity(new Intent(UserInfoActivity.this,
 						MainActivity.class));
 			}
@@ -80,68 +86,64 @@ public class UserInfoActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				runCheckFields(maleRB, femaleRB);
+				name = ((EditText) findViewById(R.id.ui_name_edit)).getText()
+						.toString();
+				age = ((EditText) findViewById(R.id.ui_age_edit)).getText()
+						.toString();
+				heightFt = ((EditText) findViewById(R.id.ui_feetHeight_edit))
+						.getText().toString();
+				heightIn = ((EditText) findViewById(R.id.ui_inchHeight_edit))
+						.getText().toString();
+				weight = ((EditText) findViewById(R.id.ui_weight_edit))
+						.getText().toString();
+				if (maleRB.isChecked()) {
+					gender = "M"; // m = male
+				} else if (femaleRB.isChecked()) {
+					gender = "F"; // f = female
+				}
+
+				if (name.isEmpty() || age.isEmpty() || gender.isEmpty()) {
+					Toast.makeText(UserInfoActivity.this,
+							"Please complete all require fields (mark with *)",
+							Toast.LENGTH_SHORT).show();
+				} else {
+
+					if (editProf) {
+						pdb.updateProfile(new User(name, age, gender, heightFt,
+								heightIn, weight));
+						Toast.makeText(UserInfoActivity.this,
+								"Profile Updated", Toast.LENGTH_SHORT).show();
+					} else {
+						time = String.valueOf(System.currentTimeMillis() / 1000.0);
+						pdb.createProfile(new User(name, age, gender, heightFt,
+								heightIn, weight, dimX, dimY, time));
+						Toast.makeText(UserInfoActivity.this,
+								"Profile Created", Toast.LENGTH_SHORT).show();
+
+					}
+					pdb.close();
+					startActivity(new Intent(UserInfoActivity.this,
+							MainActivity.class));
+				}
+				
 			}
 
 		});
 	}
 
-	public void runCheckFields(RadioButton male, RadioButton female) {
-		name = ((EditText) findViewById(R.id.ui_name_edit)).getText()
-				.toString();
-		age = ((EditText) findViewById(R.id.ui_age_edit)).getText().toString();
-		heightFt = ((EditText) findViewById(R.id.ui_feetHeight_edit)).getText()
-				.toString();
-		heightIn = ((EditText) findViewById(R.id.ui_inchHeight_edit)).getText()
-				.toString();
-		weight = ((EditText) findViewById(R.id.ui_weight_edit)).getText()
-				.toString();
-		if (male.isChecked()) 
-		{
-			gender = "M"; // m = male
-		} else if (female.isChecked()) 
-		{
-			gender = "F"; // f = female
-		}
+	public void assembleCreatedProfile() {
+		User user = pdb.getProfile();
 
-		if (name.isEmpty() || age.isEmpty() || gender.isEmpty()) 
-		{
-			Toast.makeText(this,
-					"Please complete all require fields (mark with *)",
-					Toast.LENGTH_SHORT).show();
-		} else 
-		{
-
-			Display display = getWindowManager().getDefaultDisplay();
-			int width = display.getWidth();
-			int height = display.getHeight();
-
-			saveToDB(name, age, gender, width, height);
-			
-			if (editProf) {
-				Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT)
-						.show();
-			} else {
-				Toast.makeText(this, "Profile Created", Toast.LENGTH_SHORT)
-						.show();
-			}
-			startActivity(new Intent(UserInfoActivity.this, MainActivity.class));
-		}
+		name = user.getName();
+		age = user.getAge();
+		gender = user.getGender();
+		heightFt = user.getHeightFt();
+		heightIn = user.getHeightIn();
+		weight = user.getWeight();
+		dimX = user.getDisplayX();
+		dimY = user.getDisplayY();
+		time = user.getProfileCreateTime();
 	}
-
-	public void saveToDB(String name, String age, String sex, int displayX, int displayY) 
-	{
-		pdb = new ProfileDatabase(this);
-		boolean s = sex.compareToIgnoreCase("M") == 1 ? true : false;
-		pdb.addProfile(name, Integer.valueOf(age), s, displayX, displayY);
-		
-		Person user = pdb.getProfile(1);
-		System.out.println(user.getDisplayResolutionX() + "\t" +user.getDisplayResolutionY());
-		
-	}
-	
-	
-
 
 	// public void saveToFile(String value) {
 	//
@@ -167,32 +169,32 @@ public class UserInfoActivity extends Activity {
 	// }
 	// }
 
-	public void readFromFile() {
-		String sdPath = Environment.getExternalStorageDirectory()
-				.getAbsolutePath();
-		File file = new File(sdPath + "/Innutrac/User/user_info.dat");
-		if (!file.exists()) {
-			File dir = new File(sdPath + "/Innutrac/User");
-			dir.mkdirs();
-			file = new File(dir, "user_info.dat");
-		} else {
-			try {
-				FileReader fr = new FileReader(file);
-				BufferedReader br = new BufferedReader(fr);
-				name = br.readLine();
-				age = br.readLine();
-				gender = br.readLine();
-				heightFt = br.readLine();
-				heightIn = br.readLine();
-				weight = br.readLine();
-				br.readLine();
-				br.close();
-				file.delete();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+	// public void readFromFile() {
+	// String sdPath = Environment.getExternalStorageDirectory()
+	// .getAbsolutePath();
+	// File file = new File(sdPath + "/Innutrac/User/user_info.dat");
+	// if (!file.exists()) {
+	// File dir = new File(sdPath + "/Innutrac/User");
+	// dir.mkdirs();
+	// file = new File(dir, "user_info.dat");
+	// } else {
+	// try {
+	// FileReader fr = new FileReader(file);
+	// BufferedReader br = new BufferedReader(fr);
+	// name = br.readLine();
+	// age = br.readLine();
+	// gender = br.readLine();
+	// heightFt = br.readLine();
+	// heightIn = br.readLine();
+	// weight = br.readLine();
+	// br.readLine();
+	// br.close();
+	// file.delete();
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

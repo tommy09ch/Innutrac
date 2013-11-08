@@ -2,12 +2,9 @@ package com.innutrac.poly.innutrac;
 
 import com.innutrac.poly.innutrac.PieWedge;
 import com.innutrac.poly.innutrac.R;
-import com.innutrac.poly.innutrac.R.drawable;
-import com.innutrac.poly.innutrac.UserInfoActivity;
+import com.innutrac.poly.innutrac.ProfileDatabase;
 
 import android.content.Context;
-import android.view.Display;
-import android.graphics.Point;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -28,12 +25,10 @@ public class PieView extends View {
 		overlayBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.piechart_shade, null);
 		// scale bitmap appropriately
 	
-//		ProfileDatabase pdb = null;
-//		
-//		Person user = pdb.getProfile(0);
-//		int h = user.getDisplayResolutionY();
-//		System.out.println("Height: " + h);
+		overlayBitmap = Bitmap.createScaledBitmap(overlayBitmap, 1000, 1000, true);
+		overlayWidth = overlayBitmap.getWidth();
 		
+		// Layout parameters for pie chart
 		setLayoutParams(new LayoutParams(overlayWidth, overlayWidth));
 	}
 
@@ -145,15 +140,61 @@ public class PieView extends View {
     	canvas.drawBitmap(overlayBitmap, 0.0f, 0.0f, null); 
     }
 	
-	public void wedgeDetect(float x, float y)
+	public void wedgeDetect(float x, float y)// Handle wedge tap detection here
 	{
-		// Handle wedge tap detection here
-		System.out.println("The value of x is: " + x + " The value of y is: " + y);
-		int width = this.getWidth(); 
-		int height = this.getHeight(); 
-		System.out.println("The supposed ctr coordinates: " + width + " " + height);
+		int width = this.getWidth(); // this is the width of the pieChart!!
+		
+		// Hard-Coded values for screen dimensions
+		int dimX = 400;
+		int dimY = 608;
+		System.out.println("Xtap: " + x + "Ytap: " + y);
+		
+		double distance = Math.sqrt(Math.pow((x - dimX), 2) + Math.pow((y - dimY), 2));
+		
 		// radius of circle is the width / 2
-		//overlayBitmap.getC
+		int radius = width / 2;
+
+		if (distance > radius)
+		{
+			System.out.println("Outside");
+		}else
+		{
+			System.out.println("Inside!");
+			// need the tangent and adjacent values as distances!
+			double xDistance = Math.sqrt(Math.abs(x - dimX));
+			double yDistance = Math.sqrt(Math.abs(y - dimY));
+			double tapAngle = 0;
+			tapAngle = Math.atan((yDistance / xDistance)); // calculates basic angle, still need to check relative quadrant
+			System.out.println("Original angle: " + tapAngle);
+			tapAngle *= (57.2957795);
+			// Quadrant check:
+			if(x > dimX) // 2 positive X quadrants
+			{
+				if(y > dimY)
+				{
+					tapAngle += (90 * 3);
+				}
+			}else
+			{
+				if(y < dimY)
+				{
+					tapAngle += 90;
+				}else
+				{
+					tapAngle += (90 * 2);
+				}
+			}
+			System.out.println("Final Angle: " + tapAngle);
+		}
+		
+		
+		
+		// 1. check to see if the tap is inside of the circle									-Done
+		//     - calculate distance from tap to center and compare to radius of circle			-Done
+		// 2. calculate relative angle for tap with respect to 0 degree
+		//	   - determine which quadrant the tap occurred in, add factor of 90 as needed
+		// 3. cross reference with the ranges of the wedges to determine which wedge it's in
+		// 4. use member variable angle from PieWedge class
 	}
 	public void setMode(int mode){
 		drawMode = mode;	

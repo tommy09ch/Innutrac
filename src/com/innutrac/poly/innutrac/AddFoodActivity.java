@@ -2,17 +2,28 @@ package com.innutrac.poly.innutrac;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.*;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import android.widget.SeekBar.*;
 
 public class AddFoodActivity extends Activity {
 
+	/**
+	 * Still need to add the following to this Activity:
+	 * - getting existing food data from food/nutrient db
+	 * - some algorithm that predict the food the user is typing in
+	 * - some algorithm to recommend food to user
+	 */
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_food);
 
@@ -27,32 +38,38 @@ public class AddFoodActivity extends Activity {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
+				
 				double val = (progress + 10) / 10.0;
 				sizeET.setText(Double.toString(val));
+				
+				imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
 			}
 
 			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				// TODO Auto-generated method stub
-
 			}
 		});
-		
-		((Button) findViewById(R.id.af_submit_but)).setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				startActivity(new Intent(AddFoodActivity.this, MainActivity.class));
-				
-			}
-			
-		});
+		((Button) findViewById(R.id.af_submit_but))
+				.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						// ////////////////////////////////////////////////////
+						// IMPLEMENT ACTION TO SAVE THE FOOD TO DATABASE /////
+						// ////////////////////////////////////////////////////
+						startActivity(new Intent(AddFoodActivity.this,
+								MainActivity.class));
+
+					}
+
+				});
 
 	}
 

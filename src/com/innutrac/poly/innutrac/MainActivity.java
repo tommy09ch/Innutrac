@@ -10,7 +10,9 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.*;
 import android.widget.*;
+
 import com.innutrac.poly.innutrac.PieView;
+import com.innutrac.poly.innutrac.database.*;
 
 public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
@@ -25,12 +27,18 @@ public class MainActivity extends Activity {
 	LinearLayout pieContainer;
 	int factor = 1;
 	private PieView pie;
+	
+	ProfileDatabaseSupport pdb;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		
+//		pdb = new ProfileDatabaseSupport(this);
+//		pdb.open("UserDatabase");
+//		User user = pdb.getProfile();
 
 		 //pie chart stuff begins here:
 		 pieContainer = (LinearLayout) findViewById(R.id.pieView1);

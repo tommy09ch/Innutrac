@@ -3,7 +3,6 @@ package com.innutrac.poly.innutrac;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.*;
 import android.view.Menu;
 import android.view.*;
 import android.view.View.*;
@@ -16,7 +15,6 @@ public class WelcomeMessageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome_message);
 		Button startButton = (Button) findViewById(R.id.wm_start_button);
-		startButton.getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0xFFAA0000));
 		
 		startButton.setOnClickListener(new OnClickListener() {
 

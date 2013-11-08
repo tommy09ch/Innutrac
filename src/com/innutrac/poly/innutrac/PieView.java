@@ -10,10 +10,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 
 public class PieView extends View {
 	private int drawMode;
@@ -29,13 +32,12 @@ public class PieView extends View {
 		overlayBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.piechart_shade, null);
 		// scale bitmap appropriately
 		
-		// Open the database and get the dimX and dimY
-		pdb = new ProfileDatabaseSupport(context);
-		pdb.open("UserDatabase");
-		User user = pdb.getProfile();
-		dimX = Integer.parseInt(user.getDisplayX());
-		dimY = Integer.parseInt(user.getDisplayY());
-		pdb.close();
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		dimX = size.x;
+		dimY = size.y;
 		
 		int scale = dimX - (dimX / 18);
 		overlayBitmap = Bitmap.createScaledBitmap(overlayBitmap, scale, scale, true);

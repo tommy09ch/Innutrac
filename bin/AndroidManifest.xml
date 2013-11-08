@@ -16,7 +16,12 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light" >
         <activity
+<<<<<<< HEAD
             android:name="com.innutrac.poly.innutrac.SplashScreenActivity">
+=======
+            android:name="com.innutrac.poly.innutrac.Activity_SplashScreen"
+            android:label="@string/app_name" >
+>>>>>>> origin/ui_expansion
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,6 +33,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+<<<<<<< HEAD
             android:name="com.innutrac.poly.innutrac.WelcomeMessageActivity"
             android:label="@string/title_activity_welcome_message" >
         </activity>
@@ -38,6 +44,18 @@
         <activity
             android:name="com.innutrac.poly.innutrac.AddFoodActivity"
             android:label="@string/title_activity_add_food" >
+=======
+            android:name="com.innutrac.poly.innutrac.Activity_GetUserInfo"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.innutrac.poly.innutrac.Activity_FirstTimeMessage"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.innutrac.poly.innutrac.Activity_AddNewFood"
+            android:label="@string/app_name" >
+>>>>>>> origin/ui_expansion
         </activity>
     </application>
 

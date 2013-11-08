@@ -2,17 +2,34 @@ package com.innutrac.poly.innutrac;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.Fragment;
 import android.view.Menu;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+<<<<<<< HEAD
 import android.view.*;
 import android.widget.*;
 
 import com.innutrac.poly.innutrac.PieView;
 import com.innutrac.poly.innutrac.database.*;
+=======
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+>>>>>>> origin/ui_expansion
 
 public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
@@ -32,6 +49,7 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+<<<<<<< HEAD
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
@@ -60,6 +78,12 @@ public class MainActivity extends Activity {
 			 }
 		 });
 
+=======
+		
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+>>>>>>> origin/ui_expansion
 		//
 		mNavTitles = new String[5];
 		mNavTitles[0] = getResources().getString(R.string.app_name);
@@ -149,8 +173,7 @@ public class MainActivity extends Activity {
 	/* Called whenever we call invalidateOptionsMenu() */
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		// If the nav drawer is open, hide action items related to the content
-		// view
+		// If the nav drawer is open, hide action items related to the content view
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
 		menu.findItem(R.id.action_new).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
@@ -161,10 +184,19 @@ public class MainActivity extends Activity {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
+<<<<<<< HEAD
 
 		switch (item.getItemId()) {
 		case R.id.action_new:
 			Intent intent = new Intent(MainActivity.this, AddFoodActivity.class);
+=======
+		
+		// Handle action buttons
+		switch (item.getItemId()) {
+		case R.id.action_new:
+			Intent intent = new Intent(MainActivity.this, Activity_AddNewFood.class);
+			// start new activity for adding item here
+>>>>>>> origin/ui_expansion
 
 			if (intent.resolveActivity(getPackageManager()) != null) {
 				startActivity(intent);
@@ -177,7 +209,8 @@ public class MainActivity extends Activity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-
+	
+	// add code for starting new fragment on select here
 	private void selectItem(int position) {
 		if (position == 4) {
 			startActivity(new Intent(MainActivity.this, UserInfoActivity.class)
@@ -188,6 +221,18 @@ public class MainActivity extends Activity {
 			setTitle(mNavTitles[position]);
 		}
 
+<<<<<<< HEAD
+=======
+        //FragmentManager fragmentManager = getFragmentManager();
+        if(mNavTitles[position] == "History")
+        	getFragmentManager().beginTransaction().replace(R.id.content_frame, new History_Fragment() ).commit();
+        else
+        	getFragmentManager().beginTransaction().replace(R.id.content_frame, new Fragment() ).commit();
+		
+		// update selected item and title, then close the drawer
+		mDrawerList.setItemChecked(position, true);
+		setTitle(mNavTitles[position]);
+>>>>>>> origin/ui_expansion
 		mDrawerLayout.closeDrawer(mDrawerList);
 	}
 
@@ -212,7 +257,11 @@ public class MainActivity extends Activity {
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		// Pass any configuration change to the drawer toggls
+		// Pass any configuration change to the drawer toggles
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
+
 }
+
+
+

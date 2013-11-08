@@ -15,8 +15,7 @@ public class UserInfoActivity extends Activity {
 	boolean editProf = false;
 
 	ProfileDatabaseSupport pdb;
-
-	@SuppressWarnings("deprecation")
+ 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,10 +26,6 @@ public class UserInfoActivity extends Activity {
 		final RadioButton femaleRB = (RadioButton) findViewById(R.id.ui_female_radbut);
 		Button saveBut = (Button) findViewById(R.id.ui_save_but);
 		Button skip_cancelBut = (Button) findViewById(R.id.ui_skip_but);
-
-		Display display = getWindowManager().getDefaultDisplay();
-		dimX = String.valueOf(display.getWidth());
-		dimY = String.valueOf(display.getHeight());
 
 		pdb = new ProfileDatabaseSupport(this);
 		pdb.open("UserDatabase");
@@ -49,11 +44,12 @@ public class UserInfoActivity extends Activity {
 			((EditText) findViewById(R.id.ui_inchHeight_edit))
 					.setText(heightIn);
 			((EditText) findViewById(R.id.ui_weight_edit)).setText(weight);
-			if (gender.compareToIgnoreCase("M") == 0) {
-				maleRB.setChecked(true);
-			} else if (gender.compareToIgnoreCase("F") == 0) {
-				femaleRB.setChecked(true);
-			}
+			//commented out because causing crashes
+			//if (gender.compareToIgnoreCase("M") == 0) {
+			//	maleRB.setChecked(true);
+			//} else if (gender.compareToIgnoreCase("F") == 0) {
+			//	femaleRB.setChecked(true);
+			//}
 		}
 		
 		maleRB.setOnClickListener(new OnClickListener() {
@@ -140,8 +136,8 @@ public class UserInfoActivity extends Activity {
 		heightFt = user.getHeightFt();
 		heightIn = user.getHeightIn();
 		weight = user.getWeight();
-		dimX = user.getDisplayX();
-		dimY = user.getDisplayY();
+		//dimX = user.getDisplayX();
+		//dimY = user.getDisplayY();
 		time = user.getProfileCreateTime();
 	}
 

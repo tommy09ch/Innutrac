@@ -13,6 +13,7 @@ public class UserInfoActivity extends Activity {
 	String name = "", age = "", gender = "M", heightFt = "", heightIn = "",
 			weight = "";
 	boolean editProf = false;
+	ProfileDatabase pdb;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -95,17 +96,21 @@ public class UserInfoActivity extends Activity {
 				.toString();
 		weight = ((EditText) findViewById(R.id.ui_weight_edit)).getText()
 				.toString();
-		if (male.isChecked()) {
+		if (male.isChecked()) 
+		{
 			gender = "M"; // m = male
-		} else if (female.isChecked()) {
+		} else if (female.isChecked()) 
+		{
 			gender = "F"; // f = female
 		}
 
-		if (name.isEmpty() || age.isEmpty() || gender.isEmpty()) {
+		if (name.isEmpty() || age.isEmpty() || gender.isEmpty()) 
+		{
 			Toast.makeText(this,
 					"Please complete all require fields (mark with *)",
 					Toast.LENGTH_SHORT).show();
-		} else {
+		} else 
+		{
 
 			Display display = getWindowManager().getDefaultDisplay();
 			int width = display.getWidth();
@@ -124,12 +129,19 @@ public class UserInfoActivity extends Activity {
 		}
 	}
 
-	public void saveToDB(String name, String age, String sex, int displayX,
-			int displayY) {
-		ProfileDatabase pdb = new ProfileDatabase(this);
+	public void saveToDB(String name, String age, String sex, int displayX, int displayY) 
+	{
+		pdb = new ProfileDatabase(this);
 		boolean s = sex.compareToIgnoreCase("M") == 1 ? true : false;
 		pdb.addProfile(name, Integer.valueOf(age), s, displayX, displayY);
+		
+		Person user = pdb.getProfile(1);
+		System.out.println(user.getDisplayResolutionX() + "\t" +user.getDisplayResolutionY());
+		
 	}
+	
+	
+
 
 	// public void saveToFile(String value) {
 	//

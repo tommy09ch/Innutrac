@@ -10,6 +10,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.*;
 import android.widget.*;
+import com.innutrac.poly.innutrac.PieView;
 
 public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
@@ -37,16 +38,18 @@ public class MainActivity extends Activity {
 		 pie.setMode(factor);
 		 pieContainer = (LinearLayout) findViewById(R.id.pieView1);
 		 pieContainer.addView(pie);
-		 pieContainer.setOnTouchListener(new View.OnTouchListener() {
-		
-		 @Override
-		 public boolean onTouch(View v, MotionEvent event) {
-		 float x = event.getX();
-		 float y = event.getY();
-		 pie.wedgeDetect(x, y); // will send touch location
-		 // to PieView and appropriately change to detail view
-		 return false;
-		 }
+		 pieContainer.setOnTouchListener(new View.OnTouchListener() 
+		 {
+			 
+			 @Override
+			 public boolean onTouch(View v, MotionEvent event) 
+			 {
+				 float x = event.getX();
+				 float y = event.getY();
+				 pie.wedgeDetect(x, y); // will send touch location
+				 // to PieView and appropriately change to detail view
+				 return false;
+			 }
 		 });
 
 		//

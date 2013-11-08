@@ -49,11 +49,11 @@ public class UserInfoActivity extends Activity {
 			((EditText) findViewById(R.id.ui_inchHeight_edit))
 					.setText(heightIn);
 			((EditText) findViewById(R.id.ui_weight_edit)).setText(weight);
-			if (gender.compareToIgnoreCase("M") == 0) {
-				maleRB.setChecked(true);
-			} else if (gender.compareToIgnoreCase("F") == 0) {
-				femaleRB.setChecked(true);
-			}
+			//if (gender.compareToIgnoreCase("M") == 0) {
+			//	maleRB.setChecked(true);
+			//} else if (gender.compareToIgnoreCase("F") == 0) {
+			//	femaleRB.setChecked(true);
+			//}
 		}
 		
 		maleRB.setOnClickListener(new OnClickListener() {
@@ -204,3 +204,4 @@ public class UserInfoActivity extends Activity {
 	}
 
 }
+

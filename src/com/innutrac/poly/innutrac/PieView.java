@@ -26,17 +26,9 @@ public class PieView extends View {
 
 	public PieView(Context context) {
 		super(context);
-		overlayBitmap = BitmapFactory.decodeResource(getResources(),
-				R.drawable.piechart_shade, null);
+		overlayBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.piechart_shade, null);
 		// scale bitmap appropriately
-
-		overlayBitmap = Bitmap.createScaledBitmap(overlayBitmap, 1000, 1000,
-				true);
-		overlayWidth = overlayBitmap.getWidth();
-
-		// Layout parameters for pie chart
-		setLayoutParams(new LayoutParams(overlayWidth, overlayWidth));
-
+		
 		// Open the database and get the dimX and dimY
 		pdb = new ProfileDatabaseSupport(context);
 		pdb.open("UserDatabase");
@@ -44,6 +36,14 @@ public class PieView extends View {
 		dimX = Integer.parseInt(user.getDisplayX());
 		dimY = Integer.parseInt(user.getDisplayY());
 		pdb.close();
+		
+		int scale = dimX - (dimX / 18);
+		overlayBitmap = Bitmap.createScaledBitmap(overlayBitmap, scale, scale, true);
+		overlayWidth = overlayBitmap.getWidth();
+
+		// Layout parameters for pie chart
+		setLayoutParams(new LayoutParams(overlayWidth, overlayWidth));
+		
 	}
 
 	public PieView(Context context, AttributeSet attrs) {
@@ -163,44 +163,40 @@ public class PieView extends View {
 	{
 		int width = this.getWidth(); // this is the width of the pieChart!!
 
-		// TOmmy testing.. getting the dimension and divide by 3.
-		dimX /= 3;
-		dimY /= 3;
 		System.out.println("Xtap: " + x + "Ytap: " + y);
 
-		double distance = Math.sqrt(Math.pow((x - dimX), 2)
-				+ Math.pow((y - dimY), 2));
+		double distance = Math.sqrt(Math.pow((x - dimX), 2) + Math.pow((y - dimY), 2));
 
 		// radius of circle is the width / 2
 		int radius = width / 2;
 
-		if (distance > radius) {
+		if (distance > radius) 
+		{
 			System.out.println("Outside");
-		} else {
-			System.out.println("Inside!");
-			// need the tangent and adjacent values as distances!
-			double xDistance = Math.sqrt(Math.abs(x - dimX));
-			double yDistance = Math.sqrt(Math.abs(y - dimY));
-			double tapAngle = 0;
-			tapAngle = Math.atan((yDistance / xDistance)); // calculates basic
-															// angle, still need
-															// to check relative
-															// quadrant
-			System.out.println("Original angle: " + tapAngle);
-			tapAngle *= (57.2957795);
-			// Quadrant check:
-			if (x > dimX) // 2 positive X quadrants
+			} else 
 			{
-				if (y > dimY) {
-					tapAngle += (90 * 3);
+				System.out.println("Inside!");
+				// need the tangent and adjacent values as distances!
+				double xDistance = Math.sqrt(Math.abs(x - dimX));
+				double yDistance = Math.sqrt(Math.abs(y - dimY));
+				double tapAngle = 0;
+				tapAngle = Math.atan((yDistance / xDistance)); // calculates basic angle, still need to check relative quadrant
+				System.out.println("Original angle: " + tapAngle);
+				tapAngle *= (57.2957795);
+				// Quadrant check:
+				if (x > dimX) // 2 positive X quadrants
+				{
+					if (y > dimY) {
+						tapAngle += (90 * 3);
+					}
+				} else 
+				{
+					if (y < dimY) {
+						tapAngle += 90;
+					} else {
+						tapAngle += (90 * 2);
+					}
 				}
-			} else {
-				if (y < dimY) {
-					tapAngle += 90;
-				} else {
-					tapAngle += (90 * 2);
-				}
-			}
 			System.out.println("Final Angle: " + tapAngle);
 		}
 

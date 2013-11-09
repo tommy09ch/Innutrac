@@ -166,7 +166,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/TextView01"
         android:background="@android:color/holo_green_light"
-        android:text="Save" />
+        android:text="Save" 
+        android:textColor="#FFFFFF" 
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/ui_skip_but"
@@ -177,6 +179,8 @@
         android:layout_alignRight="@+id/ui_age_edit"
         android:layout_toRightOf="@+id/ui_save_but"
         android:background="@android:color/darker_gray"
-        android:text="Skip" />
+        android:text="Skip" 
+        android:textColor="#FFFFFF" 
+        android:textStyle="bold"/>
 
 </RelativeLayout>

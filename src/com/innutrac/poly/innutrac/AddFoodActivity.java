@@ -44,7 +44,7 @@ public class AddFoodActivity extends Activity {
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 
-				double val = (progress + 10) / 10.0;
+				double val = (progress) / 10.0;
 				sizeET.setText(Double.toString(val));
 
 				imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),

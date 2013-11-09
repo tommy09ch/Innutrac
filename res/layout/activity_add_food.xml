@@ -31,7 +31,9 @@
         android:layout_alignLeft="@+id/af_size_seekBar"
         android:layout_alignParentBottom="true"
         android:background="@android:color/holo_green_light"
-        android:text="Submit" />
+        android:text="Submit" 
+        android:textColor="#FFFFFF" 
+        android:textStyle="bold" />
 
     <TableLayout
         android:id="@+id/tableLayout1"
@@ -267,7 +269,7 @@
         android:layout_alignBaseline="@+id/servingSize_ET"
         android:layout_alignBottom="@+id/servingSize_ET"
         android:layout_alignParentLeft="true"
-        android:text="Serving Size (g):"
+        android:text="Serving Size:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

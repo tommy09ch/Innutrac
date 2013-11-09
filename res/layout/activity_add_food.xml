@@ -11,11 +11,9 @@
 
     <EditText
         android:id="@+id/foodName_ET"
-        android:layout_width="wrap_content"
+        android:layout_width="331dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
+        android:layout_weight="1"
         android:ems="10"
         android:hint="What did you eat?"
         android:minHeight="50dp"
@@ -26,44 +24,22 @@
         <requestFocus />
     </EditText>
 
-    <EditText
-        android:id="@+id/servingSize_ET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_toRightOf="@+id/textView1"
-        android:ems="10"
-        android:inputType="numberDecimal" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/af_serving_edit"
-        android:layout_alignBottom="@+id/af_serving_edit"
-        android:layout_alignLeft="@+id/editText1"
-        android:text="Serving Size (g):"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <SeekBar
-        android:id="@+id/af_size_seekBar"
+    <Button
+        android:id="@+id/af_submit_but"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/af_serving_edit"
-        android:max="90"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp" />
+        android:layout_alignLeft="@+id/af_size_seekBar"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_green_light"
+        android:text="Submit" />
 
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/af_size_seekBar"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/af_size_seekBar" >
+        android:layout_above="@+id/af_submit_but"
+        android:layout_alignLeft="@+id/af_submit_but"
+        android:layout_marginBottom="22dp" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -75,13 +51,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bluedark_rec"
+                android:gravity="center_horizontal"
                 android:text="Carbohydrates"
                 android:textAlignment="viewEnd"
+                android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:typeface="normal"
-                android:textColor="#ffffff"
-                android:gravity="center_horizontal" />
+                android:typeface="normal" />
 
             <EditText
                 android:id="@+id/carb_ET"
@@ -101,11 +77,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bluelight_rec"
+                android:gravity="center_horizontal"
                 android:text="Protein"
-                android:textSize="15sp"
-                android:textStyle="bold" 
                 android:textColor="#ffffff"
-                android:gravity="center_horizontal" />
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/prot_Et"
@@ -125,11 +101,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/greendark_rec"
+                android:gravity="center_horizontal"
                 android:text="Sodium"
-                android:textSize="15sp"
-                android:textStyle="bold" 
                 android:textColor="#ffffff"
-                android:gravity="center_horizontal" />
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/sodi_ET"
@@ -149,11 +125,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/greenlight_rec"
+                android:gravity="center_horizontal"
                 android:text="Cholesterol"
-                android:textSize="15sp"
-                android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:gravity="center_horizontal" />
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/chol_ET"
@@ -173,13 +149,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/orangedark_rec"
+                android:gravity="center_horizontal"
                 android:text="Fat"
                 android:textAlignment="viewEnd"
+                android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:typeface="normal"
-                android:textColor="#ffffff"
-                android:gravity="center_horizontal" />                
+                android:typeface="normal" />
 
             <EditText
                 android:id="@+id/fat_ET"
@@ -199,11 +175,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/orangelight_rec"
+                android:gravity="center_horizontal"
                 android:text="Sugar"
-                android:textSize="15sp"
-                android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:gravity="center_horizontal" />
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/sug_ET"
@@ -223,11 +199,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/reddark_rec"
+                android:gravity="center_horizontal"
                 android:text="Fiber"
-                android:textSize="15sp"
-                android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:gravity="center_horizontal" />               
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/fib_ET"
@@ -247,11 +223,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/redlight_rec"
+                android:gravity="center_horizontal"
                 android:text="Calories"
-                android:textSize="15sp"
-                android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:gravity="center_horizontal" />                
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/cal_ET"
@@ -262,14 +238,36 @@
         </TableRow>
     </TableLayout>
 
-    <Button
-        android:id="@+id/af_submit_but"
+    <SeekBar
+        android:id="@+id/af_size_seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tableLayout1"
+        android:layout_alignRight="@+id/servingSize_ET"
+        android:layout_marginBottom="15dp"
+        android:layout_weight="1"
+        android:max="90"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" />
+
+    <EditText
+        android:id="@+id/servingSize_ET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tableLayout1"
+        android:layout_above="@+id/af_size_seekBar"
+        android:layout_toRightOf="@+id/textView1"
+        android:ems="10"
+        android:inputType="numberDecimal" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/servingSize_ET"
+        android:layout_alignBottom="@+id/servingSize_ET"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:background="@android:color/holo_green_light"
-        android:text="Submit" />
+        android:text="Serving Size (g):"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

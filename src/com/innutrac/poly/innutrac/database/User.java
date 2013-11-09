@@ -8,8 +8,6 @@ public class User {
 	private String heightFt;
 	private String heightIn;
 	private String weight;
-	private String displayX;
-	private String displayY;
 	private String profileCreateTime;
 
 	public User() {
@@ -17,7 +15,7 @@ public class User {
 	}
 
 	public User(int pid, String n, String a, String g, String hf, String hi,
-			String w, String dx, String dy, String t) {
+			String w, String t) {
 		profileID = pid;
 		name = n;
 		age = a;
@@ -25,21 +23,17 @@ public class User {
 		heightFt = hf;
 		heightIn = hi;
 		weight = w;
-		displayX = dx;
-		displayY = dy;
 		profileCreateTime = t;
 	}
 
 	public User(String n, String a, String g, String hf, String hi, String w,
-			String dx, String dy, String t) {
+			String t) {
 		name = n;
 		age = a;
 		gender = g;
 		heightFt = hf;
 		heightIn = hi;
 		weight = w;
-		displayX = dx;
-		displayY = dy;
 		profileCreateTime = t;
 	}
 
@@ -107,22 +101,6 @@ public class User {
 
 	public void setWeight(String weight) {
 		this.weight = weight;
-	}
-
-	public String getDisplayX() {
-		return displayX;
-	}
-
-	public void setDisplayX(String displayX) {
-		this.displayX = displayX;
-	}
-
-	public String getDisplayY() {
-		return displayY;
-	}
-
-	public void setDisplayY(String displayY) {
-		this.displayY = displayY;
 	}
 
 	public String getProfileCreateTime() {

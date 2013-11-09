@@ -8,7 +8,6 @@
     <string name="action_new">Add food</string>
     <string name="action_void">Action cannot be done</string>
     <string name="welcome_message">Thank you for downloading InNuTrac. Let begin setting up your personal intake nutrition tracker.</string>
-    
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="appTitle">InNuTrac</string>
     <string name="title_activity_welcome_message">WelcomeMessageActivity</string>
@@ -23,4 +22,8 @@
     <color name="LightSkyBlue4">#607b8b</color>
     <color name="LightSkyBlue3">#8db6cd</color>
     <color name="LightSkyBlue2">#a4d3ee</color>
+
+    <string name="title_activity_wedge_summary">WedgeSummaryActivity</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>

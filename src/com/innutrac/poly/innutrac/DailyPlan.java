@@ -19,26 +19,19 @@ public class DailyPlan {
 	 * Constructor to initialize all the "total___" for each of the food groups
 	 * when the object is created for each new day.
 	 * 
-	 * @param carb
-	 * @param pro
-	 * @param sod
-	 * @param chol
-	 * @param fat
-	 * @param sug
-	 * @param fib
-	 * @param cal
 	 */
-	public DailyPlan(int carb, int pro, int sod, int chol, int fat, int sug,
-			int fib, int cal) {
-
-		totalCarbcarbohydrate = carb;
-		totalProtein = pro;
-		totalSodium = sod;
-		totalCholesterol = chol;
-		totalFats = fat;
-		totalSugar = sug;
-		totalFiber = fib;
-		totalCalories = cal;
+	public DailyPlan(int totalCarbcarbohydrate, int totalProtein,
+			int totalSodium, int totalCholesterol, int totalFats,
+			int totalSugar, int totalFiber, int totalCalories) {
+		super();
+		this.totalCarbcarbohydrate = totalCarbcarbohydrate;
+		this.totalProtein = totalProtein;
+		this.totalSodium = totalSodium;
+		this.totalCholesterol = totalCholesterol;
+		this.totalFats = totalFats;
+		this.totalSugar = totalSugar;
+		this.totalFiber = totalFiber;
+		this.totalCalories = totalCalories;
 	}
 
 	public void eatFood(Food food) {
@@ -55,18 +48,17 @@ public class DailyPlan {
 		foodList.add(food);
 	}
 
-	
-	// Setters and Getters 	
-	public int getTotalCarbcarbohydrate() {
-		return totalCarbcarbohydrate;
-	}
-
+	// Setters and Getters
 	public ArrayList<Food> getFoodList() {
 		return foodList;
 	}
 
 	public void setFoodList(ArrayList<Food> foodList) {
 		this.foodList = foodList;
+	}
+
+	public int getTotalCarbcarbohydrate() {
+		return totalCarbcarbohydrate;
 	}
 
 	public void setTotalCarbcarbohydrate(int totalCarbcarbohydrate) {

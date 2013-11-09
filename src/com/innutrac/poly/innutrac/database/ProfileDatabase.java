@@ -27,8 +27,6 @@ public class ProfileDatabase {
 		private static final String COLUMN_PROFILE_HEIGHT_FT = "height_ft";
 		private static final String COLUMN_PROFILE_HEIGHT_IN = "height_in";
 		private static final String COLUMN_PROFILE_WEIGHT = "weight";
-		private static final String COLUMN_PROFILE_DISPLAY_X = "display_x";
-		private static final String COLUMN_PROFILE_DISPLAY_Y = "display_y";
 		private static final String COLUMN_PROFILE_CREATE_TIME = "create_time";
 
 		private static final String CREATE_PROFILE_TABLE = 
@@ -40,8 +38,6 @@ public class ProfileDatabase {
 				COLUMN_PROFILE_HEIGHT_FT + " TEXT," + 
 				COLUMN_PROFILE_HEIGHT_IN + " TEXT,"	+ 
 				COLUMN_PROFILE_WEIGHT + " TEXT," + 
-				COLUMN_PROFILE_DISPLAY_X + " TEXT,"	+ 
-				COLUMN_PROFILE_DISPLAY_Y + " TEXT,"	+ 
 				COLUMN_PROFILE_CREATE_TIME + " TEXT" + ")";
 
 		public ProfileDB(Context context, String dbName) {
@@ -81,8 +77,6 @@ public class ProfileDatabase {
         values.put(ProfileDB.COLUMN_PROFILE_HEIGHT_FT, user.getHeightFt());
         values.put(ProfileDB.COLUMN_PROFILE_HEIGHT_IN, user.getHeightIn());
         values.put(ProfileDB.COLUMN_PROFILE_WEIGHT, user.getWeight());
-        values.put(ProfileDB.COLUMN_PROFILE_DISPLAY_X, user.getDisplayX());
-        values.put(ProfileDB.COLUMN_PROFILE_DISPLAY_Y, user.getDisplayY());
         values.put(ProfileDB.COLUMN_PROFILE_CREATE_TIME, user.getProfileCreateTime());
         db.insert(ProfileDB.TABLE_PROFILE, null,values );
 	}
@@ -112,9 +106,7 @@ public class ProfileDatabase {
 				user.setHeightFt(cur.getString(4));
 				user.setHeightIn(cur.getString(5));
 				user.setWeight(cur.getString(6));
-				user.setDisplayX(cur.getString(7));
-				user.setDisplayY(cur.getString(8));
-				user.setProfileCreateTime(cur.getString(9));
+				user.setProfileCreateTime(cur.getString(7));
 			} while (cur.moveToNext());
 		}
 		return user;

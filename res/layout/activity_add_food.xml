@@ -10,7 +10,7 @@
     tools:context=".AddFoodActivity" >
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/foodName_ET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -27,7 +27,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/af_serving_edit"
+        android:id="@+id/servingSize_ET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/editText1"
@@ -84,7 +84,7 @@
                 android:gravity="center_horizontal" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/carb_ET"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -108,7 +108,7 @@
                 android:gravity="center_horizontal" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/prot_Et"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -132,7 +132,7 @@
                 android:gravity="center_horizontal" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/sodi_ET"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -156,7 +156,7 @@
                 android:gravity="center_horizontal" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/chol_ET"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -182,7 +182,7 @@
                 android:gravity="center_horizontal" />                
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/fat_ET"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -206,7 +206,7 @@
                 android:gravity="center_horizontal" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/sug_ET"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -230,7 +230,7 @@
                 android:gravity="center_horizontal" />               
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/fib_ET"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -254,7 +254,7 @@
                 android:gravity="center_horizontal" />                
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/cal_ET"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:ems="10"

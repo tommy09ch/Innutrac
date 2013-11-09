@@ -11,7 +11,7 @@ import android.widget.*;
 
 public class UserInfoActivity extends Activity {
 	String name = "", age = "", gender = "", heightFt = "", heightIn = "",
-			weight = "", dimX = "", dimY = "", time = "";
+			weight = "", time = "";
 	boolean editProf = false;
 
 	ProfileDatabase pdb;
@@ -27,10 +27,6 @@ public class UserInfoActivity extends Activity {
 		final RadioButton femaleRB = (RadioButton) findViewById(R.id.ui_female_radbut);
 		Button saveBut = (Button) findViewById(R.id.ui_save_but);
 		Button skip_cancelBut = (Button) findViewById(R.id.ui_skip_but);
-
-		Display display = getWindowManager().getDefaultDisplay();
-		dimX = String.valueOf(display.getWidth());
-		dimY = String.valueOf(display.getHeight());
 
 		pdb = new ProfileDatabase(this);
 		pdb.open("UserDatabase");
@@ -49,13 +45,13 @@ public class UserInfoActivity extends Activity {
 			((EditText) findViewById(R.id.ui_inchHeight_edit))
 					.setText(heightIn);
 			((EditText) findViewById(R.id.ui_weight_edit)).setText(weight);
-			//if (gender.compareToIgnoreCase("M") == 0) {
-			//	maleRB.setChecked(true);
-			//} else if (gender.compareToIgnoreCase("F") == 0) {
-			//	femaleRB.setChecked(true);
-			//}
+			if (gender.compareToIgnoreCase("M") == 0) {
+				maleRB.setChecked(true);
+			} else if (gender.compareToIgnoreCase("F") == 0) {
+				femaleRB.setChecked(true);
+			}
 		}
-		
+
 		maleRB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -116,16 +112,15 @@ public class UserInfoActivity extends Activity {
 					} else {
 						time = String.valueOf(System.currentTimeMillis() / 1000.0);
 						pdb.createProfile(new User(name, age, gender, heightFt,
-								heightIn, weight, dimX, dimY, time));
+								heightIn, weight, time));
 						Toast.makeText(UserInfoActivity.this,
 								"Profile Created", Toast.LENGTH_SHORT).show();
-
 					}
 					pdb.close();
 					startActivity(new Intent(UserInfoActivity.this,
 							MainActivity.class));
 				}
-				
+
 			}
 
 		});
@@ -140,61 +135,8 @@ public class UserInfoActivity extends Activity {
 		heightFt = user.getHeightFt();
 		heightIn = user.getHeightIn();
 		weight = user.getWeight();
-		dimX = user.getDisplayX();
-		dimY = user.getDisplayY();
 		time = user.getProfileCreateTime();
 	}
-
-	// public void saveToFile(String value) {
-	//
-	// String sdPath = Environment.getExternalStorageDirectory()
-	// .getAbsolutePath();
-	// File file = new File(sdPath + "/Innutrac/User/user_info.dat");
-	// if (file.exists()) {
-	// // do nothing
-	// } else {
-	// File dir = new File(sdPath + "/Innutrac/User");
-	// dir.mkdirs();
-	// file = new File(dir, "user_info.dat");
-	// }
-	//
-	// try {
-	// FileWriter fw = new FileWriter(file, true);
-	// BufferedWriter bw = new BufferedWriter(fw);
-	// bw.write(value);
-	// bw.newLine();
-	// bw.close();
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// }
-
-	// public void readFromFile() {
-	// String sdPath = Environment.getExternalStorageDirectory()
-	// .getAbsolutePath();
-	// File file = new File(sdPath + "/Innutrac/User/user_info.dat");
-	// if (!file.exists()) {
-	// File dir = new File(sdPath + "/Innutrac/User");
-	// dir.mkdirs();
-	// file = new File(dir, "user_info.dat");
-	// } else {
-	// try {
-	// FileReader fr = new FileReader(file);
-	// BufferedReader br = new BufferedReader(fr);
-	// name = br.readLine();
-	// age = br.readLine();
-	// gender = br.readLine();
-	// heightFt = br.readLine();
-	// heightIn = br.readLine();
-	// weight = br.readLine();
-	// br.readLine();
-	// br.close();
-	// file.delete();
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// }
-	// }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -202,6 +144,4 @@ public class UserInfoActivity extends Activity {
 		getMenuInflater().inflate(R.menu.user_info, menu);
 		return true;
 	}
-
 }
-

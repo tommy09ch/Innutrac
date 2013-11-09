@@ -62,8 +62,8 @@ public final class R {
         public static final int TextView02=0x7f090017;
         public static final int TextView03=0x7f090014;
         public static final int TextView04=0x7f09001a;
-        public static final int action_new=0x7f090030;
-        public static final int action_settings=0x7f09002f;
+        public static final int action_new=0x7f090031;
+        public static final int action_settings=0x7f090030;
         public static final int af_size_seekBar=0x7f090002;
         public static final int af_submit_but=0x7f090001;
         public static final int cal_ET=0x7f09001b;
@@ -76,8 +76,8 @@ public final class R {
         public static final int foodName_ET=0x7f090000;
         public static final int imageView1=0x7f090022;
         public static final int left_drawer=0x7f090021;
-        public static final int linegraph=0x7f09002e;
-        public static final int pieView1=0x7f090020;
+        public static final int linegraph=0x7f09002f;
+        public static final int pie_container_id=0x7f09002e;
         public static final int prot_Et=0x7f090009;
         public static final int servingSize_ET=0x7f09001c;
         public static final int sodi_ET=0x7f09000c;
@@ -97,6 +97,7 @@ public final class R {
         public static final int textView4=0x7f09000b;
         public static final int textView5=0x7f09000e;
         public static final int textView6=0x7f090029;
+        public static final int top_frame=0x7f090020;
         public static final int ui_age_edit=0x7f090024;
         public static final int ui_feetHeight_edit=0x7f090027;
         public static final int ui_female_radbut=0x7f090026;
@@ -116,7 +117,8 @@ public final class R {
         public static final int activity_wedge_summary=0x7f030004;
         public static final int activity_welcome_message=0x7f030005;
         public static final int drawer_list_item=0x7f030006;
-        public static final int history_graph=0x7f030007;
+        public static final int fragment_pie=0x7f030007;
+        public static final int history_graph=0x7f030008;
     }
     public static final class menu {
         public static final int add_food=0x7f080000;

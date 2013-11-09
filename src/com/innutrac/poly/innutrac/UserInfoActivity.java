@@ -16,7 +16,6 @@ public class UserInfoActivity extends Activity {
 
 	ProfileDatabase pdb;
 
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,9 +45,9 @@ public class UserInfoActivity extends Activity {
 			((EditText) findViewById(R.id.ui_inchHeight_edit))
 					.setText(heightIn);
 			((EditText) findViewById(R.id.ui_weight_edit)).setText(weight);
-			if (gender.compareToIgnoreCase("M") == 0) {
+			if (gender.compareTo("M") == 0) {
 				maleRB.setChecked(true);
-			} else if (gender.compareToIgnoreCase("F") == 0) {
+			} else if (gender.compareTo("F") == 0) {
 				femaleRB.setChecked(true);
 			}
 		}

@@ -45,11 +45,11 @@ public class UserInfoActivity extends Activity {
 			((EditText) findViewById(R.id.ui_inchHeight_edit))
 					.setText(heightIn);
 			((EditText) findViewById(R.id.ui_weight_edit)).setText(weight);
-			if (gender.compareTo("M") == 0) {
-				maleRB.setChecked(true);
-			} else if (gender.compareTo("F") == 0) {
-				femaleRB.setChecked(true);
-			}
+			//if (gender.compareTo("M") == 0) {
+			//	maleRB.setChecked(true);
+			//} else if (gender.compareTo("F") == 0) {
+			//	femaleRB.setChecked(true);
+			//}
 		}
 
 		maleRB.setOnClickListener(new OnClickListener() {

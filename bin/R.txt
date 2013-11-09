@@ -51,8 +51,8 @@ int id fib_ET 0x7f090018
 int id foodName_ET 0x7f090000
 int id imageView1 0x7f090022
 int id left_drawer 0x7f090021
-int id linegraph 0x7f09002f
-int id pie_container_id 0x7f09002e
+int id linegraph 0x7f09002e
+int id pie_container_id 0x7f09002f
 int id prot_Et 0x7f090009
 int id servingSize_ET 0x7f09001c
 int id sodi_ET 0x7f09000c
@@ -90,8 +90,8 @@ int layout activity_user_info 0x7f030003
 int layout activity_wedge_summary 0x7f030004
 int layout activity_welcome_message 0x7f030005
 int layout drawer_list_item 0x7f030006
-int layout fragment_pie 0x7f030007
-int layout history_graph 0x7f030008
+int layout fragment_history 0x7f030007
+int layout fragment_pie 0x7f030008
 int menu add_food 0x7f080000
 int menu main 0x7f080001
 int menu splash_screen 0x7f080002
@@ -112,7 +112,7 @@ int string title_activity_user_info 0x7f040009
 int string title_activity_wedge_summary 0x7f04000b
 int string title_activity_welcome_message 0x7f040008
 int string welcome_message 0x7f04000d
-int string why_not_innutrac_body 0x7f04000f
-int string why_not_innutrac_title 0x7f04000e
+int string what_is_innutrac_body 0x7f04000f
+int string what_is_innutrac_title 0x7f04000e
 int style AppBaseTheme 0x7f050000
 int style AppTheme 0x7f050001

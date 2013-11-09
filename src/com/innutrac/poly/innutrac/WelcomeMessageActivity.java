@@ -3,7 +3,7 @@ package com.innutrac.poly.innutrac;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.view.Menu;
+import android.text.Html;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
@@ -15,7 +15,8 @@ public class WelcomeMessageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome_message);
 		Button startButton = (Button) findViewById(R.id.wm_start_button);
-		
+		TextView foo = (TextView)findViewById(R.id.textView3);
+		foo.setText(Html.fromHtml(getString(R.string.what_is_innutrac_body)));
 		startButton.setOnClickListener(new OnClickListener() {
 
 			@Override

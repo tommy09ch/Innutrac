@@ -76,8 +76,8 @@ public final class R {
         public static final int foodName_ET=0x7f090000;
         public static final int imageView1=0x7f090022;
         public static final int left_drawer=0x7f090021;
-        public static final int linegraph=0x7f09002f;
-        public static final int pie_container_id=0x7f09002e;
+        public static final int linegraph=0x7f09002e;
+        public static final int pie_container_id=0x7f09002f;
         public static final int prot_Et=0x7f090009;
         public static final int servingSize_ET=0x7f09001c;
         public static final int sodi_ET=0x7f09000c;
@@ -117,8 +117,8 @@ public final class R {
         public static final int activity_wedge_summary=0x7f030004;
         public static final int activity_welcome_message=0x7f030005;
         public static final int drawer_list_item=0x7f030006;
-        public static final int fragment_pie=0x7f030007;
-        public static final int history_graph=0x7f030008;
+        public static final int fragment_history=0x7f030007;
+        public static final int fragment_pie=0x7f030008;
     }
     public static final class menu {
         public static final int add_food=0x7f080000;
@@ -143,8 +143,8 @@ public final class R {
         public static final int title_activity_wedge_summary=0x7f04000b;
         public static final int title_activity_welcome_message=0x7f040008;
         public static final int welcome_message=0x7f04000d;
-        public static final int why_not_innutrac_body=0x7f04000f;
-        public static final int why_not_innutrac_title=0x7f04000e;
+        public static final int what_is_innutrac_body=0x7f04000f;
+        public static final int what_is_innutrac_title=0x7f04000e;
     }
     public static final class style {
         /** 

@@ -16,7 +16,7 @@ public class HistoryFragment extends Fragment{
 	LineGraph lg;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-		return inflater.inflate(R.layout.history_graph, null);
+		return inflater.inflate(R.layout.fragment_history, null);
 	}
 	
 	@Override

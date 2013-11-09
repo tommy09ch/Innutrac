@@ -25,10 +25,10 @@
     <string name="title_activity_wedge_summary">WedgeSummaryActivity</string>
     <string name="hello_world">Hello world!</string>
     
-    <string name="welcome_message">Thank you for downloading Innutrac. Let begin setting up your personal intake nutrition tracker.</string>
-    <string name="why_not_innutrac_title">Why Innutrac?</string>
-    <string name="why_not_innutrac_body">Innutrac was developed by a small group of students at Cal Poly Pomona. Our goal is to 
-        provide you with an unobtrusive, clean app for tracking and meeting your nutrition goals. So, Eat without remorse! We\'ll 
-        balance out your diet for you.</string>
+    <string name="welcome_message">Thank you for downloading Innutrac. Let\'s begin setting up your personal intake nutrition tracker.</string>
+    <string name="what_is_innutrac_title">Innu-what?</string>
+    <string name="what_is_innutrac_body"> <![CDATA[ Innutrac is a <b>In</b>take <b>Nu</b>trition <b>Trac</b>ker developed by 
+        a small group of students at Cal Poly Pomona. Our goal is to provide you with an unobtrusive, clean app for tracking and 
+        meeting your nutrition goals. So, Eat without remorse! We\'ll balance out your diet for you. ]]> </string>
 
 </resources>

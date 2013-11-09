@@ -17,20 +17,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:text="@string/welcome_message"
-        android:textColor="#575757"
+        android:textColor="#7e7e7e"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/wm_start_button"
-        android:layout_below="@+id/wm_start_button"
-        android:layout_marginTop="48dp"
-        android:text="@string/why_not_innutrac_title" 
-        android:textStyle="bold" 
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#7e7e7e"/>
 
         <Button
             android:id="@+id/wm_start_button"
@@ -39,7 +27,7 @@
             android:layout_alignLeft="@+id/textView1"
             android:layout_alignRight="@+id/textView1"
             android:layout_below="@+id/textView1"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="47dp"
             android:background="@android:color/holo_green_light"
             android:text="Start"
             android:textColor="#FFFFFF" 
@@ -52,8 +40,20 @@
             android:layout_alignLeft="@+id/textView2"
             android:layout_below="@+id/textView2"
             android:layout_marginTop="13dp"
-            android:text="@string/why_not_innutrac_body"
+            android:text="@string/what_is_innutrac_body"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#575757" />
+            android:textColor="#7e7e7e" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/wm_start_button"
+            android:layout_below="@+id/wm_start_button"
+            android:layout_marginTop="47dp"
+            android:text="@string/what_is_innutrac_title"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#7e7e7e"
+            android:textStyle="bold" />
 
 </RelativeLayout>

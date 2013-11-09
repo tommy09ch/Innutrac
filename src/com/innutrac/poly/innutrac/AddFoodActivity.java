@@ -31,12 +31,13 @@ public class AddFoodActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_food);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setTitle(R.string.action_new);
+		getActionBar().setTitle("Add Food");
 		SeekBar bar = (SeekBar) findViewById(R.id.af_size_seekBar);
-		final EditText sizeET = (EditText) findViewById(R.id.af_serving_edit);
-
+		final EditText sizeET = (EditText) findViewById(R.id.servingSize_ET);
+		
+		fdb = new FoodDatabase(this);
 		fdb.open("FoodDatabase");
-
+		
 		bar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
 			@Override
@@ -80,17 +81,19 @@ public class AddFoodActivity extends Activity {
 
 	public void getValuesFromUserInput() {
 		name = ((EditText) findViewById(R.id.foodName_ET)).getText().toString();
-		serving_size = ((EditText) findViewById(R.id.servingSize_ET)).getText().toString();
+		serving_size = ((EditText) findViewById(R.id.servingSize_ET)).getText()
+				.toString();
 		calories = ((EditText) findViewById(R.id.cal_ET)).getText().toString();
-		carbcarbohydrate = ((EditText) findViewById(R.id.carb_ET)).getText().toString();
-		cholesterol = ((EditText) findViewById(R.id.chol_ET)).getText().toString();
+		carbcarbohydrate = ((EditText) findViewById(R.id.carb_ET)).getText()
+				.toString();
+		cholesterol = ((EditText) findViewById(R.id.chol_ET)).getText()
+				.toString();
 		fats = ((EditText) findViewById(R.id.fat_ET)).getText().toString();
 		fiber = ((EditText) findViewById(R.id.fib_ET)).getText().toString();
 		protein = ((EditText) findViewById(R.id.prot_Et)).getText().toString();
 		sodium = ((EditText) findViewById(R.id.sodi_ET)).getText().toString();
 		sugar = ((EditText) findViewById(R.id.sug_ET)).getText().toString();
-		
-		
+
 	}
 
 	@Override

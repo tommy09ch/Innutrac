@@ -21,7 +21,8 @@ public class UserInfoActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_info);
-		setTitle("User Profile");
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setTitle("User Profile");
 
 		final RadioButton maleRB = (RadioButton) findViewById(R.id.ui_male_radbut);
 		final RadioButton femaleRB = (RadioButton) findViewById(R.id.ui_female_radbut);
@@ -142,6 +143,19 @@ public class UserInfoActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.user_info, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			onBackPressed();
+			break;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 		return true;
 	}
 }

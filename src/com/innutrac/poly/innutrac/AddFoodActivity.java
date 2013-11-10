@@ -34,6 +34,7 @@ public class AddFoodActivity extends Activity {
 		getActionBar().setTitle("Add Food");
 		SeekBar bar = (SeekBar) findViewById(R.id.af_size_seekBar);
 		final EditText sizeET = (EditText) findViewById(R.id.servingSize_ET);
+		sizeET.setText(Double.toString(1.0));
 		
 		fdb = new FoodDatabase(this);
 		fdb.open("FoodDatabase");

@@ -45,7 +45,6 @@
 	    android:layout_below="@+id/foodName_ET"
 	    android:layout_toRightOf="@+id/textView1"
 	    android:ems="10"
-	    android:progress="10"
 	    android:layout_marginTop="5dp"
 	    android:layout_marginBottom="5dp"
 	    android:inputType="numberDecimal" >
@@ -60,7 +59,8 @@
 	    android:layout_centerHorizontal="true"
 	    android:layout_marginBottom="15dp"
 	    android:layout_weight="1"
-	    android:max="90"
+	    android:max="100"
+	    android:progress="10"
 	    android:paddingTop="10dp" />
 	
     <TableLayout

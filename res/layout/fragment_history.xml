@@ -5,9 +5,9 @@
     android:orientation="vertical" >
     
     <com.echo.holographlibrary.LineGraph
-        android:layout_gravity="center_horizontal"
-        android:layout_width="320dp"
-        android:layout_height="200dp"
-        android:id="@+id/linegraph" />
+        android:id="@+id/linegraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
 
 </LinearLayout>

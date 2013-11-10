@@ -9,13 +9,22 @@
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-        
-        <LinearLayout
+                
+        <RelativeLayout
             android:id="@+id/top_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-        </LinearLayout>  	
+            android:layout_height="220dp"
+            android:orientation="vertical" 
+            android:layout_gravity="top" >
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottom_frame"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical" 
+             android:layout_gravity="bottom"/>
+        
     </FrameLayout>
     
     <!-- The navigation drawer -->
@@ -23,9 +32,11 @@
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:layout_weight="1"
         android:choiceMode="singleChoice"
         android:divider="#D3D3D3"
         android:dividerHeight="1px"
-        android:background="#353135"/>
+        android:background="#353135" >
+   </ListView>
     
 </android.support.v4.widget.DrawerLayout>

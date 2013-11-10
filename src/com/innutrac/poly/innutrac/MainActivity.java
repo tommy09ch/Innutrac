@@ -3,6 +3,7 @@ package com.innutrac.poly.innutrac;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.view.Menu;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -172,14 +173,20 @@ public class MainActivity extends Activity {
         
     //fragment switching here
     private void selectItem(int position) {
-        	switch(position) {
-        		case 0: getFragmentManager().beginTransaction().replace(R.id.content_frame, new PieViewFragment() ).commit();
+    		switch(position) {
+        		case 0: getFragmentManager().beginTransaction().replace(R.id.top_frame, new Fragment() ).commit();
+				 		getFragmentManager().beginTransaction().replace(R.id.bottom_frame, new Fragment() ).commit();
+        				getFragmentManager().beginTransaction().replace(R.id.content_frame, new PieViewFragment() ).commit();
         				break;
-        		case 1: getFragmentManager().beginTransaction().replace(R.id.content_frame, new HistoryFragment() ).commit();
+        		case 1: getFragmentManager().beginTransaction().replace(R.id.content_frame, new Fragment() ).commit();
+        				getFragmentManager().beginTransaction().replace(R.id.top_frame, new HistoryFragment() ).commit();
+        				getFragmentManager().beginTransaction().replace(R.id.bottom_frame, new CardsFragment() ).commit();
         				break;
         		case 4: startActivity(new Intent(MainActivity.this, UserInfoActivity.class).putExtra("title", "Main"));
         				break;
         		default: getFragmentManager().beginTransaction().replace(R.id.content_frame, new Fragment() ).commit();
+        				 getFragmentManager().beginTransaction().replace(R.id.top_frame, new Fragment() ).commit();
+        				 getFragmentManager().beginTransaction().replace(R.id.bottom_frame, new Fragment() ).commit();
         				break;
         	}
 

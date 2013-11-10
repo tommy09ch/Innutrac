@@ -25,6 +25,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/appTitle"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
+        android:textStyle="bold" 
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>

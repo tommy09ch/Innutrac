@@ -14,20 +14,8 @@ public class User {
 		// Empty Constructor
 	}
 
-	public User(int pid, String n, String a, String g, String hf, String hi,
+	public User(String n, String a, String g, String hf, String hi,
 			String w, String t) {
-		profileID = pid;
-		name = n;
-		age = a;
-		gender = g;
-		heightFt = hf;
-		heightIn = hi;
-		weight = w;
-		profileCreateTime = t;
-	}
-
-	public User(String n, String a, String g, String hf, String hi, String w,
-			String t) {
 		name = n;
 		age = a;
 		gender = g;

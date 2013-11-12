@@ -1,7 +1,11 @@
 package com.innutrac.poly.innutrac;
 
-import com.innutrac.poly.innutrac.database.*;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.innutrac.poly.innutrac.database.*;
 import android.os.*;
 import android.app.Activity;
 import android.content.*;
@@ -36,8 +40,9 @@ public class UserInfoActivity extends Activity {
 
 		if (editProf) {
 			skip_cancelBut.setText("Cancel");
+		}
+		if (pdb.checkProfileExist()) {
 			assembleCreatedProfile();
-
 			((EditText) findViewById(R.id.ui_name_edit)).setText(name);
 			((EditText) findViewById(R.id.ui_age_edit)).setText(age);
 			((EditText) findViewById(R.id.ui_feetHeight_edit))
@@ -45,16 +50,17 @@ public class UserInfoActivity extends Activity {
 			((EditText) findViewById(R.id.ui_inchHeight_edit))
 					.setText(heightIn);
 			((EditText) findViewById(R.id.ui_weight_edit)).setText(weight);
-			//if (gender.compareTo("M") == 0) {
-			//	maleRB.setChecked(true);
-			//} else if (gender.compareTo("F") == 0) {
-			//	femaleRB.setChecked(true);
-			//}
+			if (gender.equalsIgnoreCase("m")) {
+				maleRB.setChecked(true);
+			} else if (gender.equalsIgnoreCase("f")) {
+				femaleRB.setChecked(true);
+			}
 		}
 
 		maleRB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				gender = "m";
 				maleRB.setChecked(true);
 				femaleRB.setChecked(false);
 			}
@@ -63,8 +69,9 @@ public class UserInfoActivity extends Activity {
 		femaleRB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				maleRB.setChecked(false);
+				gender = "f";
 				femaleRB.setChecked(true);
+				maleRB.setChecked(false);
 			}
 		});
 
@@ -72,6 +79,7 @@ public class UserInfoActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				pdb.close();
 				startActivity(new Intent(UserInfoActivity.this,
 						MainActivity.class));
 			}
@@ -92,11 +100,6 @@ public class UserInfoActivity extends Activity {
 						.getText().toString();
 				weight = ((EditText) findViewById(R.id.ui_weight_edit))
 						.getText().toString();
-				if (maleRB.isChecked()) {
-					gender = "M"; // m = male
-				} else if (femaleRB.isChecked()) {
-					gender = "F"; // f = female
-				}
 
 				if (name.isEmpty() || age.isEmpty() || gender.isEmpty()) {
 					Toast.makeText(UserInfoActivity.this,
@@ -104,15 +107,21 @@ public class UserInfoActivity extends Activity {
 							Toast.LENGTH_SHORT).show();
 				} else {
 
-					if (editProf) {
+					if (pdb.checkProfileExist()) {
 						pdb.updateProfile(new User(name, age, gender, heightFt,
-								heightIn, weight));
+								heightIn, weight, time));
+
 						Toast.makeText(UserInfoActivity.this,
 								"Profile Updated", Toast.LENGTH_SHORT).show();
 					} else {
-						time = String.valueOf(System.currentTimeMillis() / 1000.0);
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+						Date date = new Date();
+						System.out.println(dateFormat.format(date));
+						
+						time = dateFormat.format(date);
 						pdb.createProfile(new User(name, age, gender, heightFt,
 								heightIn, weight, time));
+
 						Toast.makeText(UserInfoActivity.this,
 								"Profile Created", Toast.LENGTH_SHORT).show();
 					}

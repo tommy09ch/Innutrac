@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import com.innutrac.poly.innutrac.database.Food;
 
 public class DailyPlan {
-	private int totalCarbcarbohydrate;
-	private int totalProtein;
-	private int totalSodium;
-	private int totalCholesterol;
-	private int totalFats;
-	private int totalSugar;
-	private int totalFiber;
-	private int totalCalories;
+	private double totalCarbcarbohydrate;
+	private double totalProtein;
+	private double totalSodium;
+	private double totalCholesterol;
+	private double totalFats;
+	private double totalSugar;
+	private double totalFiber;
+	private double totalCalories;
 	ArrayList<Food> foodList = new ArrayList<Food>();
 
 	/**
@@ -20,9 +20,9 @@ public class DailyPlan {
 	 * when the object is created for each new day.
 	 * 
 	 */
-	public DailyPlan(int totalCarbcarbohydrate, int totalProtein,
-			int totalSodium, int totalCholesterol, int totalFats,
-			int totalSugar, int totalFiber, int totalCalories) {
+	public DailyPlan(double totalCarbcarbohydrate, double totalProtein,
+			double totalSodium, double totalCholesterol, double totalFats,
+			double totalSugar, double totalFiber, double totalCalories) {
 		super();
 		this.totalCarbcarbohydrate = totalCarbcarbohydrate;
 		this.totalProtein = totalProtein;
@@ -34,15 +34,19 @@ public class DailyPlan {
 		this.totalCalories = totalCalories;
 	}
 
+	public DailyPlan() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void eatFood(Food food) {
-		totalCarbcarbohydrate -= Integer.parseInt(food.getCarbcarbohydrate());
-		totalProtein -= Integer.parseInt(food.getProtein());
-		totalSodium -= Integer.parseInt(food.getSodium());
-		totalCholesterol -= Integer.parseInt(food.getCholesterol());
-		totalFats -= Integer.parseInt(food.getFats());
-		totalSugar -= Integer.parseInt(food.getSugar());
-		totalFiber -= Integer.parseInt(food.getFiber());
-		totalCalories -= Integer.parseInt(food.getCalories());
+		totalCarbcarbohydrate -= Double.parseDouble(food.getCarbcarbohydrate());
+		totalProtein -= Double.parseDouble(food.getProtein());
+		totalSodium -= Double.parseDouble(food.getSodium());
+		totalCholesterol -= Double.parseDouble(food.getCholesterol());
+		totalFats -= Double.parseDouble(food.getFats());
+		totalSugar -= Double.parseDouble(food.getSugar());
+		totalFiber -= Double.parseDouble(food.getFiber());
+		totalCalories -= Double.parseDouble(food.getCalories());
 
 		// add the eaten food to the arrayList for saving.
 		foodList.add(food);
@@ -57,7 +61,7 @@ public class DailyPlan {
 		this.foodList = foodList;
 	}
 
-	public int getTotalCarbcarbohydrate() {
+	public double getTotalCarbcarbohydrate() {
 		return totalCarbcarbohydrate;
 	}
 
@@ -65,7 +69,7 @@ public class DailyPlan {
 		this.totalCarbcarbohydrate = totalCarbcarbohydrate;
 	}
 
-	public int getTotalProtein() {
+	public double getTotalProtein() {
 		return totalProtein;
 	}
 
@@ -73,7 +77,7 @@ public class DailyPlan {
 		this.totalProtein = totalProtein;
 	}
 
-	public int getTotalSodium() {
+	public double getTotalSodium() {
 		return totalSodium;
 	}
 
@@ -81,7 +85,7 @@ public class DailyPlan {
 		this.totalSodium = totalSodium;
 	}
 
-	public int getTotalCholesterol() {
+	public double getTotalCholesterol() {
 		return totalCholesterol;
 	}
 
@@ -89,7 +93,7 @@ public class DailyPlan {
 		this.totalCholesterol = totalCholesterol;
 	}
 
-	public int getTotalFats() {
+	public double getTotalFats() {
 		return totalFats;
 	}
 
@@ -97,7 +101,7 @@ public class DailyPlan {
 		this.totalFats = totalFats;
 	}
 
-	public int getTotalSugar() {
+	public double getTotalSugar() {
 		return totalSugar;
 	}
 
@@ -105,7 +109,7 @@ public class DailyPlan {
 		this.totalSugar = totalSugar;
 	}
 
-	public int getTotalFiber() {
+	public double getTotalFiber() {
 		return totalFiber;
 	}
 
@@ -113,7 +117,7 @@ public class DailyPlan {
 		this.totalFiber = totalFiber;
 	}
 
-	public int getTotalCalories() {
+	public double getTotalCalories() {
 		return totalCalories;
 	}
 

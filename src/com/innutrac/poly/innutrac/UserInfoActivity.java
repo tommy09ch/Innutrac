@@ -1,11 +1,14 @@
 package com.innutrac.poly.innutrac;
 
-
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.innutrac.poly.innutrac.database.*;
+
 import android.os.*;
 import android.app.Activity;
 import android.content.*;
@@ -41,7 +44,7 @@ public class UserInfoActivity extends Activity {
 		if (editProf) {
 			skip_cancelBut.setText("Cancel");
 		}
-		if (pdb.checkProfileExist()) {
+		if (checkIfProfileExist(false)) {
 			assembleCreatedProfile();
 			((EditText) findViewById(R.id.ui_name_edit)).setText(name);
 			((EditText) findViewById(R.id.ui_age_edit)).setText(age);
@@ -107,17 +110,19 @@ public class UserInfoActivity extends Activity {
 							Toast.LENGTH_SHORT).show();
 				} else {
 
-					if (pdb.checkProfileExist()) {
+					if (checkIfProfileExist(false)) {
 						pdb.updateProfile(new User(name, age, gender, heightFt,
 								heightIn, weight, time));
 
 						Toast.makeText(UserInfoActivity.this,
 								"Profile Updated", Toast.LENGTH_SHORT).show();
 					} else {
-						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+						checkIfProfileExist(true);
+						SimpleDateFormat dateFormat = new SimpleDateFormat(
+								"yyyy/MM/dd HH:mm:ss");
 						Date date = new Date();
 						System.out.println(dateFormat.format(date));
-						
+
 						time = dateFormat.format(date);
 						pdb.createProfile(new User(name, age, gender, heightFt,
 								heightIn, weight, time));
@@ -147,6 +152,31 @@ public class UserInfoActivity extends Activity {
 		time = user.getProfileCreateTime();
 	}
 
+	public boolean checkIfProfileExist(boolean create) {
+		String sdPath = Environment.getExternalStorageDirectory()
+				.getAbsolutePath();
+		File cache = new File(sdPath + "/Innutrac/prof/cache");
+
+		if (cache.exists()) {
+			return true;
+		} else {
+			if (create) {
+				File dir = new File(sdPath + "/Innutrac/prof");
+				dir.mkdirs();
+				cache = new File(dir, "cache");
+				try {
+					FileOutputStream f = new FileOutputStream(cache);
+					f.close();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			return false;
+		}
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -157,6 +187,7 @@ public class UserInfoActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
+			pdb.close();
 			onBackPressed();
 			break;
 

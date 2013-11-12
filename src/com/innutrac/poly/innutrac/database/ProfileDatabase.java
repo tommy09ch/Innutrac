@@ -11,7 +11,6 @@ public class ProfileDatabase {
 	ProfileDB handler;
 	SQLiteDatabase db;
 	private final Context ctx;
-	static private boolean profileExist = false;
 
 	public ProfileDatabase(Context contx) {
 		this.ctx = contx;
@@ -71,7 +70,6 @@ public class ProfileDatabase {
 	}
 	
 	public void createProfile(User user) {
-		profileExist  = true;
         ContentValues values = new ContentValues();
         values.put(ProfileDB.COLUMN_PROFILE_NAME, user.getName()); 
         values.put(ProfileDB.COLUMN_PROFILE_AGE, user.getAge());
@@ -113,9 +111,5 @@ public class ProfileDatabase {
 			} while (cur.moveToNext());
 		}
 		return user;
-	}
-	
-	public boolean checkProfileExist() {
-		return profileExist;
 	}
 }

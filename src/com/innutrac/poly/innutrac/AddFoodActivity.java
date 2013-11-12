@@ -67,6 +67,7 @@ public class AddFoodActivity extends Activity {
 				Food selectedFood = getSpecifiedFood(foodNameET.getText()
 						.toString());
 				assembleDataFromFoodDB(selectedFood);
+				sizeET.setText(Double.toString(1.0));
 				imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
 						0);
 			}

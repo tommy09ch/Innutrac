@@ -36,24 +36,24 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int list_card_layout_resourceID=0x7f010004;
     }
     public static final class color {
-        public static final int AliceBlue=0x7f040006;
-        public static final int Azure=0x7f040007;
-        public static final int LightSkyBlue2=0x7f04000d;
-        public static final int LightSkyBlue3=0x7f04000c;
-        public static final int LightSkyBlue4=0x7f04000b;
-        public static final int Snow2=0x7f04000a;
-        public static final int Wheat=0x7f040008;
-        public static final int WhiteSmoke=0x7f040009;
+        public static final int AliceBlue=0x7f060006;
+        public static final int Azure=0x7f060007;
+        public static final int LightSkyBlue2=0x7f06000d;
+        public static final int LightSkyBlue3=0x7f06000c;
+        public static final int LightSkyBlue4=0x7f06000b;
+        public static final int Snow2=0x7f06000a;
+        public static final int Wheat=0x7f060008;
+        public static final int WhiteSmoke=0x7f060009;
         /**  Card Color 
          */
-        public static final int card_background=0x7f040000;
-        public static final int card_backgroundExpand=0x7f040002;
-        public static final int card_background_header=0x7f040001;
-        public static final int card_expand_title_color=0x7f040004;
+        public static final int card_background=0x7f060000;
+        public static final int card_backgroundExpand=0x7f060002;
+        public static final int card_background_header=0x7f060001;
+        public static final int card_expand_title_color=0x7f060004;
         /**  Used by selector 
          */
-        public static final int card_pressed=0x7f040005;
-        public static final int card_text_color_header=0x7f040003;
+        public static final int card_pressed=0x7f060005;
+        public static final int card_text_color_header=0x7f060003;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -62,72 +62,72 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f05002a;
-        public static final int activity_vertical_margin=0x7f05002b;
-        public static final int card_background_default_radius=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f07002a;
+        public static final int activity_vertical_margin=0x7f07002b;
+        public static final int card_background_default_radius=0x7f070001;
         /**  Card 
          */
-        public static final int card_base_empty_height=0x7f050000;
-        public static final int card_content_outer_view_margin_bottom=0x7f050013;
-        public static final int card_content_outer_view_margin_left=0x7f050012;
-        public static final int card_content_outer_view_margin_right=0x7f050014;
+        public static final int card_base_empty_height=0x7f070000;
+        public static final int card_content_outer_view_margin_bottom=0x7f070013;
+        public static final int card_content_outer_view_margin_left=0x7f070012;
+        public static final int card_content_outer_view_margin_right=0x7f070014;
         /**  Content 
          */
-        public static final int card_content_outer_view_margin_top=0x7f050011;
+        public static final int card_content_outer_view_margin_top=0x7f070011;
         /**  Expand 
          */
-        public static final int card_expand_layout_padding=0x7f05001e;
-        public static final int card_expand_simple_title_paddingLeft=0x7f05001f;
-        public static final int card_expand_simple_title_paddingRight=0x7f050020;
-        public static final int card_expand_simple_title_text_size=0x7f050021;
-        public static final int card_header_button_padding_bottom=0x7f05000c;
+        public static final int card_expand_layout_padding=0x7f07001e;
+        public static final int card_expand_simple_title_paddingLeft=0x7f07001f;
+        public static final int card_expand_simple_title_paddingRight=0x7f070020;
+        public static final int card_expand_simple_title_text_size=0x7f070021;
+        public static final int card_header_button_padding_bottom=0x7f07000c;
         /** Button Header 
          */
-        public static final int card_header_button_padding_left=0x7f05000a;
-        public static final int card_header_button_padding_right=0x7f05000b;
-        public static final int card_header_button_padding_top=0x7f05000d;
-        public static final int card_header_outer_view_margin_bottom=0x7f050008;
-        public static final int card_header_outer_view_margin_left=0x7f050007;
-        public static final int card_header_outer_view_margin_right=0x7f050009;
+        public static final int card_header_button_padding_left=0x7f07000a;
+        public static final int card_header_button_padding_right=0x7f07000b;
+        public static final int card_header_button_padding_top=0x7f07000d;
+        public static final int card_header_outer_view_margin_bottom=0x7f070008;
+        public static final int card_header_outer_view_margin_left=0x7f070007;
+        public static final int card_header_outer_view_margin_right=0x7f070009;
         /**  Header 
          */
-        public static final int card_header_outer_view_margin_top=0x7f050006;
+        public static final int card_header_outer_view_margin_top=0x7f070006;
         /**  Title Header 
          */
-        public static final int card_header_simple_title_margin_left=0x7f05000e;
-        public static final int card_header_simple_title_margin_top=0x7f05000f;
-        public static final int card_header_simple_title_text_size=0x7f050010;
-        public static final int card_main_layout_view_margin_bottom=0x7f050004;
-        public static final int card_main_layout_view_margin_left=0x7f050003;
-        public static final int card_main_layout_view_margin_right=0x7f050005;
+        public static final int card_header_simple_title_margin_left=0x7f07000e;
+        public static final int card_header_simple_title_margin_top=0x7f07000f;
+        public static final int card_header_simple_title_text_size=0x7f070010;
+        public static final int card_main_layout_view_margin_bottom=0x7f070004;
+        public static final int card_main_layout_view_margin_left=0x7f070003;
+        public static final int card_main_layout_view_margin_right=0x7f070005;
         /**  Main 
          */
-        public static final int card_main_layout_view_margin_top=0x7f050002;
-        public static final int card_main_simple_title_margin_left=0x7f050015;
-        public static final int card_main_simple_title_margin_top=0x7f050016;
+        public static final int card_main_layout_view_margin_top=0x7f070002;
+        public static final int card_main_simple_title_margin_left=0x7f070015;
+        public static final int card_main_simple_title_margin_top=0x7f070016;
         /**  Shadow 
          */
-        public static final int card_shadow_height=0x7f050017;
-        public static final int card_shadow_view_margin_bottom=0x7f05001a;
-        public static final int card_shadow_view_margin_left=0x7f050019;
-        public static final int card_shadow_view_margin_right=0x7f05001b;
-        public static final int card_shadow_view_margin_top=0x7f050018;
-        public static final int card_thumbnail_height=0x7f05001d;
+        public static final int card_shadow_height=0x7f070017;
+        public static final int card_shadow_view_margin_bottom=0x7f07001a;
+        public static final int card_shadow_view_margin_left=0x7f070019;
+        public static final int card_shadow_view_margin_right=0x7f07001b;
+        public static final int card_shadow_view_margin_top=0x7f070018;
+        public static final int card_thumbnail_height=0x7f07001d;
         /**  Thumbnail 
          */
-        public static final int card_thumbnail_width=0x7f05001c;
-        public static final int grid_card_padding_bottom=0x7f050028;
+        public static final int card_thumbnail_width=0x7f07001c;
+        public static final int grid_card_padding_bottom=0x7f070028;
         /**  Grid 
          */
-        public static final int grid_card_padding_left=0x7f050026;
-        public static final int grid_card_padding_right=0x7f050027;
-        public static final int grid_card_padding_top=0x7f050029;
-        public static final int list_card_padding_bottom=0x7f050024;
+        public static final int grid_card_padding_left=0x7f070026;
+        public static final int grid_card_padding_right=0x7f070027;
+        public static final int grid_card_padding_top=0x7f070029;
+        public static final int list_card_padding_bottom=0x7f070024;
         /**  List 
          */
-        public static final int list_card_padding_left=0x7f050022;
-        public static final int list_card_padding_right=0x7f050023;
-        public static final int list_card_padding_top=0x7f050025;
+        public static final int list_card_padding_left=0x7f070022;
+        public static final int list_card_padding_right=0x7f070023;
+        public static final int list_card_padding_top=0x7f070025;
     }
     public static final class drawable {
         public static final int action_search=0x7f020000;
@@ -169,44 +169,46 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int TextView02=0x7f0b0018;
         public static final int TextView03=0x7f0b0015;
         public static final int TextView04=0x7f0b001b;
-        public static final int action_new=0x7f0b004a;
-        public static final int action_settings=0x7f0b0049;
+        public static final int action_new=0x7f0b004b;
+        public static final int action_settings=0x7f0b004a;
         public static final int af_size_seekBar=0x7f0b0003;
         public static final int af_submit_but=0x7f0b001d;
         public static final int bottom_frame=0x7f0b0021;
         public static final int cal_ET=0x7f0b001c;
         public static final int carb_ET=0x7f0b0007;
-        public static final int card_content_expand_layout=0x7f0b003a;
-        public static final int card_expand_inner_simple_title=0x7f0b0042;
-        public static final int card_header_button_expand=0x7f0b0032;
-        public static final int card_header_button_frame=0x7f0b0030;
-        public static final int card_header_button_other=0x7f0b0033;
-        public static final int card_header_button_overflow=0x7f0b0031;
-        public static final int card_header_inner_frame=0x7f0b002f;
-        public static final int card_header_inner_simple_title=0x7f0b0043;
-        public static final int card_header_layout=0x7f0b0039;
-        public static final int card_main_content_layout=0x7f0b0036;
-        public static final int card_main_inner_simple_title=0x7f0b0044;
-        public static final int card_main_layout=0x7f0b0038;
-        public static final int card_shadow_layout=0x7f0b0037;
-        public static final int card_shadow_view=0x7f0b0034;
-        public static final int card_thumbnail_image=0x7f0b0035;
-        public static final int card_thumbnail_layout=0x7f0b003b;
+        public static final int card_content_expand_layout=0x7f0b003b;
+        public static final int card_expand_inner_simple_title=0x7f0b0043;
+        public static final int card_header_button_expand=0x7f0b0033;
+        public static final int card_header_button_frame=0x7f0b0031;
+        public static final int card_header_button_other=0x7f0b0034;
+        public static final int card_header_button_overflow=0x7f0b0032;
+        public static final int card_header_inner_frame=0x7f0b0030;
+        public static final int card_header_inner_simple_title=0x7f0b0044;
+        public static final int card_header_layout=0x7f0b003a;
+        public static final int card_main_content_layout=0x7f0b0037;
+        public static final int card_main_inner_simple_title=0x7f0b0045;
+        public static final int card_main_layout=0x7f0b0039;
+        public static final int card_shadow_layout=0x7f0b0038;
+        public static final int card_shadow_view=0x7f0b0035;
+        public static final int card_thumbnail_image=0x7f0b0036;
+        public static final int card_thumbnail_layout=0x7f0b003c;
         public static final int chol_ET=0x7f0b0010;
         public static final int content_frame=0x7f0b001f;
         public static final int drawer_layout=0x7f0b001e;
         public static final int fat_ET=0x7f0b0013;
         public static final int fib_ET=0x7f0b0019;
+        public static final int foodListView=0x7f0b002e;
         public static final int foodName_ET=0x7f0b0000;
         public static final int imageView1=0x7f0b0023;
         public static final int left_drawer=0x7f0b0022;
-        public static final int linegraph=0x7f0b0040;
-        public static final int list_cardId=0x7f0b0045;
-        public static final int list_card_undobar=0x7f0b0046;
-        public static final int list_card_undobar_button=0x7f0b0048;
-        public static final int list_card_undobar_message=0x7f0b0047;
-        public static final int myList=0x7f0b003f;
-        public static final int pie_container_id=0x7f0b0041;
+        public static final int linegraph=0x7f0b0041;
+        public static final int list_cardId=0x7f0b0046;
+        public static final int list_card_undobar=0x7f0b0047;
+        public static final int list_card_undobar_button=0x7f0b0049;
+        public static final int list_card_undobar_message=0x7f0b0048;
+        public static final int max_rdi_TV=0x7f0b0006;
+        public static final int myList=0x7f0b0040;
+        public static final int pie_container_id=0x7f0b0042;
         public static final int prot_Et=0x7f0b000a;
         public static final int servingSize_ET=0x7f0b0002;
         public static final int sodi_ET=0x7f0b000d;
@@ -221,11 +223,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int tableRow7=0x7f0b0017;
         public static final int tableRow8=0x7f0b001a;
         public static final int textView1=0x7f0b0001;
-        public static final int textView2=0x7f0b0006;
         public static final int textView3=0x7f0b0009;
-        public static final int textView4=0x7f0b000c;
         public static final int textView5=0x7f0b000f;
         public static final int textView6=0x7f0b002a;
+        public static final int today_intake_TV=0x7f0b000c;
         public static final int top_frame=0x7f0b0020;
         public static final int ui_age_edit=0x7f0b0025;
         public static final int ui_feetHeight_edit=0x7f0b0028;
@@ -236,13 +237,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ui_save_but=0x7f0b002c;
         public static final int ui_skip_but=0x7f0b002d;
         public static final int ui_weight_edit=0x7f0b002b;
-        public static final int undobar=0x7f0b003c;
-        public static final int undobar_button=0x7f0b003e;
-        public static final int undobar_message=0x7f0b003d;
-        public static final int wm_start_button=0x7f0b002e;
+        public static final int undobar=0x7f0b003d;
+        public static final int undobar_button=0x7f0b003f;
+        public static final int undobar_message=0x7f0b003e;
+        public static final int wm_start_button=0x7f0b002f;
     }
     public static final class integer {
-        public static final int list_card_undobar_hide_delay=0x7f060000;
+        public static final int list_card_undobar_hide_delay=0x7f080000;
     }
     public static final class layout {
         public static final int activity_add_food=0x7f030000;
@@ -280,28 +281,28 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class plurals {
         /** <string name="undo_card">Card removed</string>
          */
-        public static final int list_card_undo_items=0x7f080000;
+        public static final int list_card_undo_items=0x7f090000;
     }
     public static final class string {
-        public static final int action_new=0x7f070005;
-        public static final int action_settings=0x7f070002;
-        public static final int action_void=0x7f070006;
-        public static final int appTitle=0x7f070008;
-        public static final int app_name=0x7f070000;
-        public static final int drawer_close=0x7f070004;
-        public static final int drawer_open=0x7f070003;
-        public static final int hello_world=0x7f07000d;
+        public static final int action_new=0x7f040005;
+        public static final int action_settings=0x7f040002;
+        public static final int action_void=0x7f040006;
+        public static final int appTitle=0x7f040008;
+        public static final int app_name=0x7f040000;
+        public static final int drawer_close=0x7f040004;
+        public static final int drawer_open=0x7f040003;
+        public static final int hello_world=0x7f04000d;
         /**  Undo Controller
          */
-        public static final int list_card_undo_title=0x7f070001;
-        public static final int title_activity_add_food=0x7f07000b;
-        public static final int title_activity_splash_screen=0x7f070007;
-        public static final int title_activity_user_info=0x7f07000a;
-        public static final int title_activity_wedge_summary=0x7f07000c;
-        public static final int title_activity_welcome_message=0x7f070009;
-        public static final int welcome_message=0x7f07000e;
-        public static final int what_is_innutrac_body=0x7f070010;
-        public static final int what_is_innutrac_title=0x7f07000f;
+        public static final int list_card_undo_title=0x7f040001;
+        public static final int title_activity_add_food=0x7f04000b;
+        public static final int title_activity_splash_screen=0x7f040007;
+        public static final int title_activity_user_info=0x7f04000a;
+        public static final int title_activity_wedge_summary=0x7f04000c;
+        public static final int title_activity_welcome_message=0x7f040009;
+        public static final int welcome_message=0x7f04000e;
+        public static final int what_is_innutrac_body=0x7f040010;
+        public static final int what_is_innutrac_title=0x7f04000f;
     }
     public static final class style {
         /** 
@@ -345,88 +346,88 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f09001a;
+        public static final int AppBaseTheme=0x7f050000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f09001b;
-        public static final int card=0x7f090000;
+        public static final int AppTheme=0x7f050001;
+        public static final int card=0x7f050002;
         /** Style for simple title inner main view
  Style for Content ******************************************************
 Style for simple title inner main view
          */
-        public static final int card_base_simple_title=0x7f09000c;
+        public static final int card_base_simple_title=0x7f05000e;
         /**  Style for Content ******************************************************
 Style for Content View
          */
-        public static final int card_content_outer_layout=0x7f09000b;
+        public static final int card_content_outer_layout=0x7f05000d;
         /** Style for simple title expand/collapse inner view
  Style for Expand/Collapse *************************************************
 Style for simple title expand/collapse inner view
          */
-        public static final int card_expand_simple_title=0x7f09000f;
+        public static final int card_expand_simple_title=0x7f050011;
         /**  Button Base in Header
          */
-        public static final int card_header_button_base=0x7f090007;
+        public static final int card_header_button_base=0x7f050009;
         /**  Button to Expand/Collapse in Header 
          */
-        public static final int card_header_button_base_expand=0x7f090009;
+        public static final int card_header_button_base_expand=0x7f05000b;
         /**  Other Button in Header 
          */
-        public static final int card_header_button_base_other=0x7f09000a;
+        public static final int card_header_button_base_other=0x7f05000c;
         /**  Button Overflow in Header 
          */
-        public static final int card_header_button_base_overflow=0x7f090008;
+        public static final int card_header_button_base_overflow=0x7f05000a;
         /**  Style for Header Buttons ***********************************************
          */
-        public static final int card_header_button_frame=0x7f090006;
+        public static final int card_header_button_frame=0x7f050008;
         /** Style for Header Compound View 
          */
-        public static final int card_header_compound_view=0x7f090004;
+        public static final int card_header_compound_view=0x7f050006;
         /**  Style for Header ******************************************************
          */
-        public static final int card_header_outer_layout=0x7f090003;
+        public static final int card_header_outer_layout=0x7f050005;
         /** Style for simple title inner header view
  Style for Header ******************************************************
 Style for simple title header inner view
          */
-        public static final int card_header_simple_title=0x7f090005;
+        public static final int card_header_simple_title=0x7f050007;
         /**  Style for Hidden Expand Layout ****************************************
          */
-        public static final int card_main_contentExpand=0x7f09000e;
+        public static final int card_main_contentExpand=0x7f050010;
         /**  Style for Main Layout ****************************************
  Style for Main Layout
          */
-        public static final int card_main_layout=0x7f09000d;
+        public static final int card_main_layout=0x7f05000f;
         /** Style for shadow image
          */
-        public static final int card_shadow_image=0x7f090002;
+        public static final int card_shadow_image=0x7f050004;
         /**  Style for Shadow ******************************************************
  Style for Shadow Compound view
          */
-        public static final int card_shadow_outer_layout=0x7f090001;
-        public static final int card_thumbnail_compound_view=0x7f090012;
+        public static final int card_shadow_outer_layout=0x7f050003;
+        public static final int card_thumbnail_compound_view=0x7f050014;
         /**  Style for Thumbnail ******************************************************
          */
-        public static final int card_thumbnail_image=0x7f090010;
-        public static final int card_thumbnail_outer_layout=0x7f090011;
-        public static final int grid_card=0x7f090016;
+        public static final int card_thumbnail_image=0x7f050012;
+        public static final int card_thumbnail_outer_layout=0x7f050013;
+        public static final int grid_card=0x7f050018;
         /**  Style for Lists ******************************************************
          */
-        public static final int list_card=0x7f090013;
+        public static final int list_card=0x7f050015;
         /**  Base list 
          */
-        public static final int list_card_base=0x7f090014;
+        public static final int list_card_base=0x7f050016;
         /**  Thumbnail list 
          */
-        public static final int list_card_thumbnail=0x7f090015;
+        public static final int list_card_thumbnail=0x7f050017;
         /**  Used by UndoController in CardListView 
          */
-        public static final int list_card_UndoBar=0x7f090017;
-        public static final int list_card_UndoBarButton=0x7f090019;
-        public static final int list_card_UndoBarMessage=0x7f090018;
+        public static final int list_card_UndoBar=0x7f050019;
+        public static final int list_card_UndoBarButton=0x7f05001b;
+        public static final int list_card_UndoBarMessage=0x7f05001a;
     }
     public static final class styleable {
         /** Attributes that can be used with a card_options.

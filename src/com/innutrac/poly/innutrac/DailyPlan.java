@@ -1,28 +1,39 @@
 package com.innutrac.poly.innutrac;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.innutrac.poly.innutrac.database.Food;
 
-public class DailyPlan {
-	private int totalCarbcarbohydrate;
-	private int totalProtein;
-	private int totalSodium;
-	private int totalCholesterol;
-	private int totalFats;
-	private int totalSugar;
-	private int totalFiber;
-	private int totalCalories;
-	ArrayList<Food> foodList = new ArrayList<Food>();
+@SuppressWarnings("serial")
+public class DailyPlan implements Serializable {
+	private double totalCarbcarbohydrate;
+	private double totalProtein;
+	private double totalSodium;
+	private double totalCholesterol;
+	private double totalFats;
+	private double totalSugar;
+	private double totalFiber;
+	private double totalCalories;
+
+	private double currentCarbcarbohydrate;
+	private double currentProtein;
+	private double currentSodium;
+	private double currentCholesterol;
+	private double currentFats;
+	private double currentSugar;
+	private double currentFiber;
+	private double currentCalories;
+	//ArrayList<Food> foodList = new ArrayList<Food>();
 
 	/**
 	 * Constructor to initialize all the "total___" for each of the food groups
 	 * when the object is created for each new day.
 	 * 
 	 */
-	public DailyPlan(int totalCarbcarbohydrate, int totalProtein,
-			int totalSodium, int totalCholesterol, int totalFats,
-			int totalSugar, int totalFiber, int totalCalories) {
+	public DailyPlan(double totalCarbcarbohydrate, double totalProtein,
+			double totalSodium, double totalCholesterol, double totalFats,
+			double totalSugar, double totalFiber, double totalCalories) {
 		super();
 		this.totalCarbcarbohydrate = totalCarbcarbohydrate;
 		this.totalProtein = totalProtein;
@@ -32,32 +43,42 @@ public class DailyPlan {
 		this.totalSugar = totalSugar;
 		this.totalFiber = totalFiber;
 		this.totalCalories = totalCalories;
+
+		currentCarbcarbohydrate = 0;
+		currentProtein = 0;
+		currentSodium = 0;
+		currentCholesterol = 0;
+		currentFats = 0;
+		currentSugar = 0;
+		currentFiber = 0;
+		currentCalories = 0;
+	}
+
+	public DailyPlan() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public void eatFood(Food food) {
-		totalCarbcarbohydrate -= Integer.parseInt(food.getCarbcarbohydrate());
-		totalProtein -= Integer.parseInt(food.getProtein());
-		totalSodium -= Integer.parseInt(food.getSodium());
-		totalCholesterol -= Integer.parseInt(food.getCholesterol());
-		totalFats -= Integer.parseInt(food.getFats());
-		totalSugar -= Integer.parseInt(food.getSugar());
-		totalFiber -= Integer.parseInt(food.getFiber());
-		totalCalories -= Integer.parseInt(food.getCalories());
+		currentCarbcarbohydrate += Double.parseDouble(food
+				.getCarbcarbohydrate());
+		currentProtein += Double.parseDouble(food.getProtein());
+		currentSodium += Double.parseDouble(food.getSodium());
+		currentCholesterol += Double.parseDouble(food.getCholesterol());
+		currentFats += Double.parseDouble(food.getFats());
+		currentSugar += Double.parseDouble(food.getSugar());
+		currentFiber += Double.parseDouble(food.getFiber());
+		currentCalories += Double.parseDouble(food.getCalories());
 
 		// add the eaten food to the arrayList for saving.
-		foodList.add(food);
+		//foodList.add(food);
 	}
 
 	// Setters and Getters
-	public ArrayList<Food> getFoodList() {
-		return foodList;
-	}
+//	public ArrayList<Food> getFoodList() {
+//		return foodList;
+//	}
 
-	public void setFoodList(ArrayList<Food> foodList) {
-		this.foodList = foodList;
-	}
-
-	public int getTotalCarbcarbohydrate() {
+	public double getTotalCarbcarbohydrate() {
 		return totalCarbcarbohydrate;
 	}
 
@@ -65,7 +86,7 @@ public class DailyPlan {
 		this.totalCarbcarbohydrate = totalCarbcarbohydrate;
 	}
 
-	public int getTotalProtein() {
+	public double getTotalProtein() {
 		return totalProtein;
 	}
 
@@ -73,7 +94,7 @@ public class DailyPlan {
 		this.totalProtein = totalProtein;
 	}
 
-	public int getTotalSodium() {
+	public double getTotalSodium() {
 		return totalSodium;
 	}
 
@@ -81,7 +102,7 @@ public class DailyPlan {
 		this.totalSodium = totalSodium;
 	}
 
-	public int getTotalCholesterol() {
+	public double getTotalCholesterol() {
 		return totalCholesterol;
 	}
 
@@ -89,7 +110,7 @@ public class DailyPlan {
 		this.totalCholesterol = totalCholesterol;
 	}
 
-	public int getTotalFats() {
+	public double getTotalFats() {
 		return totalFats;
 	}
 
@@ -97,7 +118,7 @@ public class DailyPlan {
 		this.totalFats = totalFats;
 	}
 
-	public int getTotalSugar() {
+	public double getTotalSugar() {
 		return totalSugar;
 	}
 
@@ -105,7 +126,7 @@ public class DailyPlan {
 		this.totalSugar = totalSugar;
 	}
 
-	public int getTotalFiber() {
+	public double getTotalFiber() {
 		return totalFiber;
 	}
 
@@ -113,11 +134,82 @@ public class DailyPlan {
 		this.totalFiber = totalFiber;
 	}
 
-	public int getTotalCalories() {
+	public double getTotalCalories() {
 		return totalCalories;
 	}
 
 	public void setTotalCalories(int totalCalories) {
 		this.totalCalories = totalCalories;
+	}
+
+	public double getCurrentCarbcarbohydrate() {
+		return currentCarbcarbohydrate;
+	}
+
+	public void setCurrentCarbcarbohydrate(double currentCarbcarbohydrate) {
+		this.currentCarbcarbohydrate = currentCarbcarbohydrate;
+	}
+
+	public double getCurrentProtein() {
+		return currentProtein;
+	}
+
+	public void setCurrentProtein(double currentProtein) {
+		this.currentProtein = currentProtein;
+	}
+
+	public double getCurrentSodium() {
+		return currentSodium;
+	}
+
+	public void setCurrentSodium(double currentSodium) {
+		this.currentSodium = currentSodium;
+	}
+
+	public double getCurrentCholesterol() {
+		return currentCholesterol;
+	}
+
+	public void setCurrentCholesterol(double currentCholesterol) {
+		this.currentCholesterol = currentCholesterol;
+	}
+
+	public double getCurrentFats() {
+		return currentFats;
+	}
+
+	public void setCurrentFats(double currentFats) {
+		this.currentFats = currentFats;
+	}
+
+	public double getCurrentSugar() {
+		return currentSugar;
+	}
+
+	public void setCurrentSugar(double currentSugar) {
+		this.currentSugar = currentSugar;
+	}
+
+	public double getCurrentFiber() {
+		return currentFiber;
+	}
+
+	public void setCurrentFiber(double currentFiber) {
+		this.currentFiber = currentFiber;
+	}
+
+	public double getCurrentCalories() {
+		return currentCalories;
+	}
+
+	public void setCurrentCalories(double currentCalories) {
+		this.currentCalories = currentCalories;
+	}
+
+	public String getAllCurInfo() {
+		return currentCarbcarbohydrate + "\n" + currentProtein + "\n"
+				+ currentSodium + "\n" + currentCholesterol + "\n"
+				+ currentFats + "\n" + currentSugar + "\n" + currentFiber
+				+ "\n" + currentCalories;
 	}
 }

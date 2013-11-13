@@ -90,6 +90,7 @@ public class ProfileDatabase {
         values.put(ProfileDB.COLUMN_PROFILE_HEIGHT_FT, user.getHeightFt());
         values.put(ProfileDB.COLUMN_PROFILE_HEIGHT_IN, user.getHeightIn());
         values.put(ProfileDB.COLUMN_PROFILE_WEIGHT, user.getWeight());
+        values.put(ProfileDB.COLUMN_PROFILE_CREATE_TIME, user.getProfileCreateTime());
         db.update(ProfileDB.TABLE_PROFILE, values, ProfileDB.COLUMN_PROFILE_ID + "=" + 1, null);
     }
 	

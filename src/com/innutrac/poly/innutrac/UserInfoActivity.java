@@ -1,5 +1,12 @@
 package com.innutrac.poly.innutrac;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.innutrac.poly.innutrac.database.*;
 
 import android.os.*;
@@ -32,12 +39,14 @@ public class UserInfoActivity extends Activity {
 		pdb.open("UserDatabase");
 
 		String prev = getIntent().getStringExtra("title");
-		editProf = prev.compareTo("WelcomeMessage") != 0;
+		editProf = prev.equalsIgnoreCase("Main");
 
 		if (editProf) {
 			skip_cancelBut.setText("Cancel");
+			editProf = false;
+		}
+		if (checkIfProfileExist(false)) {
 			assembleCreatedProfile();
-
 			((EditText) findViewById(R.id.ui_name_edit)).setText(name);
 			((EditText) findViewById(R.id.ui_age_edit)).setText(age);
 			((EditText) findViewById(R.id.ui_feetHeight_edit))
@@ -45,16 +54,17 @@ public class UserInfoActivity extends Activity {
 			((EditText) findViewById(R.id.ui_inchHeight_edit))
 					.setText(heightIn);
 			((EditText) findViewById(R.id.ui_weight_edit)).setText(weight);
-			//if (gender.compareTo("M") == 0) {
-			//	maleRB.setChecked(true);
-			//} else if (gender.compareTo("F") == 0) {
-			//	femaleRB.setChecked(true);
-			//}
+			if (gender.equalsIgnoreCase("m")) {
+				maleRB.setChecked(true);
+			} else if (gender.equalsIgnoreCase("f")) {
+				femaleRB.setChecked(true);
+			}
 		}
 
 		maleRB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				gender = "m";
 				maleRB.setChecked(true);
 				femaleRB.setChecked(false);
 			}
@@ -63,8 +73,9 @@ public class UserInfoActivity extends Activity {
 		femaleRB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				maleRB.setChecked(false);
+				gender = "f";
 				femaleRB.setChecked(true);
+				maleRB.setChecked(false);
 			}
 		});
 
@@ -72,6 +83,7 @@ public class UserInfoActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				pdb.close();
 				startActivity(new Intent(UserInfoActivity.this,
 						MainActivity.class));
 			}
@@ -92,11 +104,6 @@ public class UserInfoActivity extends Activity {
 						.getText().toString();
 				weight = ((EditText) findViewById(R.id.ui_weight_edit))
 						.getText().toString();
-				if (maleRB.isChecked()) {
-					gender = "M"; // m = male
-				} else if (femaleRB.isChecked()) {
-					gender = "F"; // f = female
-				}
 
 				if (name.isEmpty() || age.isEmpty() || gender.isEmpty()) {
 					Toast.makeText(UserInfoActivity.this,
@@ -104,15 +111,21 @@ public class UserInfoActivity extends Activity {
 							Toast.LENGTH_SHORT).show();
 				} else {
 
-					if (editProf) {
+					if (checkIfProfileExist(false)) {
 						pdb.updateProfile(new User(name, age, gender, heightFt,
-								heightIn, weight));
+								heightIn, weight, time));
+
 						Toast.makeText(UserInfoActivity.this,
 								"Profile Updated", Toast.LENGTH_SHORT).show();
 					} else {
-						time = String.valueOf(System.currentTimeMillis() / 1000.0);
+						checkIfProfileExist(true);
+						SimpleDateFormat dateFormat = new SimpleDateFormat(
+								"yyyy/MM/dd HH:mm:ss");
+
+						time = dateFormat.format(new Date());
 						pdb.createProfile(new User(name, age, gender, heightFt,
 								heightIn, weight, time));
+
 						Toast.makeText(UserInfoActivity.this,
 								"Profile Created", Toast.LENGTH_SHORT).show();
 					}
@@ -138,6 +151,31 @@ public class UserInfoActivity extends Activity {
 		time = user.getProfileCreateTime();
 	}
 
+	public boolean checkIfProfileExist(boolean create) {
+		String sdPath = Environment.getExternalStorageDirectory()
+				.getAbsolutePath();
+		File cache = new File(sdPath + "/Innutrac/prof/cache");
+
+		if (cache.exists()) {
+			return true;
+		} else {
+			if (create) {
+				File dir = new File(sdPath + "/Innutrac/prof");
+				dir.mkdirs();
+				cache = new File(dir, "cache");
+				try {
+					FileOutputStream f = new FileOutputStream(cache);
+					f.close();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			return false;
+		}
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -148,6 +186,7 @@ public class UserInfoActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
+			pdb.close();
 			onBackPressed();
 			break;
 

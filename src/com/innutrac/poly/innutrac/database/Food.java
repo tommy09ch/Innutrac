@@ -1,6 +1,6 @@
 package com.innutrac.poly.innutrac.database;
 
-public class Food {
+public class Food implements Comparable<Food> {
 
 	private String name;
 	private String serving_size;
@@ -34,6 +34,25 @@ public class Food {
 		this.sugar = sugar;
 		this.entryID = entryID;
 		this.usdaDBID = uasdDBID;
+		this.eatTime = eatTime;
+	}
+
+	public Food(String name, String serving_size, String calories,
+			String carbcarbohydrate, String cholesterol, String fats,
+			String fiber, String protein, String sodium, String sugar,
+			String usdaDBID, String eatTime) {
+		super();
+		this.name = name;
+		this.serving_size = serving_size;
+		this.calories = calories;
+		this.carbcarbohydrate = carbcarbohydrate;
+		this.cholesterol = cholesterol;
+		this.fats = fats;
+		this.fiber = fiber;
+		this.protein = protein;
+		this.sodium = sodium;
+		this.sugar = sugar;
+		this.usdaDBID = usdaDBID;
 		this.eatTime = eatTime;
 	}
 
@@ -143,5 +162,15 @@ public class Food {
 
 	public void setEatTime(String eatTime) {
 		this.eatTime = eatTime;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	@Override
+	public int compareTo(Food another) {
+		return this.name.compareToIgnoreCase(another.name);
 	}
 }

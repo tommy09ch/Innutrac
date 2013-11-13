@@ -37,15 +37,15 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView2"
-            android:layout_below="@+id/textView2"
+            android:layout_alignLeft="@+id/max_rdi_TV"
+            android:layout_below="@+id/max_rdi_TV"
             android:layout_marginTop="13dp"
             android:text="@string/what_is_innutrac_body"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#7e7e7e" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/max_rdi_TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/wm_start_button"

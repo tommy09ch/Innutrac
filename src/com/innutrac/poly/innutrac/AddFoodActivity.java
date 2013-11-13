@@ -122,14 +122,21 @@ public class AddFoodActivity extends Activity {
 
 					@Override
 					public void onClick(View v) {
-						Food eatenFood = getFoodUserInput();
-						fdb.addToFoodRecord(eatenFood);
-						// dailyPlan.eatFood(eatenFood);
-
-						fdb.close();
-						ndb.close();
-						startActivity(new Intent(AddFoodActivity.this,
-								MainActivity.class));
+						if (name.isEmpty() || serving_size.equals("0.0")) {
+							Toast.makeText(
+									AddFoodActivity.this,
+									"Invalid input, please check the fields for food name and serving size.",
+									Toast.LENGTH_SHORT);
+						} else {
+							Food eatenFood = getFoodUserInput();
+							fdb.addToFoodRecord(eatenFood);
+							// dailyPlan.eatFood(eatenFood);
+							fdb.close();
+							ndb.close();
+							startActivity(new Intent(AddFoodActivity.this,
+									MainActivity.class).putExtra("addFood",
+									"true"));
+						}
 
 					}
 

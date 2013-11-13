@@ -39,10 +39,11 @@ public class UserInfoActivity extends Activity {
 		pdb.open("UserDatabase");
 
 		String prev = getIntent().getStringExtra("title");
-		editProf = prev.compareTo("WelcomeMessage") != 0;
+		editProf = prev.equalsIgnoreCase("Main");
 
 		if (editProf) {
 			skip_cancelBut.setText("Cancel");
+			editProf = false;
 		}
 		if (checkIfProfileExist(false)) {
 			assembleCreatedProfile();
@@ -120,10 +121,8 @@ public class UserInfoActivity extends Activity {
 						checkIfProfileExist(true);
 						SimpleDateFormat dateFormat = new SimpleDateFormat(
 								"yyyy/MM/dd HH:mm:ss");
-						Date date = new Date();
-						System.out.println(dateFormat.format(date));
 
-						time = dateFormat.format(date);
+						time = dateFormat.format(new Date());
 						pdb.createProfile(new User(name, age, gender, heightFt,
 								heightIn, weight, time));
 

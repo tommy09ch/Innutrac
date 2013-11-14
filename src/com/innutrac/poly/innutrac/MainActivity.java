@@ -42,12 +42,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-<<<<<<< HEAD
 		
 		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
 		
-		
-=======
 		time = new Time();
 		time.setToNow();
 		// Date today = new Date();
@@ -63,7 +60,6 @@ public class MainActivity extends Activity {
 		// dailyplan for the new day.
 		dailyPlan = new DailyPlan(100, 100, 100, 100, 100, 100, 100, 100);
 
->>>>>>> c0802c16bf1ce1b41f15a25f9e6ad41c137c154f
 		if (getIntent().hasExtra("addFood")) {
 			String prev = getIntent().getStringExtra("addFood");
 			

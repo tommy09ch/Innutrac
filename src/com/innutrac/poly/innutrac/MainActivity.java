@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.Menu;
 import android.content.Context;
@@ -34,16 +35,35 @@ public class MainActivity extends Activity {
 	SharedPreferences prefs;
 	FoodDatabase fdb;
 	DailyPlan dailyPlan;
+	Time time;
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+<<<<<<< HEAD
 		
 		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
 		
 		
+=======
+		time = new Time();
+		time.setToNow();
+		// Date today = new Date();
+		// long millis = prefs.getLong("time", 0L);
+		// Date savedDate = new Date(millis);
+
+		// need a way to check if a new day occur in order to create a new
+		// object of DailyPlan for each new day. filled constructor with total
+		// values for each nutrientional groups base on the calculator of the
+		// user age, gender, weight...
+
+		// (Optional) store the old dailyplan or something before creating a new
+		// dailyplan for the new day.
+		dailyPlan = new DailyPlan(100, 100, 100, 100, 100, 100, 100, 100);
+
+>>>>>>> c0802c16bf1ce1b41f15a25f9e6ad41c137c154f
 		if (getIntent().hasExtra("addFood")) {
 			String prev = getIntent().getStringExtra("addFood");
 			
@@ -107,7 +127,23 @@ public class MainActivity extends Activity {
 			selectItem(0);
 		}
 	}
-
+	
+	protected void onResume() {
+		checkTime();
+		super.onResume();
+	}
+	
+	//keeps track of new day
+	private Boolean checkTime() {
+		Time temp = new Time();
+		temp.setToNow();
+		if(!(temp.format("%d").equals(time.format("%d"))) ) {
+			time.setToNow();
+			return true;
+		}
+		return false;
+	}
+	
 	/* The click listener for ListView in the navigation drawer */
 	private class DrawerItemClickListener implements
 			ListView.OnItemClickListener {
@@ -175,6 +211,8 @@ public class MainActivity extends Activity {
 
 	// fragment switching here
 	private void selectItem(int position) {
+		//checkTime();
+		
 		switch (position) {
 		case 0:
 			getFragmentManager().beginTransaction()

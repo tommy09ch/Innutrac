@@ -1,5 +1,6 @@
 package com.innutrac.poly.innutrac;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.os.Bundle;
@@ -30,17 +31,23 @@ public class MainActivity extends Activity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] mNavTitles;
+	
 	SharedPreferences prefs;
 	FoodDatabase fdb;
 	DailyPlan dailyPlan;
 	Time time;
 
-	// Right now all groups are set at 100
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+<<<<<<< HEAD
+		
+		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+		
+		
+=======
 		time = new Time();
 		time.setToNow();
 		// Date today = new Date();
@@ -56,15 +63,15 @@ public class MainActivity extends Activity {
 		// dailyplan for the new day.
 		dailyPlan = new DailyPlan(100, 100, 100, 100, 100, 100, 100, 100);
 
+>>>>>>> c0802c16bf1ce1b41f15a25f9e6ad41c137c154f
 		if (getIntent().hasExtra("addFood")) {
 			String prev = getIntent().getStringExtra("addFood");
-
+			
 			if (prev.equalsIgnoreCase("true")) {
 				fdb = new FoodDatabase(this);
 				fdb.open("FoodRecord");
 				Food eatenFood = fdb.getMostRecentFoodInsert();
 				dailyPlan.eatFood(eatenFood);
-				System.out.println(dailyPlan.getAllCurInfo());
 				fdb.close();
 			}
 		}
@@ -271,5 +278,10 @@ public class MainActivity extends Activity {
 
 	public DailyPlan getTodayDailyPlan() {
 		return dailyPlan;
+	}
+
+	public void setUpNewDay() {
+		dailyPlan = new DailyPlan(100, 100, 100, 100, 100, 100, 100, 100);
+		// reset pie chart
 	}
 }

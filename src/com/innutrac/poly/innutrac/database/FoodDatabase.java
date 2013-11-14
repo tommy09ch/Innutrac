@@ -1,7 +1,6 @@
 package com.innutrac.poly.innutrac.database;
 
 import java.util.ArrayList;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -22,7 +21,6 @@ public class FoodDatabase {
 		private static final int DATABASE_VERSION = 1;
 
 		private static final String TABLE_FOODRECORDS = "food_records";
-		private static final String TABLE_FOODDB = "food_db";
 
 		private static final String COLUMN_FOODREC_ID = "id";
 		private static final String COLUMN_FOODREC_NAME = "name";
@@ -39,20 +37,17 @@ public class FoodDatabase {
 		private static final String COLUMN_FOODREC_ENTRY_TIME = "entry_time";
 
 		private static final String CREATE_FOODREC_TABLE = "CREATE TABLE "
-				+ TABLE_FOODRECORDS + "(" + 
-				COLUMN_FOODREC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + 
-				COLUMN_FOODREC_NAME	+ " TEXT," + 
-				COLUMN_FOODREC_SERVING_SIZE + " TEXT," + 
-				COLUMN_FOODREC_CALORIES + " TEXT," + 
-				COLUMN_FOODREC_CARBCARBOHYDRATE + " TEXT," + 
-				COLUMN_FOODREC_CHOLESTEROL + " TEXT," + 
-				COLUMN_FOODREC_FATS	+ " TEXT," + 
-				COLUMN_FOODREC_FIBER + " TEXT,"	+ 
-				COLUMN_FOODREC_PROTEIN + " TEXT," + 
-				COLUMN_FOODREC_SODIUM + " TEXT," + 
-				COLUMN_FOODREC_SUGAR + " TEXT,"	+ 
-				COLUMN_FOODREC_USDA_ID + " TEXT," + 
-				COLUMN_FOODREC_ENTRY_TIME + " TEXT" + ")";
+				+ TABLE_FOODRECORDS + "(" + COLUMN_FOODREC_ID
+				+ " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_FOODREC_NAME
+				+ " TEXT," + COLUMN_FOODREC_SERVING_SIZE + " TEXT,"
+				+ COLUMN_FOODREC_CALORIES + " TEXT,"
+				+ COLUMN_FOODREC_CARBCARBOHYDRATE + " TEXT,"
+				+ COLUMN_FOODREC_CHOLESTEROL + " TEXT," + COLUMN_FOODREC_FATS
+				+ " TEXT," + COLUMN_FOODREC_FIBER + " TEXT,"
+				+ COLUMN_FOODREC_PROTEIN + " TEXT," + COLUMN_FOODREC_SODIUM
+				+ " TEXT," + COLUMN_FOODREC_SUGAR + " TEXT,"
+				+ COLUMN_FOODREC_USDA_ID + " TEXT," + COLUMN_FOODREC_ENTRY_TIME
+				+ " TEXT" + ")";
 
 		public FoodDB(Context context, String dbName) {
 			super(context, dbName, null, DATABASE_VERSION);
@@ -121,6 +116,11 @@ public class FoodDatabase {
 				+ "=" + food.getEntryID(), null);
 	}
 
+	public void deleteFood(int entryId) {
+		db.delete(FoodDB.TABLE_FOODRECORDS, FoodDB.COLUMN_FOODREC_ID + "="
+				+ entryId, null);
+	}
+
 	public Food getMostRecentFoodInsert() {
 		Food food = new Food();
 		String selectQuery = "SELECT  * FROM " + FoodDB.TABLE_FOODRECORDS;
@@ -141,5 +141,32 @@ public class FoodDatabase {
 			food.setEatTime(cur.getString(12));
 		}
 		return food;
+	}
+
+	public ArrayList<Food> getAllEatenFood() {
+		ArrayList<Food> foodRecord = new ArrayList<Food>();
+		String selectQuery = "SELECT * FROM " + FoodDB.TABLE_FOODRECORDS;
+		Cursor cur = db.rawQuery(selectQuery, null);
+		if (cur.moveToFirst()) {
+			do {
+				Food food = new Food();
+				food.setEntryID(cur.getString(0));
+				food.setName(cur.getString(1));
+				food.setServing_size(cur.getString(2));
+				food.setCalories(cur.getString(3));
+				food.setCarbcarbohydrate(cur.getString(4));
+				food.setCholesterol(cur.getString(5));
+				food.setFats(cur.getString(6));
+				food.setFiber(cur.getString(7));
+				food.setProtein(cur.getString(8));
+				food.setSodium(cur.getString(9));
+				food.setSugar(cur.getString(10));
+				food.setUasdDBID(cur.getString(11));
+				food.setEatTime(cur.getString(12));
+
+				foodRecord.add(food);
+			} while (cur.moveToNext());
+		}
+		return foodRecord;
 	}
 }

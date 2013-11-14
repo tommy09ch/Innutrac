@@ -24,7 +24,6 @@ public class DailyPlan implements Serializable {
 	private double currentSugar;
 	private double currentFiber;
 	private double currentCalories;
-	//ArrayList<Food> foodList = new ArrayList<Food>();
 
 	/**
 	 * Constructor to initialize all the "total___" for each of the food groups
@@ -68,15 +67,7 @@ public class DailyPlan implements Serializable {
 		currentSugar += Double.parseDouble(food.getSugar());
 		currentFiber += Double.parseDouble(food.getFiber());
 		currentCalories += Double.parseDouble(food.getCalories());
-
-		// add the eaten food to the arrayList for saving.
-		//foodList.add(food);
 	}
-
-	// Setters and Getters
-//	public ArrayList<Food> getFoodList() {
-//		return foodList;
-//	}
 
 	public double getTotalCarbcarbohydrate() {
 		return totalCarbcarbohydrate;

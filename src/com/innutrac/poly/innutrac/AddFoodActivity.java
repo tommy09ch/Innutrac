@@ -2,10 +2,7 @@ package com.innutrac.poly.innutrac;
 
 import com.innutrac.poly.innutrac.database.*;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
@@ -126,11 +123,11 @@ public class AddFoodActivity extends Activity {
 							Toast.makeText(
 									AddFoodActivity.this,
 									"Invalid input, please check the fields for food name and serving size.",
-									Toast.LENGTH_SHORT);
+									Toast.LENGTH_SHORT).show();
+							;
 						} else {
 							Food eatenFood = getFoodUserInput();
 							fdb.addToFoodRecord(eatenFood);
-							// dailyPlan.eatFood(eatenFood);
 							fdb.close();
 							ndb.close();
 							startActivity(new Intent(AddFoodActivity.this,
@@ -159,11 +156,7 @@ public class AddFoodActivity extends Activity {
 		sodium = ((EditText) findViewById(R.id.sodi_ET)).getText().toString();
 		sugar = ((EditText) findViewById(R.id.sug_ET)).getText().toString();
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat(
-				"yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		time = dateFormat.format(date);
-
+		time = String.valueOf(System.currentTimeMillis());
 		return new Food(name, serving_size, calories, carbcarbohydrate,
 				cholesterol, fats, fiber, protein, sodium, sugar, usdaId, time);
 	}

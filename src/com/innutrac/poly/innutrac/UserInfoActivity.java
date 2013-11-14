@@ -119,10 +119,7 @@ public class UserInfoActivity extends Activity {
 								"Profile Updated", Toast.LENGTH_SHORT).show();
 					} else {
 						checkIfProfileExist(true);
-						SimpleDateFormat dateFormat = new SimpleDateFormat(
-								"yyyy/MM/dd HH:mm:ss");
-
-						time = dateFormat.format(new Date());
+						time = String.valueOf(System.currentTimeMillis());
 						pdb.createProfile(new User(name, age, gender, heightFt,
 								heightIn, weight, time));
 

@@ -268,7 +268,8 @@
                 android:inputType="number" />
         </TableRow>
     </TableLayout>
-
+	
+    <!--
     <Button
         android:id="@+id/af_submit_but"
         android:layout_width="match_parent"
@@ -280,7 +281,7 @@
         android:text="Submit"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
-
+	-->
 
 
 </RelativeLayout>

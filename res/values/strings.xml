@@ -12,7 +12,7 @@
     <string name="title_activity_welcome_message">Welcome</string>
     <string name="title_activity_user_info">UserInfoActivity</string>
     <string name="title_activity_add_food">AddFoodActivity</string>
-
+	
     <color name="AliceBlue">#f0f8ff</color>
     <color name="Azure">#e0eeee</color>
     <color name="Wheat">#ffe7ba</color>
@@ -30,5 +30,6 @@
     <string name="what_is_innutrac_body"> <![CDATA[ Innutrac is a <b>In</b>take <b>Nu</b>trition <b>Trac</b>ker developed by 
         a small group of students at Cal Poly Pomona. Our goal is to provide you with an unobtrusive, clean app for tracking and 
         meeting your nutrition goals. So, Eat without remorse! We\'ll balance out your diet for you. ]]> </string>
-
+	<string name="done"> Done </string>
+	<string name ="discard"> Discard </string>
 </resources>

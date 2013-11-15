@@ -19,6 +19,8 @@ import android.widget.*;
 public class UserInfoActivity extends Activity {
 	String name = "", age = "", gender = "", heightFt = "", heightIn = "",
 			weight = "", time = "";
+	String recProtein = "", recCarb = "", recSodium = "", recChloe = "", recSugar = "",
+		   recFatMax = "",recFatMin = "", recFiber= "", recCalories = "";
 	boolean editProf = false;
 
 	ProfileDatabase pdb;
@@ -127,6 +129,11 @@ public class UserInfoActivity extends Activity {
 								"Profile Created", Toast.LENGTH_SHORT).show();
 					}
 					pdb.close();
+					//setting recValues
+					calcRecValues();
+					System.out.println(recProtein + " " + recCarb + " " + recSodium + " " + recChloe
+							 + " " + recSugar + " " + recFatMin + " " + recFatMin  + " " + recFiber + " " + recCalories);
+					//
 					startActivity(new Intent(UserInfoActivity.this,
 							MainActivity.class));
 				}
@@ -192,4 +199,75 @@ public class UserInfoActivity extends Activity {
 		}
 		return true;
 	}
+	
+	private void calcRecValues() {
+		int ageInt = Integer.parseInt(this.age);
+		//convert weight to kilograms
+		double weightInt = Integer.parseInt(this.weight) * 0.453592;
+		double temp = 0;
+		
+		//set calories
+		recCalories = "2000";
+		//set carbohydrates
+		recCarb = "130";
+		//set sugar max
+		recSugar = "55";
+		
+		//set sodium
+		if(ageInt <= 50)
+			recSodium = "1.5";
+		if(ageInt <= 70)
+			recSodium = "1.3";
+		if(ageInt > 70)
+			recSodium = "1.2";
+		
+		//set fat
+		recFatMax = "77";
+		if(ageInt <= 18)
+			recFatMin = "55";
+		else
+			recFatMin = "44";
+		
+		//set protein
+		if(!(weight.equals("") && gender.equals(""))) {
+			if(gender.equals("m")) {
+				if(ageInt <= 13)
+					temp = 0.76 * weightInt;
+				if(ageInt <= 18)
+					temp = 0.73 * weightInt;
+				if(ageInt > 18)
+					temp = 0.66 * weightInt;
+			}
+			
+			else {
+				if(ageInt <= 13)
+					temp = 0.76 * weightInt;
+				if(ageInt <= 18)
+					temp = 0.71 * weightInt;
+				if(ageInt > 18)
+					temp = 0.66 * weightInt;
+			}
+			recProtein = String.valueOf(temp);
+		}
+		
+		//set fiber
+		if(gender.equals("m")) {
+			if(ageInt <= 13)
+				recFiber = "31";
+			if(ageInt <= 50)
+				recFiber = "38";
+			if(ageInt > 50)
+				recFiber = "30";
+		}
+		
+		else {
+			if(ageInt <= 18)
+				recFiber = "26";
+			if(ageInt <= 50)
+				recFiber = "25";
+			if(ageInt > 50)
+				recFiber = "21";
+		}
+	}
+	
 }

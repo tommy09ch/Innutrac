@@ -42,6 +42,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+<<<<<<< HEAD
 
 		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 		long savedTime = prefs.getLong("savedTime", (long) 0.0);
@@ -54,6 +55,21 @@ public class MainActivity extends Activity {
 		} else {
 			System.out.println("DEBUG!!!!!!!!!!!!!!!!!!!!!!!   NOT new day");
 		}
+=======
+		
+		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+		
+		time = new Time();
+		time.setToNow();
+		// Date today = new Date();
+		// long millis = prefs.getLong("time", 0L);
+		// Date savedDate = new Date(millis);
+
+		// need a way to check if a new day occur in order to create a new
+		// object of DailyPlan for each new day. filled constructor with total
+		// values for each nutrientional groups base on the calculator of the
+		// user age, gender, weight...
+>>>>>>> fb0abce40a1d6d61286cafb34bbb51d9c2b9d907
 
 		// (Optional) store the old dailyplan or something before creating a new
 		// dailyplan for the new day.

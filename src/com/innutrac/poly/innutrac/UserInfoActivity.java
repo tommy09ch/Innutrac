@@ -112,16 +112,16 @@ public class UserInfoActivity extends Activity {
 				} else {
 
 					if (checkIfProfileExist(false)) {
-						pdb.updateProfile(new User(name, age, gender, heightFt,
-								heightIn, weight, time));
+//						pdb.updateProfile(new User(name, age, gender, heightFt,
+//								heightIn, weight,));
 
 						Toast.makeText(UserInfoActivity.this,
 								"Profile Updated", Toast.LENGTH_SHORT).show();
 					} else {
 						checkIfProfileExist(true);
 						time = String.valueOf(System.currentTimeMillis());
-						pdb.createProfile(new User(name, age, gender, heightFt,
-								heightIn, weight, time));
+//						pdb.createProfile(new User(name, age, gender, heightFt,
+//								heightIn, weight, time));
 
 						Toast.makeText(UserInfoActivity.this,
 								"Profile Created", Toast.LENGTH_SHORT).show();

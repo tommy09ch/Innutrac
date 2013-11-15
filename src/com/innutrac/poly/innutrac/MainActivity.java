@@ -31,47 +31,41 @@ public class MainActivity extends Activity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] mNavTitles;
-	
+
 	SharedPreferences prefs;
+	ArrayList<Food> foodsEatenToday;
 	FoodDatabase fdb;
 	DailyPlan dailyPlan;
 	Time time;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-<<<<<<< HEAD
-		
-		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
-		
-		
-=======
-		time = new Time();
-		time.setToNow();
-		// Date today = new Date();
-		// long millis = prefs.getLong("time", 0L);
-		// Date savedDate = new Date(millis);
 
-		// need a way to check if a new day occur in order to create a new
-		// object of DailyPlan for each new day. filled constructor with total
-		// values for each nutrientional groups base on the calculator of the
-		// user age, gender, weight...
+		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+		long savedTime = prefs.getLong("savedTime", (long) 0.0);
+
+		Date today = new Date();
+		Date saveDate = new Date(savedTime);
+
+		if (today.after(saveDate)) {
+			setUpNewDay();
+		} else {
+			System.out.println("DEBUG!!!!!!!!!!!!!!!!!!!!!!!   NOT new day");
+		}
 
 		// (Optional) store the old dailyplan or something before creating a new
 		// dailyplan for the new day.
-		dailyPlan = new DailyPlan(100, 100, 100, 100, 100, 100, 100, 100);
 
->>>>>>> c0802c16bf1ce1b41f15a25f9e6ad41c137c154f
 		if (getIntent().hasExtra("addFood")) {
 			String prev = getIntent().getStringExtra("addFood");
-			
 			if (prev.equalsIgnoreCase("true")) {
 				fdb = new FoodDatabase(this);
 				fdb.open("FoodRecord");
 				Food eatenFood = fdb.getMostRecentFoodInsert();
 				dailyPlan.eatFood(eatenFood);
+				foodsEatenToday.add(eatenFood);
 				fdb.close();
 			}
 		}
@@ -127,23 +121,23 @@ public class MainActivity extends Activity {
 			selectItem(0);
 		}
 	}
-	
-	protected void onResume() {
-		checkTime();
-		super.onResume();
-	}
-	
-	//keeps track of new day
-	private Boolean checkTime() {
-		Time temp = new Time();
-		temp.setToNow();
-		if(!(temp.format("%d").equals(time.format("%d"))) ) {
-			time.setToNow();
-			return true;
-		}
-		return false;
-	}
-	
+
+	// protected void onResume() {
+	// checkTime();
+	// super.onResume();
+	// }
+	//
+	// // keeps track of new day
+	// private Boolean checkTime() {
+	// Time temp = new Time();
+	// temp.setToNow();
+	// if (!(temp.format("%d").equals(time.format("%d")))) {
+	// time.setToNow();
+	// return true;
+	// }
+	// return false;
+	// }
+
 	/* The click listener for ListView in the navigation drawer */
 	private class DrawerItemClickListener implements
 			ListView.OnItemClickListener {
@@ -211,8 +205,8 @@ public class MainActivity extends Activity {
 
 	// fragment switching here
 	private void selectItem(int position) {
-		//checkTime();
-		
+		// checkTime();
+
 		switch (position) {
 		case 0:
 			getFragmentManager().beginTransaction()
@@ -282,6 +276,12 @@ public class MainActivity extends Activity {
 
 	public void setUpNewDay() {
 		dailyPlan = new DailyPlan(100, 100, 100, 100, 100, 100, 100, 100);
-		// reset pie chart
+		this.foodsEatenToday = new ArrayList<Food>();
+
+		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+		editor.putLong("savedTime", System.currentTimeMillis());
+		editor.commit();
+		
+		// Need reset pie chart for new day
 	}
 }

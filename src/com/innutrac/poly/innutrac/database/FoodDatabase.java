@@ -20,7 +20,8 @@ public class FoodDatabase {
 	public class FoodDB extends SQLiteOpenHelper {
 		private static final int DATABASE_VERSION = 1;
 
-		private static final String TABLE_FOODRECORDS = "food_records";
+		private static final String TABLE_FOOD_RECORDS = "food_records";
+		private static final String TABLE_USER_DAILY_INTAKE = "user_daily_intake";
 
 		private static final String COLUMN_FOODREC_ID = "id";
 		private static final String COLUMN_FOODREC_NAME = "name";
@@ -37,7 +38,7 @@ public class FoodDatabase {
 		private static final String COLUMN_FOODREC_ENTRY_TIME = "entry_time";
 
 		private static final String CREATE_FOODREC_TABLE = "CREATE TABLE "
-				+ TABLE_FOODRECORDS + "(" + COLUMN_FOODREC_ID
+				+ TABLE_FOOD_RECORDS + "(" + COLUMN_FOODREC_ID
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_FOODREC_NAME
 				+ " TEXT," + COLUMN_FOODREC_SERVING_SIZE + " TEXT,"
 				+ COLUMN_FOODREC_CALORIES + " TEXT,"
@@ -49,6 +50,19 @@ public class FoodDatabase {
 				+ COLUMN_FOODREC_USDA_ID + " TEXT," + COLUMN_FOODREC_ENTRY_TIME
 				+ " TEXT" + ")";
 
+		private static final String CREATE_USER_INTAKE_TABLE = "CREATE TABLE " + 
+				TABLE_USER_DAILY_INTAKE + "("
+				+ COLUMN_FOODREC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+				+ COLUMN_FOODREC_CALORIES + " TEXT,"
+				+ COLUMN_FOODREC_CARBCARBOHYDRATE + " TEXT,"
+				+ COLUMN_FOODREC_CHOLESTEROL + " TEXT,"
+				+ COLUMN_FOODREC_FATS + " TEXT,"
+				+ COLUMN_FOODREC_FIBER + " TEXT,"
+				+ COLUMN_FOODREC_PROTEIN + " TEXT,"
+				+ COLUMN_FOODREC_SODIUM + " TEXT,"
+				+ COLUMN_FOODREC_SUGAR + " TEXT,"
+				+ COLUMN_FOODREC_ENTRY_TIME + " TEXT" + ")";
+
 		public FoodDB(Context context, String dbName) {
 			super(context, dbName, null, DATABASE_VERSION);
 		}
@@ -56,7 +70,7 @@ public class FoodDatabase {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			db.execSQL(CREATE_FOODREC_TABLE);
-			// db.execSQL(CREATE_FOODDB_TABLE);
+			db.execSQL(CREATE_USER_INTAKE_TABLE);
 		}
 
 		@Override
@@ -94,7 +108,7 @@ public class FoodDatabase {
 		values.put(FoodDB.COLUMN_FOODREC_SUGAR, food.getSugar());
 		values.put(FoodDB.COLUMN_FOODREC_USDA_ID, food.getUasdDBID());
 		values.put(FoodDB.COLUMN_FOODREC_ENTRY_TIME, food.getEatTime());
-		db.insert(FoodDB.TABLE_FOODRECORDS, null, values);
+		db.insert(FoodDB.TABLE_FOOD_RECORDS, null, values);
 	}
 
 	public void updateFoodEntry(Food food) {
@@ -112,18 +126,18 @@ public class FoodDatabase {
 		values.put(FoodDB.COLUMN_FOODREC_SUGAR, food.getSugar());
 		values.put(FoodDB.COLUMN_FOODREC_USDA_ID, food.getUasdDBID());
 
-		db.update(FoodDB.TABLE_FOODRECORDS, values, FoodDB.COLUMN_FOODREC_ID
+		db.update(FoodDB.TABLE_FOOD_RECORDS, values, FoodDB.COLUMN_FOODREC_ID
 				+ "=" + food.getEntryID(), null);
 	}
 
 	public void deleteFood(int entryId) {
-		db.delete(FoodDB.TABLE_FOODRECORDS, FoodDB.COLUMN_FOODREC_ID + "="
+		db.delete(FoodDB.TABLE_FOOD_RECORDS, FoodDB.COLUMN_FOODREC_ID + "="
 				+ entryId, null);
 	}
 
 	public Food getMostRecentFoodInsert() {
 		Food food = new Food();
-		String selectQuery = "SELECT  * FROM " + FoodDB.TABLE_FOODRECORDS;
+		String selectQuery = "SELECT  * FROM " + FoodDB.TABLE_FOOD_RECORDS;
 		Cursor cur = db.rawQuery(selectQuery, null);
 		if (cur.moveToLast()) {
 			food.setEntryID(cur.getString(0));
@@ -145,7 +159,7 @@ public class FoodDatabase {
 
 	public ArrayList<Food> getAllEatenFood() {
 		ArrayList<Food> foodRecord = new ArrayList<Food>();
-		String selectQuery = "SELECT * FROM " + FoodDB.TABLE_FOODRECORDS;
+		String selectQuery = "SELECT * FROM " + FoodDB.TABLE_FOOD_RECORDS;
 		Cursor cur = db.rawQuery(selectQuery, null);
 		if (cur.moveToFirst()) {
 			do {

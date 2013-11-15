@@ -28,17 +28,34 @@ public class ProfileDatabase {
 		private static final String COLUMN_PROFILE_HEIGHT_IN = "height_in";
 		private static final String COLUMN_PROFILE_WEIGHT = "weight";
 		private static final String COLUMN_PROFILE_CREATE_TIME = "create_time";
+		private static final String COLUMN_PROFILE_RECOMMENTED_CALORIES = "calories";
+		private static final String COLUMN_PROFILE_RECOMMENTED_CARBCARBOHYDRATE = "carbcarbohydrate";
+		private static final String COLUMN_PROFILE_RECOMMENTED_CHOLESTEROL = "cholesterol";
+		private static final String COLUMN_PROFILE_RECOMMENTED_FATS = "fats";
+		private static final String COLUMN_PROFILE_RECOMMENTED_FIBER = "fiber";
+		private static final String COLUMN_PROFILE_RECOMMENTED_PROTEIN = "protein";
+		private static final String COLUMN_PROFILE_RECOMMENTED_SODIUM = "sodium";
+		private static final String COLUMN_PROFILE_RECOMMENTED_SUGAR = "sugar";
 
 		private static final String CREATE_PROFILE_TABLE = 
 				"CREATE TABLE " + TABLE_PROFILE + "(" + 
-				COLUMN_PROFILE_ID + " INTEGER PRIMARY KEY," + 
-				COLUMN_PROFILE_NAME	+ " TEXT," + 
-				COLUMN_PROFILE_AGE + " TEXT," + 
-				COLUMN_PROFILE_SEX + " TEXT," + 
-				COLUMN_PROFILE_HEIGHT_FT + " TEXT," + 
-				COLUMN_PROFILE_HEIGHT_IN + " TEXT,"	+ 
-				COLUMN_PROFILE_WEIGHT + " TEXT," + 
-				COLUMN_PROFILE_CREATE_TIME + " TEXT" + ")";
+				COLUMN_PROFILE_ID + " INTEGER PRIMARY KEY," + 						// 0
+				COLUMN_PROFILE_NAME	+ " TEXT," + 									// 1
+				COLUMN_PROFILE_AGE + " TEXT," + 									// 2
+				COLUMN_PROFILE_SEX + " TEXT," + 									// 3
+				COLUMN_PROFILE_HEIGHT_FT + " TEXT," + 								// 4
+				COLUMN_PROFILE_HEIGHT_IN + " TEXT,"	+ 								// 5
+				COLUMN_PROFILE_WEIGHT + " TEXT," + 									// 6
+				COLUMN_PROFILE_CREATE_TIME + " TEXT," + 							// 7
+				
+				COLUMN_PROFILE_RECOMMENTED_CALORIES + " TEXT," + 					// 8
+				COLUMN_PROFILE_RECOMMENTED_CARBCARBOHYDRATE	+ " TEXT," + 			// 9
+				COLUMN_PROFILE_RECOMMENTED_CHOLESTEROL + " TEXT," + 				// 10
+				COLUMN_PROFILE_RECOMMENTED_FATS + " TEXT," + 						// 11
+				COLUMN_PROFILE_RECOMMENTED_FIBER + " TEXT," + 						// 12
+				COLUMN_PROFILE_RECOMMENTED_PROTEIN + " TEXT,"	+ 					// 13
+				COLUMN_PROFILE_RECOMMENTED_SODIUM + " TEXT," + 						// 14
+				COLUMN_PROFILE_RECOMMENTED_SUGAR + " TEXT" + ")";					// 15
 
 		public ProfileDB(Context context, String dbName) {
 			super(context, dbName, null, DATABASE_VERSION);
@@ -78,6 +95,15 @@ public class ProfileDatabase {
         values.put(ProfileDB.COLUMN_PROFILE_HEIGHT_IN, user.getHeightIn());
         values.put(ProfileDB.COLUMN_PROFILE_WEIGHT, user.getWeight());
         values.put(ProfileDB.COLUMN_PROFILE_CREATE_TIME, user.getProfileCreateTime());
+        
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_CALORIES, user.getRecommentedCal()); 
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_CARBCARBOHYDRATE, user.getRecommentedCarb());
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_CHOLESTEROL, user.getRecommentedChol()); 
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_FATS, user.getRecommentedFat());
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_FIBER, user.getRecommentedFib());
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_PROTEIN, user.getRecommentedProt());
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_SODIUM, user.getRecommentedSod());
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_SUGAR, user.getRecommentedSug());
         db.insert(ProfileDB.TABLE_PROFILE, null,values );
 	}
 	
@@ -90,7 +116,15 @@ public class ProfileDatabase {
         values.put(ProfileDB.COLUMN_PROFILE_HEIGHT_FT, user.getHeightFt());
         values.put(ProfileDB.COLUMN_PROFILE_HEIGHT_IN, user.getHeightIn());
         values.put(ProfileDB.COLUMN_PROFILE_WEIGHT, user.getWeight());
-        values.put(ProfileDB.COLUMN_PROFILE_CREATE_TIME, user.getProfileCreateTime());
+        
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_CALORIES, user.getRecommentedCal()); 
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_CARBCARBOHYDRATE, user.getRecommentedCarb());
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_CHOLESTEROL, user.getRecommentedChol()); 
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_FATS, user.getRecommentedFat());
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_FIBER, user.getRecommentedFib());
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_PROTEIN, user.getRecommentedProt());
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_SODIUM, user.getRecommentedSod());
+        values.put(ProfileDB.COLUMN_PROFILE_RECOMMENTED_SUGAR, user.getRecommentedSug());
         db.update(ProfileDB.TABLE_PROFILE, values, ProfileDB.COLUMN_PROFILE_ID + "=" + 1, null);
     }
 	
@@ -108,6 +142,15 @@ public class ProfileDatabase {
 				user.setHeightIn(cur.getString(5));
 				user.setWeight(cur.getString(6));
 				user.setProfileCreateTime(cur.getString(7));
+				
+				user.setRecommentedCal(cur.getString(8));
+				user.setRecommentedCarb(cur.getString(9));
+				user.setRecommentedChol(cur.getString(10)); 
+				user.setRecommentedFat(cur.getString(11));
+				user.setRecommentedFib(cur.getString(12));
+				user.setRecommentedProt(cur.getString(13));
+				user.setRecommentedSod(cur.getString(14));
+				user.setRecommentedSug(cur.getString(15));
 			} while (cur.moveToNext());
 		}
 		return user;

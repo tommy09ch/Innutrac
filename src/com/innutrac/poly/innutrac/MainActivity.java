@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] mNavTitles;
-
+	
 	SharedPreferences prefs;
 	ArrayList<Food> foodsEatenToday = new ArrayList<Food>();
 	DailyPlan dailyPlan;
@@ -37,6 +37,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2eddd4da8f54ab028772f449347fa44b937b55a9
 		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 		long savedTime = prefs.getLong("savedTime", (long) 0.0);
 
@@ -50,6 +54,25 @@ public class MainActivity extends Activity {
 			System.out.println("NOT new day");
 			retrieveObjectState();
 		}
+<<<<<<< HEAD
+=======
+		
+		//SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+		
+		time = new Time();
+		time.setToNow();
+		// Date today = new Date();
+		// long millis = prefs.getLong("time", 0L);
+		// Date savedDate = new Date(millis);
+
+		// need a way to check if a new day occur in order to create a new
+		// object of DailyPlan for each new day. filled constructor with total
+		// values for each nutrientional groups base on the calculator of the
+		// user age, gender, weight...
+
+		// (Optional) store the old dailyplan or something before creating a new
+		// dailyplan for the new day.
+>>>>>>> 2eddd4da8f54ab028772f449347fa44b937b55a9
 
 		if (getIntent().hasExtra("addFood")) {
 			String prev = getIntent().getStringExtra("addFood");
@@ -74,11 +97,12 @@ public class MainActivity extends Activity {
 		//
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
+		
 		// set a custom shadow that overlays the main content when the drawer
 		// opens
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
+		
 		// set up the drawer's list view with items and click listener
 		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
 				R.layout.drawer_list_item, mNavTitles));

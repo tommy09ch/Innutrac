@@ -4,6 +4,7 @@ import com.innutrac.poly.innutrac.database.*;
 
 import java.util.ArrayList;
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -36,8 +37,6 @@ public class AddFoodActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_food);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setTitle("Add Food");
 
 		final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		final SeekBar bar = (SeekBar) findViewById(R.id.af_size_seekBar);
@@ -113,7 +112,7 @@ public class AddFoodActivity extends Activity {
 			}
 
 		});
-
+		/*
 		((Button) findViewById(R.id.af_submit_but))
 				.setOnClickListener(new OnClickListener() {
 
@@ -138,8 +137,55 @@ public class AddFoodActivity extends Activity {
 					}
 
 				});
+		*/
+		
+        // Inflate a "Done/Discard" custom action bar view.
+        LayoutInflater inflater = (LayoutInflater) getActionBar().getThemedContext()
+                .getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View customActionBarView = inflater.inflate(
+                R.layout.actionbar_custom_view_done_discard, null);
+        customActionBarView.findViewById(R.id.actionbar_done).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+						if (name.isEmpty() || serving_size.equals("0.0")) {
+							Toast.makeText(
+									AddFoodActivity.this,
+									"Invalid input, please check the fields for food name and serving size.",
+									Toast.LENGTH_SHORT).show();
+						} 
+						else {
+							Food eatenFood = getFoodUserInput();
+							fdb.addToFoodRecord(eatenFood);
+							fdb.close();
+							ndb.close();
+							startActivity(new Intent(AddFoodActivity.this,
+									MainActivity.class).putExtra("addFood",
+									"true"));
+							finish(); //end activity
+						}
+                    }
+                });
+        customActionBarView.findViewById(R.id.actionbar_discard).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // "Discard"
+                        finish();
+                    }
+                });
 
-	}
+        // Show the custom action bar view and hide the normal Home icon and title.
+        final ActionBar actionBar = getActionBar();
+        actionBar.setDisplayOptions(
+                ActionBar.DISPLAY_SHOW_CUSTOM,
+                ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME
+                        | ActionBar.DISPLAY_SHOW_TITLE);
+        actionBar.setCustomView(customActionBarView, new ActionBar.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+
+	} //onCreate end
 
 	public Food getFoodUserInput() {
 		name = ((EditText) findViewById(R.id.foodName_ET)).getText().toString();
@@ -246,7 +292,7 @@ public class AddFoodActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.add_food, menu);
+		//getMenuInflater().inflate(R.menu.add_food, menu);
 		return true;
 	}
 

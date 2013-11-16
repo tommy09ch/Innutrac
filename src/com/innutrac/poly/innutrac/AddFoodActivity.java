@@ -138,6 +138,7 @@ public class AddFoodActivity extends Activity {
 
 				});
 		*/
+		
         // Inflate a "Done/Discard" custom action bar view.
         LayoutInflater inflater = (LayoutInflater) getActionBar().getThemedContext()
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -152,7 +153,6 @@ public class AddFoodActivity extends Activity {
 									AddFoodActivity.this,
 									"Invalid input, please check the fields for food name and serving size.",
 									Toast.LENGTH_SHORT).show();
-							;
 						} 
 						else {
 							Food eatenFood = getFoodUserInput();
@@ -162,8 +162,8 @@ public class AddFoodActivity extends Activity {
 							startActivity(new Intent(AddFoodActivity.this,
 									MainActivity.class).putExtra("addFood",
 									"true"));
+							finish(); //end activity
 						}
-                        finish(); // TODO: don't just finish()!
                     }
                 });
         customActionBarView.findViewById(R.id.actionbar_discard).setOnClickListener(
@@ -171,7 +171,7 @@ public class AddFoodActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         // "Discard"
-                        finish(); // TODO: don't just finish()!
+                        finish();
                     }
                 });
 

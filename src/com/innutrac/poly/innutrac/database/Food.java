@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Food implements Comparable<Food>, Serializable {
 
+	private static final long serialVersionUID = 8637288880863018340L;
 	private String name;
 	private String serving_size;
 	private String calories;

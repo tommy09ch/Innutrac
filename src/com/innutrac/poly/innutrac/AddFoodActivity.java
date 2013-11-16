@@ -2,7 +2,9 @@ package com.innutrac.poly.innutrac;
 
 import com.innutrac.poly.innutrac.database.*;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -10,7 +12,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.view.*;
-import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
@@ -20,6 +21,7 @@ import android.widget.SeekBar.*;
 public class AddFoodActivity extends Activity {
 	FoodDatabase fdb;
 	NutrientsDatabase ndb;
+	DecimalFormat df = new DecimalFormat("#.##");
 
 	private String name = "", serving_size = "", calories = "0",
 			carbcarbohydrate = "0", cholesterol = "0", fats = "0", fiber = "0",
@@ -112,10 +114,14 @@ public class AddFoodActivity extends Activity {
 			}
 
 		});
-		/*
-		((Button) findViewById(R.id.af_submit_but))
-				.setOnClickListener(new OnClickListener() {
 
+		// Inflate a "Done/Discard" custom action bar view.
+		LayoutInflater inflater = (LayoutInflater) getActionBar()
+				.getThemedContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+		final View customActionBarView = inflater.inflate(
+				R.layout.actionbar_custom_view_done_discard, null);
+		customActionBarView.findViewById(R.id.actionbar_done)
+				.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						if (name.isEmpty() || serving_size.equals("0.0")) {
@@ -123,7 +129,6 @@ public class AddFoodActivity extends Activity {
 									AddFoodActivity.this,
 									"Invalid input, please check the fields for food name and serving size.",
 									Toast.LENGTH_SHORT).show();
-							;
 						} else {
 							Food eatenFood = getFoodUserInput();
 							fdb.addToFoodRecord(eatenFood);
@@ -132,60 +137,30 @@ public class AddFoodActivity extends Activity {
 							startActivity(new Intent(AddFoodActivity.this,
 									MainActivity.class).putExtra("addFood",
 									"true"));
+							finish(); // end activity
 						}
-
 					}
-
 				});
-		*/
-		
-        // Inflate a "Done/Discard" custom action bar view.
-        LayoutInflater inflater = (LayoutInflater) getActionBar().getThemedContext()
-                .getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View customActionBarView = inflater.inflate(
-                R.layout.actionbar_custom_view_done_discard, null);
-        customActionBarView.findViewById(R.id.actionbar_done).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-						if (name.isEmpty() || serving_size.equals("0.0")) {
-							Toast.makeText(
-									AddFoodActivity.this,
-									"Invalid input, please check the fields for food name and serving size.",
-									Toast.LENGTH_SHORT).show();
-						} 
-						else {
-							Food eatenFood = getFoodUserInput();
-							fdb.addToFoodRecord(eatenFood);
-							fdb.close();
-							ndb.close();
-							startActivity(new Intent(AddFoodActivity.this,
-									MainActivity.class).putExtra("addFood",
-									"true"));
-							finish(); //end activity
-						}
-                    }
-                });
-        customActionBarView.findViewById(R.id.actionbar_discard).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // "Discard"
-                        finish();
-                    }
-                });
+		customActionBarView.findViewById(R.id.actionbar_discard)
+				.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						// "Discard"
+						finish();
+					}
+				});
 
-        // Show the custom action bar view and hide the normal Home icon and title.
-        final ActionBar actionBar = getActionBar();
-        actionBar.setDisplayOptions(
-                ActionBar.DISPLAY_SHOW_CUSTOM,
-                ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME
-                        | ActionBar.DISPLAY_SHOW_TITLE);
-        actionBar.setCustomView(customActionBarView, new ActionBar.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
+		// Show the custom action bar view and hide the normal Home icon and
+		// title.
+		final ActionBar actionBar = getActionBar();
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM,
+				ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME
+						| ActionBar.DISPLAY_SHOW_TITLE);
+		actionBar.setCustomView(customActionBarView,
+				new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+						ViewGroup.LayoutParams.MATCH_PARENT));
 
-	} //onCreate end
+	} // onCreate end
 
 	public Food getFoodUserInput() {
 		name = ((EditText) findViewById(R.id.foodName_ET)).getText().toString();
@@ -209,21 +184,39 @@ public class AddFoodActivity extends Activity {
 
 	public void assembleDataFromFoodDB(Food selectedFood) {
 		this.calories = selectedFood.getCalories();
+		this.calories = chkNullStr(calories) ? "0.0" : calories;
 		this.carbcarbohydrate = selectedFood.getCarbohydrate();
+		this.carbcarbohydrate = chkNullStr(carbcarbohydrate) ? "0.0"
+				: carbcarbohydrate;
 		this.cholesterol = selectedFood.getCholesterol();
+		this.cholesterol = chkNullStr(cholesterol) ? "0.0" : cholesterol;
 		this.fats = selectedFood.getFats();
+		this.fats = chkNullStr(fats) ? "0.0" : fats;
 		this.fiber = selectedFood.getFiber();
+		this.fiber = chkNullStr(fiber) ? "0.0" : fiber;
 		this.protein = selectedFood.getProtein();
+		this.protein = chkNullStr(protein) ? "0.0" : protein;
 		this.sodium = selectedFood.getSodium();
+		this.sodium = chkNullStr(sodium) ? "0.0" : sodium;
 		this.sugar = selectedFood.getSugar();
-		((EditText) findViewById(R.id.cal_ET)).setText(calories);
-		((EditText) findViewById(R.id.carb_ET)).setText(carbcarbohydrate);
-		((EditText) findViewById(R.id.chol_ET)).setText(cholesterol);
-		((EditText) findViewById(R.id.fat_ET)).setText(fats);
-		((EditText) findViewById(R.id.fib_ET)).setText(fiber);
-		((EditText) findViewById(R.id.prot_Et)).setText(protein);
-		((EditText) findViewById(R.id.sodi_ET)).setText(sodium);
-		((EditText) findViewById(R.id.sug_ET)).setText(sugar);
+		this.sugar = chkNullStr(sugar) ? "0.0" : sugar;
+
+		((EditText) findViewById(R.id.cal_ET)).setText(df.format(Double
+				.parseDouble(calories)));
+		((EditText) findViewById(R.id.carb_ET)).setText(df.format(Double
+				.parseDouble(carbcarbohydrate)));
+		((EditText) findViewById(R.id.chol_ET)).setText(df.format(Double
+				.parseDouble(cholesterol)));
+		((EditText) findViewById(R.id.fat_ET)).setText(df.format(Double
+				.parseDouble(fats)));
+		((EditText) findViewById(R.id.fib_ET)).setText(df.format(Double
+				.parseDouble(fiber)));
+		((EditText) findViewById(R.id.prot_Et)).setText(df.format(Double
+				.parseDouble(protein)));
+		((EditText) findViewById(R.id.sodi_ET)).setText(df.format(Double
+				.parseDouble(sodium)));
+		((EditText) findViewById(R.id.sug_ET)).setText(df.format(Double
+				.parseDouble(sugar)));
 
 		this.name = selectedFood.getName();
 		this.usdaId = selectedFood.getUasdDBID();
@@ -232,11 +225,10 @@ public class AddFoodActivity extends Activity {
 	public Food getSpecifiedFood(String name) {
 		Food food = new Food();
 
-		Cursor cur = ndb
-				.getReadableDatabase()
-				.rawQuery(
-						"SELECT food_name, energy, carbs, cholesterol, fat, fiber, protein, sodium, sugar, NDB_No FROM usda_foods WHERE food_name = \""
-								+ name + "\"", null);
+		String query = "SELECT food_name, energy, carbs, cholesterol, fat, fiber, protein, sodium, sugar, NDB_No FROM usda_foods "
+				+ "WHERE food_name = ?";
+		Cursor cur = ndb.getReadableDatabase().rawQuery(query,
+				new String[] { name });
 		if (cur.moveToFirst()) {
 			do {
 				food.setName(cur.getString(0));
@@ -271,28 +263,28 @@ public class AddFoodActivity extends Activity {
 
 	private void adjustNutrientsInfo(double size) {
 
-		((EditText) findViewById(R.id.cal_ET)).setText(String.valueOf(Double
+		((EditText) findViewById(R.id.cal_ET)).setText(df.format(Double
 				.parseDouble(calories) * size));
-		((EditText) findViewById(R.id.carb_ET)).setText(String.valueOf(Double
+		((EditText) findViewById(R.id.carb_ET)).setText(df.format(Double
 				.parseDouble(carbcarbohydrate) * size));
-		((EditText) findViewById(R.id.chol_ET)).setText(String.valueOf(Double
+		((EditText) findViewById(R.id.chol_ET)).setText(df.format(Double
 				.parseDouble(cholesterol) * size));
-		((EditText) findViewById(R.id.fat_ET)).setText(String.valueOf(Double
+		((EditText) findViewById(R.id.fat_ET)).setText(df.format(Double
 				.parseDouble(fats) * size));
-		((EditText) findViewById(R.id.fib_ET)).setText(String.valueOf(Double
+		((EditText) findViewById(R.id.fib_ET)).setText(df.format(Double
 				.parseDouble(fiber) * size));
-		((EditText) findViewById(R.id.prot_Et)).setText(String.valueOf(Double
+		((EditText) findViewById(R.id.prot_Et)).setText(df.format(Double
 				.parseDouble(protein) * size));
-		((EditText) findViewById(R.id.sodi_ET)).setText(String.valueOf(Double
+		((EditText) findViewById(R.id.sodi_ET)).setText(df.format(Double
 				.parseDouble(sodium) * size));
-		((EditText) findViewById(R.id.sug_ET)).setText(String.valueOf(Double
+		((EditText) findViewById(R.id.sug_ET)).setText(df.format(Double
 				.parseDouble(sugar) * size));
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.add_food, menu);
+		// getMenuInflater().inflate(R.menu.add_food, menu);
 		return true;
 	}
 
@@ -311,4 +303,10 @@ public class AddFoodActivity extends Activity {
 		return true;
 	}
 
+	public boolean chkNullStr(String str) {
+		if (str == null || str.isEmpty() || str.equals("0"))
+			return true;
+		else
+			return false;
+	}
 }

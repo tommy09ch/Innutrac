@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.innutrac.poly.innutrac.database.*;
+
 import android.os.*;
 import android.app.Activity;
 import android.content.*;
@@ -150,6 +151,10 @@ public class UserInfoActivity extends Activity {
 			return true;
 		} else {
 			if (create) {
+				NutrientsDatabase ndb = new NutrientsDatabase(this);
+				ndb.open();
+				ndb.close();
+
 				File dir = new File(sdPath + "/Innutrac/prof");
 				dir.mkdirs();
 				cache = new File(dir, "cache");

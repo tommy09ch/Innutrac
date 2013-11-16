@@ -4,7 +4,6 @@ import com.innutrac.poly.innutrac.PieWedge;
 import com.innutrac.poly.innutrac.R;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.*;
 import android.util.AttributeSet;
 import android.view.*;

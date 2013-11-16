@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] mNavTitles;
-	
+
 	SharedPreferences prefs;
 	ArrayList<Food> foodsEatenToday = new ArrayList<Food>();
 	DailyPlan dailyPlan;
@@ -37,42 +37,19 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-<<<<<<< HEAD
-=======
 
->>>>>>> 2eddd4da8f54ab028772f449347fa44b937b55a9
 		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 		long savedTime = prefs.getLong("savedTime", (long) 0.0);
-
 		Date today = new Date();
 		Date saveDate = new Date(savedTime);
 
 		if (getZeroTimeDate(today).compareTo(getZeroTimeDate(saveDate)) == 1) {
-			System.out.println("New Day");
 			setUpNewDay();
 		} else {
-			System.out.println("NOT new day");
 			retrieveObjectState();
+
+			System.out.println("RETRIEVE: " + foodsEatenToday);
 		}
-<<<<<<< HEAD
-=======
-		
-		//SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
-		
-		time = new Time();
-		time.setToNow();
-		// Date today = new Date();
-		// long millis = prefs.getLong("time", 0L);
-		// Date savedDate = new Date(millis);
-
-		// need a way to check if a new day occur in order to create a new
-		// object of DailyPlan for each new day. filled constructor with total
-		// values for each nutrientional groups base on the calculator of the
-		// user age, gender, weight...
-
-		// (Optional) store the old dailyplan or something before creating a new
-		// dailyplan for the new day.
->>>>>>> 2eddd4da8f54ab028772f449347fa44b937b55a9
 
 		if (getIntent().hasExtra("addFood")) {
 			String prev = getIntent().getStringExtra("addFood");
@@ -84,7 +61,7 @@ public class MainActivity extends Activity {
 				foodsEatenToday.add(eatenFood);
 				fdb.close();
 
-				saveObjectState(dailyPlan, foodsEatenToday);
+				saveObjectState();
 			}
 		}
 
@@ -97,12 +74,12 @@ public class MainActivity extends Activity {
 		//
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
-		
+
 		// set a custom shadow that overlays the main content when the drawer
 		// opens
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
-		
+
 		// set up the drawer's list view with items and click listener
 		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
 				R.layout.drawer_list_item, mNavTitles));
@@ -280,6 +257,10 @@ public class MainActivity extends Activity {
 			FoodDatabase tmpFoodDB = new FoodDatabase(this);
 			tmpFoodDB.open("UserTotalyDailyIntake");
 			tmpFoodDB.addUserIntakeForTheDay(dailyPlan);
+
+			ArrayList<DailyPlan> tmpList = tmpFoodDB.getAllDailyIntakes();
+			System.out.println("SAVED INTAKES: " + tmpList.toString());
+
 			tmpFoodDB.close();
 		}
 
@@ -293,11 +274,12 @@ public class MainActivity extends Activity {
 		this.dailyPlan = new DailyPlan(Double.parseDouble(recCal),
 				Double.parseDouble(recCarb), Double.parseDouble(recChol),
 				Double.parseDouble(recFat), Double.parseDouble(recFib),
-				Double.parseDouble(recProt), Double.parseDouble(recSod),
-				Double.parseDouble(recSug), String.valueOf(newDay));
+				Double.parseDouble(recProt)
+						* (Integer.parseInt(p.getWeight()) * 0.453592),
+				Double.parseDouble(recSod), Double.parseDouble(recSug),
+				String.valueOf(newDay));
 		tmpProfDB.close();
-
-		saveObjectState(dailyPlan, foodsEatenToday);
+		saveObjectState();
 
 		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
 		editor.putLong("savedTime", newDay);
@@ -325,10 +307,11 @@ public class MainActivity extends Activity {
 				recSug = cur.getString(9);
 			} while (cur.moveToNext());
 		}
+		ndb.close();
 	}
 
 	@SuppressWarnings("resource")
-	public void saveObjectState(DailyPlan dp, ArrayList<Food> foodList) {
+	public void saveObjectState() {
 		FileOutputStream f_out;
 		ObjectOutputStream obj_out;
 
@@ -359,13 +342,17 @@ public class MainActivity extends Activity {
 		try {
 			f_out = new FileOutputStream(savedObj);
 			obj_out = new ObjectOutputStream(f_out);
-			obj_out.writeObject(dp);
+			obj_out.writeObject(dailyPlan);
 
 			f_out = new FileOutputStream(savedList);
 			obj_out = new ObjectOutputStream(f_out);
-			obj_out.writeInt(foodList.size());
-			for (int i = 0; i < foodList.size(); i++) {
-				obj_out.writeObject(foodList.get(i));
+			if (foodsEatenToday.isEmpty()) {
+				obj_out.writeInt(0);
+			} else {
+				obj_out.writeInt(foodsEatenToday.size());
+				for (int i = 0; i < foodsEatenToday.size(); i++) {
+					obj_out.writeObject(foodsEatenToday.get(i));
+				}
 			}
 
 			f_out.close();
@@ -396,6 +383,7 @@ public class MainActivity extends Activity {
 			f_in = new FileInputStream(savedList);
 			obj_in = new ObjectInputStream(f_in);
 			int size = obj_in.readInt();
+			foodsEatenToday = new ArrayList<Food>();
 			for (int i = 0; i < size; i++) {
 				foodsEatenToday.add((Food) obj_in.readObject());
 			}

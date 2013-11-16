@@ -1,5 +1,6 @@
 package com.innutrac.poly.innutrac;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import com.innutrac.poly.innutrac.database.*;
@@ -9,7 +10,6 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.*;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,6 +20,7 @@ public class WedgeSummaryActivity extends Activity {
 	DailyPlan dp;
 	ArrayList<Food> foodList;
 	private String nutGroupName = "Blank";
+	DecimalFormat df = new DecimalFormat("#.##");
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +37,9 @@ public class WedgeSummaryActivity extends Activity {
 	public void setUpTitleAndBackground() {
 		nutGroupName = getIntent().getStringExtra("title");
 		dp = (DailyPlan) getIntent().getSerializableExtra("dp");
-		foodList = (ArrayList<Food>) getIntent().getSerializableExtra("foodList");
-		
-		System.out.println(foodList.toString());
-		
+		foodList = (ArrayList<Food>) getIntent().getSerializableExtra(
+				"foodList");
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setTitle(nutGroupName);
 
@@ -55,43 +55,43 @@ public class WedgeSummaryActivity extends Activity {
 		if (nutGroupName.equalsIgnoreCase("Carbohydrates")) {// dark blue
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#ff0099cc")));
-			maxRDI.setText(String.valueOf(dp.getTotalCarbohydrate()));
-			todayIn.setText(String.valueOf(dp.getCurrentCarbohydrate()));
+			maxRDI.setText(df.format(dp.getTotalCarbohydrate()));
+			todayIn.setText(df.format(dp.getCurrentCarbohydrate()));
 		} else if (nutGroupName.equalsIgnoreCase("Protein")) { // light blue
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#ff33b5e5")));
-			maxRDI.setText(String.valueOf(dp.getTotalProtein()));
-			todayIn.setText(String.valueOf(dp.getCurrentProtein()));
+			maxRDI.setText(df.format(dp.getTotalProtein()));
+			todayIn.setText(df.format(dp.getCurrentProtein()));
 		} else if (nutGroupName.equalsIgnoreCase("Sodium")) {// dark green
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#ff669900")));
-			maxRDI.setText(String.valueOf(dp.getTotalSodium()));
-			todayIn.setText(String.valueOf(dp.getCurrentSodium()));
+			maxRDI.setText(df.format(dp.getTotalSodium()));
+			todayIn.setText(df.format(dp.getCurrentSodium()));
 		} else if (nutGroupName.equalsIgnoreCase("Cholesterol")) {// light green
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#ff99cc00")));
-			maxRDI.setText(String.valueOf(dp.getTotalCholesterol()));
-			todayIn.setText(String.valueOf(dp.getCurrentCholesterol()));
+			maxRDI.setText(df.format(dp.getTotalCholesterol()));
+			todayIn.setText(df.format(dp.getCurrentCholesterol()));
 		} else if (nutGroupName.equalsIgnoreCase("Fat")) {// dark orange
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#ffff8800")));
-			maxRDI.setText(String.valueOf(dp.getTotalFats()));
-			todayIn.setText(String.valueOf(dp.getCurrentFats()));
+			maxRDI.setText(df.format(dp.getTotalFats()));
+			todayIn.setText(df.format(dp.getCurrentFats()));
 		} else if (nutGroupName.equalsIgnoreCase("Sugar")) {// light orange
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#ffffbb33")));
-			maxRDI.setText(String.valueOf(dp.getTotalSugar()));
-			todayIn.setText(String.valueOf(dp.getCurrentSugar()));
+			maxRDI.setText(df.format(dp.getTotalSugar()));
+			todayIn.setText(df.format(dp.getCurrentSugar()));
 		} else if (nutGroupName.equalsIgnoreCase("Fiber")) {// dark red
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#ffcc0000")));
-			maxRDI.setText(String.valueOf(dp.getTotalFiber()));
-			todayIn.setText(String.valueOf(dp.getCurrentFiber()));
+			maxRDI.setText(df.format(dp.getTotalFiber()));
+			todayIn.setText(df.format(dp.getCurrentFiber()));
 		} else if (nutGroupName.equalsIgnoreCase("Calories")) {// light red
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#ffff4444")));
-			maxRDI.setText(String.valueOf(dp.getTotalCalories()));
-			todayIn.setText(String.valueOf(dp.getCurrentCalories()));
+			maxRDI.setText(df.format(dp.getTotalCalories()));
+			todayIn.setText(df.format(dp.getCurrentCalories()));
 		}
 	}
 

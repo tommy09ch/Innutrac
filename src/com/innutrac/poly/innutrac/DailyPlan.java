@@ -4,8 +4,9 @@ import java.io.Serializable;
 
 import com.innutrac.poly.innutrac.database.Food;
 
-@SuppressWarnings("serial")
 public class DailyPlan implements Serializable {
+	
+	private static final long serialVersionUID = -8981165452660044171L;
 	private double totalCalories;
 	private double totalCarbohydrate;
 	private double totalCholesterol;
@@ -70,6 +71,17 @@ public class DailyPlan implements Serializable {
 		currentProtein = 0;
 		currentSodium = 0;
 		currentSugar = 0;
+	}
+
+	public void eatFood(Food f) {
+		currentCalories += Double.parseDouble(f.getCalories());
+		currentCarbohydrate += Double.parseDouble(f.getCarbohydrate());
+		currentCholesterol += Double.parseDouble(f.getCholesterol());
+		currentFats += Double.parseDouble(f.getFats());
+		currentFiber += Double.parseDouble(f.getFiber());
+		currentProtein += Double.parseDouble(f.getProtein());
+		currentSodium += Double.parseDouble(f.getSodium());
+		currentSugar += Double.parseDouble(f.getSugar());
 	}
 
 	public double getTotalCalories() {
@@ -216,14 +228,8 @@ public class DailyPlan implements Serializable {
 		this.planLogTime = planLogTime;
 	}
 
-	public void eatFood(Food f) {
-		currentCalories += Double.parseDouble(f.getCalories());
-		currentCarbohydrate += Double.parseDouble(f.getCarbohydrate());
-		currentCholesterol += Double.parseDouble(f.getCholesterol());
-		currentFats += Double.parseDouble(f.getFats());
-		currentFiber += Double.parseDouble(f.getFiber());
-		currentProtein += Double.parseDouble(f.getProtein());
-		currentSodium += Double.parseDouble(f.getSodium());
-		currentSugar += Double.parseDouble(f.getSugar());
+	@Override
+	public String toString() {
+		return String.valueOf(this.currentCalories);
 	}
 }

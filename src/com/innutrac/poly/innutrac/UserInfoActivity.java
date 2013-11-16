@@ -4,11 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import com.innutrac.poly.innutrac.database.*;
-
 import android.os.*;
 import android.app.Activity;
 import android.content.*;
@@ -17,11 +14,9 @@ import android.view.View.*;
 import android.widget.*;
 
 public class UserInfoActivity extends Activity {
+	// Place holders for each fields of the user profile.
 	String name = "", age = "", gender = "", heightFt = "", heightIn = "",
 			weight = "", time = "";
-	String recProtein = "", recCarb = "", recSodium = "", recChloe = "", recSugar = "",
-		   recFatMax = "",recFatMin = "", recFiber= "", recCalories = "";
-	boolean editProf = false;
 
 	ProfileDatabase pdb;
 
@@ -41,12 +36,10 @@ public class UserInfoActivity extends Activity {
 		pdb.open("UserDatabase");
 
 		String prev = getIntent().getStringExtra("title");
-		editProf = prev.equalsIgnoreCase("Main");
-
-		if (editProf) {
+		if (prev.equalsIgnoreCase("Main")) {
 			skip_cancelBut.setText("Cancel");
-			editProf = false;
 		}
+
 		if (checkIfProfileExist(false)) {
 			assembleCreatedProfile();
 			((EditText) findViewById(R.id.ui_name_edit)).setText(name);
@@ -112,28 +105,22 @@ public class UserInfoActivity extends Activity {
 							"Please complete all require fields (mark with *)",
 							Toast.LENGTH_SHORT).show();
 				} else {
-
 					if (checkIfProfileExist(false)) {
-//						pdb.updateProfile(new User(name, age, gender, heightFt,
-//								heightIn, weight,));
+						pdb.updateProfile(new User(name, age, gender, heightFt,
+								heightIn, weight));
 
 						Toast.makeText(UserInfoActivity.this,
 								"Profile Updated", Toast.LENGTH_SHORT).show();
 					} else {
 						checkIfProfileExist(true);
 						time = String.valueOf(System.currentTimeMillis());
-//						pdb.createProfile(new User(name, age, gender, heightFt,
-//								heightIn, weight, time));
+						pdb.createProfile(new User(name, age, gender, heightFt,
+								heightIn, weight, time));
 
 						Toast.makeText(UserInfoActivity.this,
 								"Profile Created", Toast.LENGTH_SHORT).show();
 					}
 					pdb.close();
-					//setting recValues
-					calcRecValues();
-					System.out.println(recProtein + " " + recCarb + " " + recSodium + " " + recChloe
-							 + " " + recSugar + " " + recFatMin + " " + recFatMin  + " " + recFiber + " " + recCalories);
-					//
 					startActivity(new Intent(UserInfoActivity.this,
 							MainActivity.class));
 				}
@@ -152,7 +139,6 @@ public class UserInfoActivity extends Activity {
 		heightFt = user.getHeightFt();
 		heightIn = user.getHeightIn();
 		weight = user.getWeight();
-		time = user.getProfileCreateTime();
 	}
 
 	public boolean checkIfProfileExist(boolean create) {
@@ -199,75 +185,4 @@ public class UserInfoActivity extends Activity {
 		}
 		return true;
 	}
-	
-	private void calcRecValues() {
-		int ageInt = Integer.parseInt(this.age);
-		//convert weight to kilograms
-		double weightInt = Integer.parseInt(this.weight) * 0.453592;
-		double temp = 0;
-		
-		//set calories
-		recCalories = "2000";
-		//set carbohydrates
-		recCarb = "130";
-		//set sugar max
-		recSugar = "55";
-		
-		//set sodium
-		if(ageInt <= 50)
-			recSodium = "1.5";
-		if(ageInt <= 70)
-			recSodium = "1.3";
-		if(ageInt > 70)
-			recSodium = "1.2";
-		
-		//set fat
-		recFatMax = "77";
-		if(ageInt <= 18)
-			recFatMin = "55";
-		else
-			recFatMin = "44";
-		
-		//set protein
-		if(!(weight.equals("") && gender.equals(""))) {
-			if(gender.equals("m")) {
-				if(ageInt <= 13)
-					temp = 0.76 * weightInt;
-				if(ageInt <= 18)
-					temp = 0.73 * weightInt;
-				if(ageInt > 18)
-					temp = 0.66 * weightInt;
-			}
-			
-			else {
-				if(ageInt <= 13)
-					temp = 0.76 * weightInt;
-				if(ageInt <= 18)
-					temp = 0.71 * weightInt;
-				if(ageInt > 18)
-					temp = 0.66 * weightInt;
-			}
-			recProtein = String.valueOf(temp);
-		}
-		
-		//set fiber
-		if(gender.equals("m")) {
-			if(ageInt <= 13)
-				recFiber = "31";
-			if(ageInt <= 50)
-				recFiber = "38";
-			if(ageInt > 50)
-				recFiber = "30";
-		}
-		
-		else {
-			if(ageInt <= 18)
-				recFiber = "26";
-			if(ageInt <= 50)
-				recFiber = "25";
-			if(ageInt > 50)
-				recFiber = "21";
-		}
-	}
-	
 }

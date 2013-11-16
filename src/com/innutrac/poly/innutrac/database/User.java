@@ -4,30 +4,19 @@ public class User {
 	private int profileID;
 	private String name;
 	private String age;
-	private String gender; // 1 = male, 0 = female
+	private String gender;
 	private String heightFt;
 	private String heightIn;
 	private String weight;
 	private String profileCreateTime;
-	private String recommentedCal;
-	private String recommentedCarb;
-	private String recommentedChol;
-	private String recommentedFat;
-	private String recommentedFib;
-	private String recommentedProt;
-	private String recommentedSod;
-	private String recommentedSug;
 
 	public User() {
-		// Empty Constructor
+		// TODO Auto-generated constructor stub
 	}
 
 	public User(int profileID, String name, String age, String gender,
 			String heightFt, String heightIn, String weight,
-			String profileCreateTime, String recommentedCal,
-			String recommentedCarb, String recommentedChol,
-			String recommentedFat, String recommentedFib,
-			String recommentedProt, String recommentedSod, String recommentedSug) {
+			String profileCreateTime) {
 		super();
 		this.profileID = profileID;
 		this.name = name;
@@ -37,41 +26,33 @@ public class User {
 		this.heightIn = heightIn;
 		this.weight = weight;
 		this.profileCreateTime = profileCreateTime;
-		this.recommentedCal = recommentedCal;
-		this.recommentedCarb = recommentedCarb;
-		this.recommentedChol = recommentedChol;
-		this.recommentedFat = recommentedFat;
-		this.recommentedFib = recommentedFib;
-		this.recommentedProt = recommentedProt;
-		this.recommentedSod = recommentedSod;
-		this.recommentedSug = recommentedSug;
 	}
 
-	public User(int profileID, String name, String age, String gender,
-			String heightFt, String heightIn, String weight,
-			String recommentedCal, String recommentedCarb,
-			String recommentedChol, String recommentedFat,
-			String recommentedFib, String recommentedProt,
-			String recommentedSod, String recommentedSug) {
+	// Constructor for when creating the user profile
+	public User(String name, String age, String gender, String heightFt,
+			String heightIn, String weight, String profileCreateTime) {
 		super();
-		this.profileID = profileID;
 		this.name = name;
 		this.age = age;
 		this.gender = gender;
 		this.heightFt = heightFt;
 		this.heightIn = heightIn;
 		this.weight = weight;
-		this.recommentedCal = recommentedCal;
-		this.recommentedCarb = recommentedCarb;
-		this.recommentedChol = recommentedChol;
-		this.recommentedFat = recommentedFat;
-		this.recommentedFib = recommentedFib;
-		this.recommentedProt = recommentedProt;
-		this.recommentedSod = recommentedSod;
-		this.recommentedSug = recommentedSug;
+		this.profileCreateTime = profileCreateTime;
 	}
 
-	// getters and setters
+	// Constructor for when updating the user profile
+	public User(String name, String age, String gender, String heightFt,
+			String heightIn, String weight) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+		this.heightFt = heightFt;
+		this.heightIn = heightIn;
+		this.weight = weight;
+	}
+
 	public int getProfileID() {
 		return profileID;
 	}
@@ -134,69 +115,5 @@ public class User {
 
 	public void setProfileCreateTime(String profileCreateTime) {
 		this.profileCreateTime = profileCreateTime;
-	}
-
-	public String getRecommentedCal() {
-		return recommentedCal;
-	}
-
-	public void setRecommentedCal(String recommentedCal) {
-		this.recommentedCal = recommentedCal;
-	}
-
-	public String getRecommentedCarb() {
-		return recommentedCarb;
-	}
-
-	public void setRecommentedCarb(String recommentedCarb) {
-		this.recommentedCarb = recommentedCarb;
-	}
-
-	public String getRecommentedChol() {
-		return recommentedChol;
-	}
-
-	public void setRecommentedChol(String recommentedChol) {
-		this.recommentedChol = recommentedChol;
-	}
-
-	public String getRecommentedFat() {
-		return recommentedFat;
-	}
-
-	public void setRecommentedFat(String recommentedFat) {
-		this.recommentedFat = recommentedFat;
-	}
-
-	public String getRecommentedFib() {
-		return recommentedFib;
-	}
-
-	public void setRecommentedFib(String recommentedFib) {
-		this.recommentedFib = recommentedFib;
-	}
-
-	public String getRecommentedProt() {
-		return recommentedProt;
-	}
-
-	public void setRecommentedProt(String recommentedProt) {
-		this.recommentedProt = recommentedProt;
-	}
-
-	public String getRecommentedSod() {
-		return recommentedSod;
-	}
-
-	public void setRecommentedSod(String recommentedSod) {
-		this.recommentedSod = recommentedSod;
-	}
-
-	public String getRecommentedSug() {
-		return recommentedSug;
-	}
-
-	public void setRecommentedSug(String recommentedSug) {
-		this.recommentedSug = recommentedSug;
 	}
 }

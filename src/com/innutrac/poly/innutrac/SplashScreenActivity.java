@@ -5,14 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
+import android.os.*;
 import android.app.Activity;
 import android.content.Intent;
-import android.view.Display;
-import android.view.Menu;
-import android.view.Window;
+import android.view.*;
 
 public class SplashScreenActivity extends Activity {
 

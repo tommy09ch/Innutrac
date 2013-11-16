@@ -1,5 +1,9 @@
 package com.innutrac.poly.innutrac;
 
+import java.util.ArrayList;
+
+import com.innutrac.poly.innutrac.database.*;
+
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -78,9 +82,12 @@ public class PieViewFragment extends Fragment {
 					DailyPlan dp = ((MainActivity) getActivity())
 							.getTodayDailyPlan();
 
+					ArrayList<Food> foodList = ((MainActivity) getActivity())
+							.getTodayFoodList();
+
 					startActivity(new Intent(getActivity(),
 							WedgeSummaryActivity.class).putExtra("title", name)
-							.putExtra("dp", dp));
+							.putExtra("dp", dp).putExtra("foodList", foodList));
 				}
 				return false;
 			}

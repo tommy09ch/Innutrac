@@ -1,19 +1,12 @@
 package com.innutrac.poly.innutrac;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.io.*;
+import java.util.*;
 
-import android.os.Bundle;
-import android.os.Environment;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.text.format.Time;
-import android.util.Log;
+import android.os.*;
+import android.app.*;
 import android.view.Menu;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -33,56 +26,42 @@ public class MainActivity extends Activity {
 	private String[] mNavTitles;
 
 	SharedPreferences prefs;
-	ArrayList<Food> foodsEatenToday;
-	FoodDatabase fdb;
+	ArrayList<Food> foodsEatenToday = new ArrayList<Food>();
 	DailyPlan dailyPlan;
-	Time time;
+
+	// place holder for the recommended intakes according to user profile.
+	private String recCal, recCarb, recChol, recFat, recFib, recProt, recSod,
+			recSug;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-<<<<<<< HEAD
-
 		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 		long savedTime = prefs.getLong("savedTime", (long) 0.0);
 
 		Date today = new Date();
 		Date saveDate = new Date(savedTime);
 
-		if (today.after(saveDate)) {
+		if (getZeroTimeDate(today).compareTo(getZeroTimeDate(saveDate)) == 1) {
+			System.out.println("New Day");
 			setUpNewDay();
 		} else {
-			System.out.println("DEBUG!!!!!!!!!!!!!!!!!!!!!!!   NOT new day");
+			System.out.println("NOT new day");
+			retrieveObjectState();
 		}
-=======
-		
-		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
-		
-		time = new Time();
-		time.setToNow();
-		// Date today = new Date();
-		// long millis = prefs.getLong("time", 0L);
-		// Date savedDate = new Date(millis);
-
-		// need a way to check if a new day occur in order to create a new
-		// object of DailyPlan for each new day. filled constructor with total
-		// values for each nutrientional groups base on the calculator of the
-		// user age, gender, weight...
->>>>>>> fb0abce40a1d6d61286cafb34bbb51d9c2b9d907
-
-		// (Optional) store the old dailyplan or something before creating a new
-		// dailyplan for the new day.
 
 		if (getIntent().hasExtra("addFood")) {
 			String prev = getIntent().getStringExtra("addFood");
 			if (prev.equalsIgnoreCase("true")) {
-				fdb = new FoodDatabase(this);
+				FoodDatabase fdb = new FoodDatabase(this);
 				fdb.open("FoodRecord");
 				Food eatenFood = fdb.getMostRecentFoodInsert();
 				dailyPlan.eatFood(eatenFood);
 				foodsEatenToday.add(eatenFood);
 				fdb.close();
+
+				saveObjectState(dailyPlan, foodsEatenToday);
 			}
 		}
 
@@ -137,22 +116,6 @@ public class MainActivity extends Activity {
 			selectItem(0);
 		}
 	}
-
-	// protected void onResume() {
-	// checkTime();
-	// super.onResume();
-	// }
-	//
-	// // keeps track of new day
-	// private Boolean checkTime() {
-	// Time temp = new Time();
-	// temp.setToNow();
-	// if (!(temp.format("%d").equals(time.format("%d")))) {
-	// time.setToNow();
-	// return true;
-	// }
-	// return false;
-	// }
 
 	/* The click listener for ListView in the navigation drawer */
 	private class DrawerItemClickListener implements
@@ -286,18 +249,169 @@ public class MainActivity extends Activity {
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
+	public void setUpNewDay() {
+		long newDay = System.currentTimeMillis();
+
+		if (dailyPlan != null) {
+			FoodDatabase tmpFoodDB = new FoodDatabase(this);
+			tmpFoodDB.open("UserTotalyDailyIntake");
+			tmpFoodDB.addUserIntakeForTheDay(dailyPlan);
+			tmpFoodDB.close();
+		}
+
+		ProfileDatabase tmpProfDB = new ProfileDatabase(this);
+		tmpProfDB.open("UserDatabase");
+		User p = tmpProfDB.getProfile();
+
+		getRecommendedValuesForUser(p.getGender().toUpperCase(Locale.US)
+				.charAt(0), Integer.parseInt(p.getAge()));
+
+		this.dailyPlan = new DailyPlan(Double.parseDouble(recCal),
+				Double.parseDouble(recCarb), Double.parseDouble(recChol),
+				Double.parseDouble(recFat), Double.parseDouble(recFib),
+				Double.parseDouble(recProt), Double.parseDouble(recSod),
+				Double.parseDouble(recSug), String.valueOf(newDay));
+		tmpProfDB.close();
+
+		saveObjectState(dailyPlan, foodsEatenToday);
+
+		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+		editor.putLong("savedTime", newDay);
+		editor.commit();
+		// Need reset pie chart for new day
+	}
+
+	public void getRecommendedValuesForUser(char sex, int age) {
+		NutrientsDatabase ndb = new NutrientsDatabase(this);
+		ndb.open();
+
+		Cursor cur = ndb.getReadableDatabase().rawQuery(
+				"SELECT * FROM intake_requirements WHERE sex = \"" + sex
+						+ "\"AND age_uLimit >= " + age + " AND age_lLimit <= "
+						+ age, null);
+		if (cur.moveToFirst()) {
+			do {
+				recCal = cur.getString(8);
+				recCarb = cur.getString(4);
+				recChol = cur.getString(6);
+				recFat = cur.getString(7);
+				recFib = cur.getString(10);
+				recProt = cur.getString(3);
+				recSod = cur.getString(5);
+				recSug = cur.getString(9);
+			} while (cur.moveToNext());
+		}
+	}
+
+	@SuppressWarnings("resource")
+	public void saveObjectState(DailyPlan dp, ArrayList<Food> foodList) {
+		FileOutputStream f_out;
+		ObjectOutputStream obj_out;
+
+		String sdPath = Environment.getExternalStorageDirectory()
+				.getAbsolutePath();
+		File savedObj = new File(sdPath + "/Innutrac/vals/myobject.data");
+		File savedList = new File(sdPath + "/Innutrac/vals/mylist.data");
+
+		if (savedObj.exists() && savedList.exists()) {
+			// do nothing
+		} else {
+			File dir = new File(sdPath + "/Innutrac/vals");
+			dir.mkdirs();
+			savedObj = new File(dir, "myobject.data");
+			savedList = new File(dir, "mylist.data");
+			try {
+				FileOutputStream f1 = new FileOutputStream(savedObj);
+				FileOutputStream f2 = new FileOutputStream(savedList);
+				f1.close();
+				f2.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		try {
+			f_out = new FileOutputStream(savedObj);
+			obj_out = new ObjectOutputStream(f_out);
+			obj_out.writeObject(dp);
+
+			f_out = new FileOutputStream(savedList);
+			obj_out = new ObjectOutputStream(f_out);
+			obj_out.writeInt(foodList.size());
+			for (int i = 0; i < foodList.size(); i++) {
+				obj_out.writeObject(foodList.get(i));
+			}
+
+			f_out.close();
+			obj_out.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@SuppressWarnings("resource")
+	public void retrieveObjectState() {
+		String sdPath = Environment.getExternalStorageDirectory()
+				.getAbsolutePath();
+		File savedObj = new File(sdPath + "/Innutrac/vals/myobject.data");
+		File savedList = new File(sdPath + "/Innutrac/vals/mylist.data");
+
+		FileInputStream f_in;
+		ObjectInputStream obj_in;
+		try {
+			f_in = new FileInputStream(savedObj);
+			obj_in = new ObjectInputStream(f_in);
+			dailyPlan = (DailyPlan) obj_in.readObject();
+
+			f_in = new FileInputStream(savedList);
+			obj_in = new ObjectInputStream(f_in);
+			int size = obj_in.readInt();
+			for (int i = 0; i < size; i++) {
+				foodsEatenToday.add((Food) obj_in.readObject());
+			}
+
+			f_in.close();
+			obj_in.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (StreamCorruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static Date getZeroTimeDate(Date fecha) {
+		Date res = fecha;
+		Calendar calendar = Calendar.getInstance();
+
+		calendar.setTime(fecha);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+
+		res = calendar.getTime();
+		return res;
+	}
+
 	public DailyPlan getTodayDailyPlan() {
 		return dailyPlan;
 	}
 
-	public void setUpNewDay() {
-		dailyPlan = new DailyPlan(100, 100, 100, 100, 100, 100, 100, 100);
-		this.foodsEatenToday = new ArrayList<Food>();
-
-		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
-		editor.putLong("savedTime", System.currentTimeMillis());
-		editor.commit();
-		
-		// Need reset pie chart for new day
+	public ArrayList<Food> getTodayFoodList() {
+		return foodsEatenToday;
 	}
 }

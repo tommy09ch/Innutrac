@@ -1,6 +1,9 @@
 package com.innutrac.poly.innutrac.database;
 
 import java.util.ArrayList;
+
+import com.innutrac.poly.innutrac.DailyPlan;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -27,7 +30,7 @@ public class FoodDatabase {
 		private static final String COLUMN_FOODREC_NAME = "name";
 		private static final String COLUMN_FOODREC_SERVING_SIZE = "serving_size";
 		private static final String COLUMN_FOODREC_CALORIES = "calories";
-		private static final String COLUMN_FOODREC_CARBCARBOHYDRATE = "carbcarbohydrate";
+		private static final String COLUMN_FOODREC_CARBOHYDRATE = "carbohydrates";
 		private static final String COLUMN_FOODREC_CHOLESTEROL = "cholesterol";
 		private static final String COLUMN_FOODREC_FATS = "fats";
 		private static final String COLUMN_FOODREC_FIBER = "fiber";
@@ -42,7 +45,7 @@ public class FoodDatabase {
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_FOODREC_NAME
 				+ " TEXT," + COLUMN_FOODREC_SERVING_SIZE + " TEXT,"
 				+ COLUMN_FOODREC_CALORIES + " TEXT,"
-				+ COLUMN_FOODREC_CARBCARBOHYDRATE + " TEXT,"
+				+ COLUMN_FOODREC_CARBOHYDRATE + " TEXT,"
 				+ COLUMN_FOODREC_CHOLESTEROL + " TEXT," + COLUMN_FOODREC_FATS
 				+ " TEXT," + COLUMN_FOODREC_FIBER + " TEXT,"
 				+ COLUMN_FOODREC_PROTEIN + " TEXT," + COLUMN_FOODREC_SODIUM
@@ -50,17 +53,15 @@ public class FoodDatabase {
 				+ COLUMN_FOODREC_USDA_ID + " TEXT," + COLUMN_FOODREC_ENTRY_TIME
 				+ " TEXT" + ")";
 
-		private static final String CREATE_USER_INTAKE_TABLE = "CREATE TABLE " + 
-				TABLE_USER_DAILY_INTAKE + "("
-				+ COLUMN_FOODREC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+		private static final String CREATE_USER_INTAKE_TABLE = "CREATE TABLE "
+				+ TABLE_USER_DAILY_INTAKE + "(" + COLUMN_FOODREC_ID
+				+ " INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ COLUMN_FOODREC_CALORIES + " TEXT,"
-				+ COLUMN_FOODREC_CARBCARBOHYDRATE + " TEXT,"
-				+ COLUMN_FOODREC_CHOLESTEROL + " TEXT,"
-				+ COLUMN_FOODREC_FATS + " TEXT,"
-				+ COLUMN_FOODREC_FIBER + " TEXT,"
-				+ COLUMN_FOODREC_PROTEIN + " TEXT,"
-				+ COLUMN_FOODREC_SODIUM + " TEXT,"
-				+ COLUMN_FOODREC_SUGAR + " TEXT,"
+				+ COLUMN_FOODREC_CARBOHYDRATE + " TEXT,"
+				+ COLUMN_FOODREC_CHOLESTEROL + " TEXT," + COLUMN_FOODREC_FATS
+				+ " TEXT," + COLUMN_FOODREC_FIBER + " TEXT,"
+				+ COLUMN_FOODREC_PROTEIN + " TEXT," + COLUMN_FOODREC_SODIUM
+				+ " TEXT," + COLUMN_FOODREC_SUGAR + " TEXT,"
 				+ COLUMN_FOODREC_ENTRY_TIME + " TEXT" + ")";
 
 		public FoodDB(Context context, String dbName) {
@@ -98,8 +99,8 @@ public class FoodDatabase {
 		values.put(FoodDB.COLUMN_FOODREC_NAME, food.getName());
 		values.put(FoodDB.COLUMN_FOODREC_SERVING_SIZE, food.getServing_size());
 		values.put(FoodDB.COLUMN_FOODREC_CALORIES, food.getCalories());
-		values.put(FoodDB.COLUMN_FOODREC_CARBCARBOHYDRATE,
-				food.getCarbcarbohydrate());
+		values.put(FoodDB.COLUMN_FOODREC_CARBOHYDRATE,
+				food.getCarbohydrate());
 		values.put(FoodDB.COLUMN_FOODREC_CHOLESTEROL, food.getCholesterol());
 		values.put(FoodDB.COLUMN_FOODREC_FATS, food.getFats());
 		values.put(FoodDB.COLUMN_FOODREC_FIBER, food.getFiber());
@@ -116,8 +117,8 @@ public class FoodDatabase {
 		values.put(FoodDB.COLUMN_FOODREC_NAME, food.getName());
 		values.put(FoodDB.COLUMN_FOODREC_SERVING_SIZE, food.getServing_size());
 		values.put(FoodDB.COLUMN_FOODREC_CALORIES, food.getCalories());
-		values.put(FoodDB.COLUMN_FOODREC_CARBCARBOHYDRATE,
-				food.getCarbcarbohydrate());
+		values.put(FoodDB.COLUMN_FOODREC_CARBOHYDRATE,
+				food.getCarbohydrate());
 		values.put(FoodDB.COLUMN_FOODREC_CHOLESTEROL, food.getCholesterol());
 		values.put(FoodDB.COLUMN_FOODREC_FATS, food.getFats());
 		values.put(FoodDB.COLUMN_FOODREC_FIBER, food.getFiber());
@@ -144,7 +145,7 @@ public class FoodDatabase {
 			food.setName(cur.getString(1));
 			food.setServing_size(cur.getString(2));
 			food.setCalories(cur.getString(3));
-			food.setCarbcarbohydrate(cur.getString(4));
+			food.setCarbohydrate(cur.getString(4));
 			food.setCholesterol(cur.getString(5));
 			food.setFats(cur.getString(6));
 			food.setFiber(cur.getString(7));
@@ -168,7 +169,7 @@ public class FoodDatabase {
 				food.setName(cur.getString(1));
 				food.setServing_size(cur.getString(2));
 				food.setCalories(cur.getString(3));
-				food.setCarbcarbohydrate(cur.getString(4));
+				food.setCarbohydrate(cur.getString(4));
 				food.setCholesterol(cur.getString(5));
 				food.setFats(cur.getString(6));
 				food.setFiber(cur.getString(7));
@@ -182,5 +183,45 @@ public class FoodDatabase {
 			} while (cur.moveToNext());
 		}
 		return foodRecord;
+	}
+
+	public void addUserIntakeForTheDay(DailyPlan plan) {
+		ContentValues values = new ContentValues();
+		values.put(FoodDB.COLUMN_FOODREC_CALORIES, plan.getCurrentCalories());
+		values.put(FoodDB.COLUMN_FOODREC_CARBOHYDRATE,
+				plan.getCurrentCarbohydrate());
+		values.put(FoodDB.COLUMN_FOODREC_CHOLESTEROL,
+				plan.getCurrentCholesterol());
+		values.put(FoodDB.COLUMN_FOODREC_FATS, plan.getCurrentFats());
+		values.put(FoodDB.COLUMN_FOODREC_FIBER, plan.getCurrentFiber());
+		values.put(FoodDB.COLUMN_FOODREC_PROTEIN, plan.getCurrentProtein());
+		values.put(FoodDB.COLUMN_FOODREC_SODIUM, plan.getCurrentSodium());
+		values.put(FoodDB.COLUMN_FOODREC_SUGAR, plan.getCurrentSugar());
+		values.put(FoodDB.COLUMN_FOODREC_ENTRY_TIME, plan.getPlanLogTime());
+		db.insert(FoodDB.TABLE_USER_DAILY_INTAKE, null, values);
+	}
+
+	public ArrayList<DailyPlan> getAllDailyIntakes() {
+		ArrayList<DailyPlan> intakeRecord = new ArrayList<DailyPlan>();
+		String selectQuery = "SELECT * FROM " + FoodDB.TABLE_USER_DAILY_INTAKE;
+		Cursor cur = db.rawQuery(selectQuery, null);
+		if (cur.moveToFirst()) {
+			do {
+				DailyPlan plan = new DailyPlan();
+				plan.setPlanId(cur.getString(0));
+				plan.setCurrentCalories(Double.parseDouble(cur.getString(1)));
+				plan.setCurrentCarbohydrate(Double.parseDouble(cur.getString(2)));
+				plan.setCurrentCholesterol(Double.parseDouble(cur.getString(3)));
+				plan.setCurrentFats(Double.parseDouble(cur.getString(4)));
+				plan.setCurrentFiber(Double.parseDouble(cur.getString(5)));
+				plan.setCurrentProtein(Double.parseDouble(cur.getString(6)));
+				plan.setCurrentSodium(Double.parseDouble(cur.getString(7)));
+				plan.setCurrentSugar(Double.parseDouble(cur.getString(8)));
+				plan.setPlanLogTime(cur.getString(9));
+
+				intakeRecord.add(plan);
+			} while (cur.moveToNext());
+		}
+		return intakeRecord;
 	}
 }

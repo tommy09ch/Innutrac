@@ -163,7 +163,7 @@ public class AddFoodActivity extends Activity {
 
 	public void assembleDataFromFoodDB(Food selectedFood) {
 		this.calories = selectedFood.getCalories();
-		this.carbcarbohydrate = selectedFood.getCarbcarbohydrate();
+		this.carbcarbohydrate = selectedFood.getCarbohydrate();
 		this.cholesterol = selectedFood.getCholesterol();
 		this.fats = selectedFood.getFats();
 		this.fiber = selectedFood.getFiber();
@@ -196,7 +196,7 @@ public class AddFoodActivity extends Activity {
 				food.setName(cur.getString(0));
 				food.setServing_size("1");
 				food.setCalories(cur.getString(1));
-				food.setCarbcarbohydrate(cur.getString(2));
+				food.setCarbohydrate(cur.getString(2));
 				food.setCholesterol(cur.getString(3));
 				food.setFats(cur.getString(4));
 				food.setFiber(cur.getString(5));

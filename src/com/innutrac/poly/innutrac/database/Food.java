@@ -1,11 +1,13 @@
 package com.innutrac.poly.innutrac.database;
 
-public class Food implements Comparable<Food> {
+import java.io.Serializable;
+
+public class Food implements Comparable<Food>, Serializable {
 
 	private String name;
 	private String serving_size;
 	private String calories;
-	private String carbcarbohydrate;
+	private String carbohydrate;
 	private String cholesterol;
 	private String fats;
 	private String fiber;
@@ -25,7 +27,7 @@ public class Food implements Comparable<Food> {
 		this.name = name;
 		this.serving_size = serving_size;
 		this.calories = calories;
-		this.carbcarbohydrate = carbcarbohydrate;
+		this.carbohydrate = carbcarbohydrate;
 		this.cholesterol = cholesterol;
 		this.fats = fats;
 		this.fiber = fiber;
@@ -45,7 +47,7 @@ public class Food implements Comparable<Food> {
 		this.name = name;
 		this.serving_size = serving_size;
 		this.calories = calories;
-		this.carbcarbohydrate = carbcarbohydrate;
+		this.carbohydrate = carbcarbohydrate;
 		this.cholesterol = cholesterol;
 		this.fats = fats;
 		this.fiber = fiber;
@@ -84,12 +86,12 @@ public class Food implements Comparable<Food> {
 		this.calories = calories;
 	}
 
-	public String getCarbcarbohydrate() {
-		return carbcarbohydrate;
+	public String getCarbohydrate() {
+		return carbohydrate;
 	}
 
-	public void setCarbcarbohydrate(String carbcarbohydrate) {
-		this.carbcarbohydrate = carbcarbohydrate;
+	public void setCarbohydrate(String carbohydrate) {
+		this.carbohydrate = carbohydrate;
 	}
 
 	public String getCholesterol() {
@@ -162,6 +164,13 @@ public class Food implements Comparable<Food> {
 
 	public void setEatTime(String eatTime) {
 		this.eatTime = eatTime;
+	}
+
+	public String getallFoodValue() {
+		return name + "\n" + serving_size + "\n" + calories + "\n"
+				+ carbohydrate + "\n" + cholesterol + "\n" + fats + "\n"
+				+ fiber + "\n" + protein + "\n" + sodium + "\n" + sugar + "\n"
+				+ entryID + "\n" + usdaDBID + "\n" + eatTime;
 	}
 
 	@Override

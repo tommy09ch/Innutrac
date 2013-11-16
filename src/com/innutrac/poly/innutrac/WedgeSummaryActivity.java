@@ -11,10 +11,6 @@ import android.graphics.Color;
 import android.graphics.drawable.*;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,6 +18,7 @@ public class WedgeSummaryActivity extends Activity {
 	TextView maxRDI, todayIn;
 	ListView listView;
 	DailyPlan dp;
+	ArrayList<Food> foodList;
 	private String nutGroupName = "Blank";
 
 	@Override
@@ -33,32 +30,16 @@ public class WedgeSummaryActivity extends Activity {
 		listView = ((ListView) findViewById(R.id.foodListView));
 		setUpTitleAndBackground();
 
-		// Object[] array = assembleFoodsRelatedToGroup();
-		//
-		// @SuppressWarnings({ "rawtypes", "unchecked", "unused" })
-		// ArrayAdapter adapter = new ArrayAdapter(this,
-		// android.R.layout.simple_expandable_list_item_1, array) {
-		// @Override
-		// public View getView(int position, View convertView, ViewGroup parent)
-		// {
-		// View view = super.getView(position, convertView, parent);
-		//
-		// TextView textView = (TextView) view
-		// .findViewById(android.R.id.text1);
-		//
-		// /* YOUR CHOICE OF COLOR */
-		// textView.setTextColor(Color.parseColor("#C7C244"));
-		//
-		// return view;
-		// }
-		// };
-		//
-		// listView.setAdapter(adapter);
 	}
 
+	@SuppressWarnings("unchecked")
 	public void setUpTitleAndBackground() {
 		nutGroupName = getIntent().getStringExtra("title");
 		dp = (DailyPlan) getIntent().getSerializableExtra("dp");
+		foodList = (ArrayList<Food>) getIntent().getSerializableExtra("foodList");
+		
+		System.out.println(foodList.toString());
+		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setTitle(nutGroupName);
 
@@ -74,8 +55,8 @@ public class WedgeSummaryActivity extends Activity {
 		if (nutGroupName.equalsIgnoreCase("Carbohydrates")) {// dark blue
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#ff0099cc")));
-			maxRDI.setText(String.valueOf(dp.getTotalCarbcarbohydrate()));
-			todayIn.setText(String.valueOf(dp.getCurrentCarbcarbohydrate()));
+			maxRDI.setText(String.valueOf(dp.getTotalCarbohydrate()));
+			todayIn.setText(String.valueOf(dp.getCurrentCarbohydrate()));
 		} else if (nutGroupName.equalsIgnoreCase("Protein")) { // light blue
 			getActionBar().setBackgroundDrawable(
 					new ColorDrawable(Color.parseColor("#ff33b5e5")));
@@ -113,59 +94,6 @@ public class WedgeSummaryActivity extends Activity {
 			todayIn.setText(String.valueOf(dp.getCurrentCalories()));
 		}
 	}
-
-//	public Object[] assembleFoodsRelatedToGroup() {
-//
-//		ArrayList<Food> foodList = dp.getFoodList();
-//		ArrayList<Food> groupFood = new ArrayList<Food>();
-//
-//		for (int i = 0; i < foodList.size(); i++) {
-//			Food food = foodList.get(i);
-//			if (nutGroupName.equalsIgnoreCase("Carbohydrates")) {
-//				if (!food.getCarbcarbohydrate().equals("0.0")) {
-//					groupFood.add(food);
-//					break;
-//				}
-//			} else if (nutGroupName.equalsIgnoreCase("Protein")) {
-//				if (!food.getProtein().equals("0.0")) {
-//					groupFood.add(food);
-//					break;
-//				}
-//			} else if (nutGroupName.equalsIgnoreCase("Sodium")) {
-//				if (!food.getSodium().equals("0.0")) {
-//					groupFood.add(food);
-//					break;
-//				}
-//			} else if (nutGroupName.equalsIgnoreCase("Cholesterol")) {
-//				if (!food.getCholesterol().equals("0.0")) {
-//					groupFood.add(food);
-//					break;
-//				}
-//			} else if (nutGroupName.equalsIgnoreCase("Fat")) {
-//				if (!food.getFats().equals("0.0")) {
-//					groupFood.add(food);
-//					break;
-//				}
-//			} else if (nutGroupName.equalsIgnoreCase("Sugar")) {
-//				if (!food.getSugar().equals("0.0")) {
-//					groupFood.add(food);
-//					break;
-//				}
-//			} else if (nutGroupName.equalsIgnoreCase("Fiber")) {
-//				if (!food.getFiber().equals("0.0")) {
-//					groupFood.add(food);
-//					break;
-//				}
-//			} else if (nutGroupName.equalsIgnoreCase("Calories")) {
-//				if (!food.getCalories().equals("0.0")) {
-//					groupFood.add(food);
-//					break;
-//				}
-//			}
-//		}
-//
-//		return groupFood.toArray();
-//	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
